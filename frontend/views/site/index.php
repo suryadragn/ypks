@@ -7,13 +7,13 @@ $this->title = 'Yapendikra - Yayasan Pendidikan Keagamaan';
 ?>
 <div class="site-index">
     <!-- Hero Section -->
-    <div class="hero-section d-flex align-items-center justify-content-center text-white" style="min-height: 85vh; background: linear-gradient(rgba(30, 58, 138, 0.75), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1920&auto=format&fit=crop') no-repeat center center; background-size: cover;">
+    <div class="hero-section d-flex align-items-center justify-content-center text-white" style="min-height: 85vh; background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), url('<?= Url::to('@web/image/ypks_home.jpg') ?>') no-repeat center center; background-size: cover;">
         <div class="container text-center px-4" style="max-width: 900px;">
-            <h1 class="display-2 fw-bold mb-4 animate-up">Membangun Generasi Cerdas & Berakhlak</h1>
-            <p class="lead mb-5 px-md-5 fw-light opacity-90" style="font-size: 1.25rem;">Selamat datang di portal resmi Yapendikra. Kami berkomitmen menyelenggarakan pendidikan berkualitas dengan landasan nilai-nilai keagamaan yang kuat untuk masa depan yang lebih baik.</p>
+            <h1 class="display-2 fw-black mb-4 animate-up" style="letter-spacing: -1px;">Membangun Generasi Cerdas & Berakhlak</h1>
+            <p class="lead mb-5 px-md-5 fw-light opacity-90" style="font-size: 1.35rem; line-height: 1.6;">Selamat datang di portal resmi Yapendikra. Kami berkomitmen menyelenggarakan pendidikan berkualitas dengan landasan nilai-nilai keagamaan yang kuat.</p>
             <div class="d-flex gap-3 justify-content-center">
-                <a href="<?= Url::to(['/site/about']) ?>" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow-lg fs-5">Pelajari Lebih Lanjut</a>
-                <a href="<?= Url::to(['/site/contact']) ?>" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fs-5">Hubungi Kami</a>
+                <a href="<?= Url::to(['/site/about']) ?>" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow-lg fs-5 fw-bold transition-all hover-scale">Pelajari Lebih Lanjut</a>
+                <a href="<?= Url::to(['/site/contact']) ?>" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fs-5 fw-bold transition-all hover-scale">Hubungi Kami</a>
             </div>
         </div>
     </div>
