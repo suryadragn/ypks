@@ -33,10 +33,20 @@ class News extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function behaviors()
+    {
+        return [
+            \yii\behaviors\TimestampBehavior::class,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
-            [['content', 'image', 'author', 'publish_date', 'category', 'created_at', 'updated_at'], 'default', 'value' => null],
+            [['content', 'image', 'author', 'publish_date', 'category'], 'default', 'value' => null],
             [['status'], 'default', 'value' => 10],
             [['title'], 'required'],
             [['content'], 'string'],

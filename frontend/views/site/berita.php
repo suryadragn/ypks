@@ -37,8 +37,8 @@ $this->params['breadcrumbs'][] = 'Berita';
                             <div class="card-img-container">
                                 <img src="<?= $imageUrl ?>" class="card-img-top news-image" alt="<?= Html::encode($news->title) ?>">
                                 <div class="news-date-badge shadow-sm">
-                                    <span class="day font-weight-bold d-block"><?= date('d', $news->publish_date ?: $news->created_at) ?></span>
-                                    <span class="month small text-uppercase"><?= date('M', $news->publish_date ?: $news->created_at) ?></span>
+                                    <span class="day font-weight-bold d-block"><?= date('d', strtotime($news->publish_date ?: date('Y-m-d', $news->created_at))) ?></span>
+                                    <span class="month small text-uppercase"><?= date('M', strtotime($news->publish_date ?: date('Y-m-d', $news->created_at))) ?></span>
                                 </div>
                             </div>
                             
