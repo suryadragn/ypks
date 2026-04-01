@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="permissions-form mb-5">
                         <h6 class="text-uppercase font-weight-bold text-muted small ls-2 mb-4">MODUL YANG BOLEH DIAKSES:</h6>
                         
-                        <?= $form->field($model, 'permissions')->checkboxList(\common\models\User::getPermissionsList(), [
+                        <?= $form->field($model, 'permission_ids')->checkboxList(\common\models\User::getPermissionsList(), [
                             'item' => function ($index, $label, $name, $checked, $value) {
                                 $isChecked = $checked ? 'checked' : '';
                                 return '<div class="custom-control custom-checkbox custom-checkbox-lg py-2 mb-2 d-flex align-items-center border rounded px-3 transition-bg-hover">

@@ -21,7 +21,6 @@ use yii\web\IdentityInterface;
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
- * @property string $permissions JSON of user permissions
  * @property int $is_superadmin
  * @property string $password write-only password
  */
@@ -31,12 +30,26 @@ class User extends ActiveRecord implements IdentityInterface
     public const STATUS_INACTIVE = 9;
     public const STATUS_ACTIVE = 10;
 
-    // Definisikan Konstanta Izin
+    /**
+     * Properti virtual untuk menampung input dari form (array ID permission)
+     */
+    public $permission_ids = [];
+
+    // Konstanta Kode Izin (untuk dicek di Controller)
     public const PERM_NEWS = 'news';
     public const PERM_GALLERY = 'gallery';
     public const PERM_INSTITUTION = 'institution';
     public const PERM_PAGE = 'page';
     public const PERM_MESSAGE = 'message';
+
+    /**
+     * Relasi ke tabel aggregate user_permissions
+     */
+    public function getMasterPermissions()
+    {
+        return $this->hasMany(MasterPermission::class, ['id' => 'permission_id'])
+            ->viaTable('user_permissions', ['user_id' => 'id']);
+    }
 
     /**
      * Daftar label izin yang diambil dari tabel referensi master_permissions
@@ -45,27 +58,26 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return \yii\helpers\ArrayHelper::map(
             MasterPermission::find()->asArray()->all(),
-            'code',
+            'id', // Sekarang pakai ID sebagai key (Value untuk Checkbox)
             'name'
         );
     }
 
     /**
-     * Cek apakah user punya akses ke modul tertentu
+     * Cek apakah user punya akses ke modul tertentu (berdasarkan CODE-nya)
      */
-    public function canAccess($permission)
+    public function canAccess($permissionCode)
     {
         if ($this->is_superadmin) {
             return true;
         }
 
-        if (empty($this->permissions)) {
-            return false;
-        }
-
-        $userPerms = json_decode($this->permissions, true);
-        return is_array($userPerms) && in_array($permission, $userPerms);
+        // Cek apakah ada record di tabel aggregate dengan code yang dicari
+        return $this->getMasterPermissions()
+            ->where(['code' => $permissionCode])
+            ->exists();
     }
+
     /**
      * {@inheritdoc}
      */

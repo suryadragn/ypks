@@ -37,24 +37,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw',
                     ],
                     [
-                        'attribute' => 'permissions',
+                        'attribute' => 'permission_ids',
                         'label' => 'Hak Akses Modul',
                         'value' => function($model) {
                             if ($model->is_superadmin) {
                                 return '<span class="text-success fw-bold"><i class="fas fa-check-double mr-1"></i> AKSES PENUH</span>';
                             }
                             
-                            $perms = !empty($model->permissions) ? json_decode($model->permissions, true) : [];
+                            $perms = $model->masterPermissions;
                             if (empty($perms)) {
                                 return '<span class="text-muted italic">Tidak ada akses khusus</span>';
                             }
                             
-                            $labels = \common\models\User::getPermissionsList();
                             $tags = [];
                             foreach ($perms as $p) {
-                                if (isset($labels[$p])) {
-                                    $tags[] = '<span class="badge badge-outline-primary border-primary text-primary px-2 py-1 mr-1 mb-1">' . $labels[$p] . '</span>';
-                                }
+                                $tags[] = '<span class="badge badge-outline-primary border-primary text-primary px-2 py-1 mr-1 mb-1">' . $p->name . '</span>';
                             }
                             return implode('', $tags);
                         },

@@ -73,14 +73,8 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
-        // Load data permissions dari string JSON ke array untuk checkbox
-        $model->permissions = !empty($model->permissions) ? json_decode($model->permissions, true) : [];
 
         if ($this->request->isPost && $model->load($this->request->post())) {
-            
-            // Simpan permissions kembali ke format JSON
-            $model->permissions = !empty($model->permissions) ? json_encode($model->permissions) : null;
             
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Hak akses user "' . $model->username . '" berhasil diperbarui.');
