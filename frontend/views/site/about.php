@@ -144,6 +144,7 @@ $yearsOfExperience = date('Y') - $foundationYear;
 
     .card-title-gradient {
         background: linear-gradient(to right, #000, #444);
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
