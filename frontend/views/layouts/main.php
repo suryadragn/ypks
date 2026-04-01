@@ -112,7 +112,8 @@ AppAsset::register($this);
                     <p class="mb-0 opacity-75">&copy; <?= Html::encode('Yapendikra') ?> <?= date('Y') ?>. Hak Cipta Dilindungi.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end mt-3 mt-md-0 opacity-75">
-                    <p class="mb-0">Ditenagai oleh Yii Framework</p>
+                    <p class="mb-1">Ditenagai oleh Yii Framework</p>
+                    <p class="mb-0 small">Created by <span class="text-white fw-bold">Suryaism</span></p>
                 </div>
             </div>
         </div>
