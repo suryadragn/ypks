@@ -155,6 +155,11 @@ $('.clickable-gallery').on('click', function() {
     $('#modal-title').text(title);
     $('#galleryModal').modal('show');
 });
+
+// Pemicu Paksa Tutup Modal (Jika data-dismiss gagal)
+$(document).on('click', '[data-dismiss="modal"]', function() {
+    $(this).closest('.modal').modal('hide');
+});
 JS;
 $this->registerJs($js);
 ?>

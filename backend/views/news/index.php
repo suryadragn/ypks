@@ -114,6 +114,11 @@ $(document).on('click', '.showModalButton', function() {
     $('#modal').find('.modal-title').html($(this).attr('title'));
 });
 
+// Pemicu Paksa Tutup Modal (Jika data-dismiss gagal)
+$(document).on('click', '[data-dismiss="modal"]', function() {
+    $(this).closest('.modal').modal('hide');
+});
+
 // Handle generic AJAX delete
 $(document).on('click', '.btn-delete-ajax', function(e) {
     e.preventDefault();
