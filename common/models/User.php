@@ -21,6 +21,8 @@ use yii\web\IdentityInterface;
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
+ * @property string $permissions JSON of user permissions
+ * @property int $is_superadmin
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -28,6 +30,44 @@ class User extends ActiveRecord implements IdentityInterface
     public const STATUS_DELETED = 0;
     public const STATUS_INACTIVE = 9;
     public const STATUS_ACTIVE = 10;
+
+    // Definisikan Konstanta Izin
+    public const PERM_NEWS = 'news';
+    public const PERM_GALLERY = 'gallery';
+    public const PERM_INSTITUTION = 'institution';
+    public const PERM_PAGE = 'page';
+    public const PERM_MESSAGE = 'message';
+
+    /**
+     * Daftar label izin untuk UI checkbox
+     */
+    public static function getPermissionsList()
+    {
+        return [
+            self::PERM_NEWS => 'Kelola Berita',
+            self::PERM_GALLERY => 'Kelola Galeri',
+            self::PERM_INSTITUTION => 'Kelola Lembaga',
+            self::PERM_PAGE => 'Kelola Halaman Statis',
+            self::PERM_MESSAGE => 'Kelola Pesan Masuk (Inbox)',
+        ];
+    }
+
+    /**
+     * Cek apakah user punya akses ke modul tertentu
+     */
+    public function canAccess($permission)
+    {
+        if ($this->is_superadmin) {
+            return true;
+        }
+
+        if (empty($this->permissions)) {
+            return false;
+        }
+
+        $userPerms = json_decode($this->permissions, true);
+        return is_array($userPerms) && in_array($permission, $userPerms);
+    }
     /**
      * {@inheritdoc}
      */

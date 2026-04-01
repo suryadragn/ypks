@@ -8,11 +8,29 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use Yii;
+
 /**
  * MessageController implements the CRUD actions for ContactMessage model.
  */
 class MessageController extends Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            /** @var \common\models\User $user */
+            $user = Yii::$app->user->identity;
+            if (Yii::$app->user->isGuest || !$user->canAccess(\common\models\User::PERM_MESSAGE)) {
+                throw new \yii\web\ForbiddenHttpException('Anda tidak memiliki izin untuk mengelola modul Pesan Masuk.');
+            }
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @inheritDoc
      */

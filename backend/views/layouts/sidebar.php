@@ -35,6 +35,9 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
+            /** @var \common\models\User $user */
+            $user = Yii::$app->user->identity;
+            
             echo \hail812\adminlte3\widgets\Menu::widget([
                 'items' => [
                     ['label' => 'DASHBOARD', 'header' => true],
@@ -43,20 +46,24 @@
                         'label' => 'Pesan Masuk (Inbox)', 
                         'url' => ['message/index'], 
                         'icon' => 'envelope-open-text',
+                        'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_MESSAGE),
                         'badge' => (function() {
                             $count = \common\models\ContactMessage::find()->where(['is_read' => 0])->count();
                             return $count > 0 ? '<span class="badge badge-danger right">'.$count.'</span>' : '';
                         })(),
                     ],
-                    ['label' => 'MANAJEMEN KONTEN', 'header' => true],
-                    ['label' => 'Berita', 'url' => ['news/index'], 'icon' => 'newspaper'],
-                    ['label' => 'Galeri', 'url' => ['gallery/index'], 'icon' => 'images'],
-                    ['label' => 'Lembaga', 'url' => ['institution/index'], 'icon' => 'university'],
-                    ['label' => 'Halaman Statis', 'url' => ['page/index'], 'icon' => 'file'],
-                    ['label' => 'SISTEM', 'header' => true],
-                    ['label' => 'User Manager', 'url' => ['user/index'], 'icon' => 'users'],
-                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
+                    ['label' => 'MANAJEMEN KONTEN', 'header' => true, 'visible' => !Yii::$app->user->isGuest && ($user->canAccess(\common\models\User::PERM_NEWS) || $user->canAccess(\common\models\User::PERM_GALLERY) || $user->canAccess(\common\models\User::PERM_INSTITUTION) || $user->canAccess(\common\models\User::PERM_PAGE))],
+                    ['label' => 'Berita', 'url' => ['news/index'], 'icon' => 'newspaper', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_NEWS)],
+                    ['label' => 'Galeri', 'url' => ['gallery/index'], 'icon' => 'images', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_GALLERY)],
+                    ['label' => 'Lembaga', 'url' => ['institution/index'], 'icon' => 'university', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_INSTITUTION)],
+                    ['label' => 'Halaman Statis', 'url' => ['page/index'], 'icon' => 'file', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_PAGE)],
+                    
+                    ['label' => 'SISTEM', 'header' => true, 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
+                    ['label' => 'Manajemen Staff', 'url' => ['user/index'], 'icon' => 'users-cog', 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
+                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
+                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
+                    
+                    ['label' => 'KONTROL AKUN', 'header' => true],
                     ['label' => 'Logout', 'url' => ['site/logout'], 'icon' => 'sign-out-alt', 'visible' => !Yii::$app->user->isGuest, 'template' => '<a href="{url}" class="nav-link" data-method="post">{icon} <p>{label}</p></a>'],
                 ],
             ]);

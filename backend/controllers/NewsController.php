@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use Yii;
 use common\models\News;
 use common\models\NewsSearch;
 use yii\web\Controller;
@@ -13,6 +14,22 @@ use yii\filters\VerbFilter;
  */
 class NewsController extends Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            /** @var \common\models\User $user */
+            $user = Yii::$app->user->identity;
+            if (Yii::$app->user->isGuest || !$user->canAccess(\common\models\User::PERM_NEWS)) {
+                throw new \yii\web\ForbiddenHttpException('Anda tidak memiliki izin untuk mengelola modul Berita.');
+            }
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @inheritDoc
      */

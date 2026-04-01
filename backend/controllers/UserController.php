@@ -1,0 +1,124 @@
+<?php
+
+namespace backend\controllers;
+
+use common\models\User;
+use yii\data\ActiveDataProvider;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
+use yii\filters\VerbFilter;
+use Yii;
+
+/**
+ * UserController implements the CRUD actions for User model.
+ */
+class UserController extends Controller
+{
+    /**
+     * @inheritDoc
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            // Hanya Superadmin yang boleh mengelola user
+            if (Yii::$app->user->isGuest || !Yii::$app->user->identity->is_superadmin) {
+                throw new ForbiddenHttpException('Hanya Superadmin yang boleh mengakses halaman ini.');
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Lists all User models.
+     *
+     * @return string
+     */
+    public function actionIndex()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => User::find(),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Updates an existing User model.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+        
+        // Load data permissions dari string JSON ke array untuk checkbox
+        $model->permissions = !empty($model->permissions) ? json_decode($model->permissions, true) : [];
+
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            
+            // Simpan permissions kembali ke format JSON
+            $model->permissions = !empty($model->permissions) ? json_encode($model->permissions) : null;
+            
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Hak akses user "' . $model->username . '" berhasil diperbarui.');
+                return $this->redirect(['index']);
+            }
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Deletes an existing User model.
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDelete($id)
+    {
+        if ($id == Yii::$app->user->id) {
+            Yii::$app->session->setFlash('error', 'Anda tidak bisa menghapus akun Anda sendiri.');
+        } else {
+            $this->findModel($id)->delete();
+        }
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the User model based on its primary key value.
+     */
+    protected function findModel($id)
+    {
+        if (($model = User::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+}

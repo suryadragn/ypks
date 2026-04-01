@@ -16,6 +16,22 @@ use Yii;
 class PageController extends Controller
 {
     /**
+     * {@inheritdoc}
+     */
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            /** @var \common\models\User $user */
+            $user = Yii::$app->user->identity;
+            if (Yii::$app->user->isGuest || !$user->canAccess(\common\models\User::PERM_PAGE)) {
+                throw new \yii\web\ForbiddenHttpException('Anda tidak memiliki izin untuk mengelola modul Halaman Statis.');
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * @inheritDoc
      */
     public function behaviors()
