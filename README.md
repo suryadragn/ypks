@@ -1,6 +1,8 @@
-# 🏢 Yapendikra (YPKS) - Web Profile Modernization
+# 🏢 YPKS - Yayasan Pendidikan Karanganyar Surakarta
 
-Sistem Profil Web Yayasan Pendidikan Karanganyar Surakarta (YPKS) yang dibangun menggunakan **Yii2 Advanced Framework** dan **AdminLTE 3**. Sistem ini dirancang untuk mengelola profil yayasan, rincian lembaga pendidikan, berita terbaru, dan galeri dokumentasi secara terpusat dan modern.
+### Portal Profil Lembaga & Manajemen Pendidikan
+
+Aplikasi profil institusi modern berbasis **Yii2 Advanced Framework** dan **AdminLTE 3**. Sistem ini dirancang untuk mengelola profil yayasan, rincian lembaga pendidikan, berita terbaru, dan galeri dokumentasi secara terpusat dan modern di bawah naungan **Yayasan Pendidikan Karanganyar Surakarta (YPKS)**.
 
 ---
 

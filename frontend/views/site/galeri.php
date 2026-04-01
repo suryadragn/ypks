@@ -62,20 +62,25 @@ $this->params['breadcrumbs'][] = 'Galeri';
     </div>
 </div>
 
-<!-- Modal Lightbox -->
-<div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-hidden="true" style="background: rgba(0,0,0,0.85);">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-        <div class="modal-content bg-transparent border-0 shadow-none">
-            <div class="modal-header border-0 p-0 mb-3 justify-content-end">
-                <button type="button" class="close text-white opacity-100 fs-1" data-dismiss="modal" aria-label="Close" style="font-size: 3rem; text-shadow: none;">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body p-0 text-center">
-                <img id="modal-image" src="" class="img-fluid rounded-4 shadow-lg border-4 border-white" style="max-height: 85vh;">
-                <div class="mt-4">
-                    <h3 id="modal-title" class="text-white fw-bold ls-1 text-shadow-lg"></h3>
-                    <p class="text-white-50 small text-uppercase ls-2">DOKUMENTASI YAYASAN PENDIDIKAN KARANGANYAR SURAKARTA</p>
+<!-- Modal Lightbox Style Card -->
+<div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content border-0 rounded-5 shadow-2xl overflow-hidden">
+            <div class="modal-body p-0">
+                <div class="position-absolute" style="top: 15px; right: 15px; z-index: 10;">
+                    <button type="button" class="btn btn-white btn-circle shadow-sm" data-dismiss="modal" style="width: 40px; height: 40px; border-radius: 50%; background: white; border: none;">
+                        <i class="fas fa-times text-dark"></i>
+                    </button>
+                </div>
+                <div class="p-3 bg-white">
+                    <img id="modal-image" src="" class="img-fluid rounded-4 w-100 shadow-sm" style="max-height: 70vh; object-fit: contain; background: #f8fafc;">
+                </div>
+                <div class="card-footer bg-white border-0 p-4 pt-1 text-center">
+                    <h3 id="modal-title" class="fw-bold text-dark mb-1 ls-neg-1"></h3>
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="badge bg-primary-soft text-primary px-3 py-1 rounded-pill small fw-bold mt-2">DOKUMENTASI RESMI YPKS</span>
+                    </div>
+                    <p class="text-muted small mt-3 mb-0 text-uppercase ls-2" style="font-size: 0.7rem;">Yayasan Pendidikan Karanganyar Surakarta</p>
                 </div>
             </div>
         </div>
@@ -84,12 +89,15 @@ $this->params['breadcrumbs'][] = 'Galeri';
 
 <style>
     .bg-light-soft { background-color: #f1f5f9; }
+    .bg-primary-soft { background-color: rgba(37, 99, 235, 0.1); }
+    .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
     .fw-black { font-weight: 900; }
     .ls-2 { letter-spacing: 2px; }
-    .ls-1 { letter-spacing: 1px; }
-    .rounded-4 { border-radius: 12px; }
-    .border-4 { border-width: 6px !important; }
-    .text-shadow-lg { text-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    .ls-neg-1 { letter-spacing: -1px; }
+    .rounded-5 { border-radius: 24px; }
+    .rounded-4 { border-radius: 16px; }
+    .btn-circle { display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+    .btn-circle:hover { transform: rotate(90deg) scale(1.1); background: #f1f5f9 !important; }
     
     /* Masonry Grid */
     .gallery-masonry {
