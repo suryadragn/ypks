@@ -3,14 +3,14 @@
 /** @var yii\web\View $this */
 use yii\helpers\Url;
 
-$this->title = 'Yapendikra - Yayasan Pendidikan Keagamaan';
+$this->title = Yii::$app->name . ' - ' . Yii::$app->params['appFullName'];
 ?>
 <div class="site-index">
     <!-- Hero Section -->
     <div class="hero-section d-flex align-items-center justify-content-center text-white" style="min-height: 85vh; background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), url('<?= Url::to('@web/image/ypks_home.jpg') ?>') no-repeat center center; background-size: cover;">
         <div class="container text-center px-4" style="max-width: 900px;">
             <h1 class="display-2 fw-black mb-4 animate-up" style="letter-spacing: -1px;">Membangun Generasi Cerdas & Berakhlak</h1>
-            <p class="lead mb-5 px-md-5 fw-light opacity-90" style="font-size: 1.35rem; line-height: 1.6;">Selamat datang di portal resmi Yapendikra. Kami berkomitmen menyelenggarakan pendidikan berkualitas dengan landasan nilai-nilai keagamaan yang kuat.</p>
+            <p class="lead mb-5 px-md-5 fw-light opacity-90" style="font-size: 1.35rem; line-height: 1.6;">Selamat datang di portal resmi <?= Yii::$app->name ?>. Kami berkomitmen menyelenggarakan pendidikan berkualitas dengan landasan nilai-nilai keagamaan yang kuat.</p>
             <div class="d-flex gap-3 justify-content-center">
                 <a href="<?= Url::to(['/site/about']) ?>" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow-lg fs-5 fw-bold transition-all hover-scale">Pelajari Lebih Lanjut</a>
                 <a href="<?= Url::to(['/site/contact']) ?>" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fs-5 fw-bold transition-all hover-scale">Hubungi Kami</a>
@@ -35,7 +35,7 @@ $this->title = 'Yapendikra - Yayasan Pendidikan Keagamaan';
                             <span style="font-size: 3rem;">🎒</span>
                         </div>
                         <h4 class="card-title fw-bold mb-3">Pendidikan Dasar</h4>
-                        <p class="card-text text-muted mb-4 small">Memberikan pondasi kuat bagi perkembangan kognitif, afektif, dan psikomotorik anak di usia dini.</p>
+                        <p class="card-text text-muted mb-4 small">Memberikan pondasi kuat bagi perkembangan kognitif, afektif, dan psikomotorik anak di usia dini di lingkungan <?= Yii::$app->params['appShortName'] ?>.</p>
                         <a href="<?= Url::to(['/site/lembaga']) ?>" class="btn btn-link text-decoration-none fw-bold">Detail Lembaga <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>

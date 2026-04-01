@@ -31,7 +31,7 @@ $otherNews = \common\models\News::find()
             <div class="row">
                 <div class="col-lg-10 col-xl-8" data-aos="fade-up">
                     <span class="badge bg-primary text-uppercase px-3 py-2 rounded-pill mb-3 ls-2 shadow-sm font-weight-bold">
-                        <?= Html::encode($model->category ?: 'WARTA YAYASAN') ?>
+                        <?= Html::encode($model->category ?: 'WARTA ' . Yii::$app->params['appShortName']) ?>
                     </span>
                     <h1 class="display-3 fw-bold text-white mb-4 ls-neg-2 lh-1 text-shadow-lg">
                         <?= Html::encode($model->title) ?>
@@ -39,7 +39,7 @@ $otherNews = \common\models\News::find()
                     <div class="hero-meta d-flex flex-wrap align-items-center text-white-50 gap-4">
                         <div class="meta-item-glass">
                             <i class="fas fa-user-circle me-2"></i>
-                            By <span class="text-white"><?= Html::encode($model->author ?: 'Redaksi YPKS') ?></span>
+                            By <span class="text-white"><?= Html::encode($model->author ?: 'Redaksi ' . Yii::$app->params['appShortName']) ?></span>
                         </div>
                         <div class="meta-item-glass border-start-glass ps-4">
                             <i class="fas fa-calendar-alt me-2"></i>
@@ -113,8 +113,8 @@ $otherNews = \common\models\News::find()
 
                     <!-- Sidebar Section: Info Card -->
                     <div class="sidebar-box bg-primary p-4 rounded-5 text-white shadow-lg overflow-hidden position-relative">
-                        <h4 class="fw-bold mb-3 position-relative z-index-2">Tentang YPKS</h4>
-                        <p class="small text-white-50 position-relative z-index-2">Yayasan Pendidikan Karanganyar Surakarta mendukung transformasi pendidikan dan pembangunan iman melalui berbagai program institusional di Karanganyar dan Surakarta.</p>
+                        <h4 class="fw-bold mb-3 position-relative z-index-2">Tentang <?= Yii::$app->params['appShortName'] ?></h4>
+                        <p class="small text-white-50 position-relative z-index-2"><?= Yii::$app->params['appFullName'] ?> mendukung transformasi pendidikan dan pembangunan iman melalui berbagai program institusional di Karanganyar dan Surakarta.</p>
                         <a href="<?= Url::to(['site/about']) ?>" class="btn btn-light btn-sm rounded-pill px-4 fw-bold position-relative z-index-2 mt-2">Selengkapnya</a>
                         <i class="fas fa-university position-absolute text-white" style="bottom:-20px; right:-20px; font-size: 150px; opacity: 0.1;"></i>
                     </div>
