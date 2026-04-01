@@ -38,6 +38,12 @@
             /** @var \common\models\User $user */
             $user = Yii::$app->user->identity;
             
+            // Logika Visibilitas Header
+            $hasContentAccess = $user->canAccess(\common\models\User::PERM_NEWS) || 
+                                $user->canAccess(\common\models\User::PERM_GALLERY) || 
+                                $user->canAccess(\common\models\User::PERM_INSTITUTION) || 
+                                $user->canAccess(\common\models\User::PERM_PAGE);
+
             echo \hail812\adminlte3\widgets\Menu::widget([
                 'items' => [
                     ['label' => 'DASHBOARD', 'header' => true],
@@ -52,7 +58,8 @@
                             return $count > 0 ? '<span class="badge badge-danger right">'.$count.'</span>' : '';
                         })(),
                     ],
-                    ['label' => 'MANAJEMEN KONTEN', 'header' => true, 'visible' => !Yii::$app->user->isGuest && ($user->canAccess(\common\models\User::PERM_NEWS) || $user->canAccess(\common\models\User::PERM_GALLERY) || $user->canAccess(\common\models\User::PERM_INSTITUTION) || $user->canAccess(\common\models\User::PERM_PAGE))],
+                    
+                    ['label' => 'MANAJEMEN KONTEN', 'header' => true, 'visible' => !Yii::$app->user->isGuest && $hasContentAccess],
                     ['label' => 'Berita', 'url' => ['news/index'], 'icon' => 'newspaper', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_NEWS)],
                     ['label' => 'Galeri', 'url' => ['gallery/index'], 'icon' => 'images', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_GALLERY)],
                     ['label' => 'Lembaga', 'url' => ['institution/index'], 'icon' => 'university', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_INSTITUTION)],
@@ -60,7 +67,7 @@
                     
                     ['label' => 'SISTEM', 'header' => true, 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
                     ['label' => 'Manajemen Staff', 'url' => ['user/index'], 'icon' => 'users-cog', 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
-                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
+                    ['label' => 'Gii', 'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
                     ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
                     
                     ['label' => 'KONTROL AKUN', 'header' => true],
