@@ -114,7 +114,7 @@ $otherNews = \common\models\News::find()
                     <!-- Sidebar Section: Info Card -->
                     <div class="sidebar-box bg-primary p-4 rounded-5 text-white shadow-lg overflow-hidden position-relative">
                         <h4 class="fw-bold mb-3 position-relative z-index-2">Tentang YPKS</h4>
-                        <p class="small text-white-50 position-relative z-index-2">Yayasan Pendidikan Kristen Surakarta mendukung transformasi pendidikan dan pembangunan iman melalui berbagai program institusional di Surakarta.</p>
+                        <p class="small text-white-50 position-relative z-index-2">Yayasan Pendidikan Karanganyar Surakarta mendukung transformasi pendidikan dan pembangunan iman melalui berbagai program institusional di Karanganyar dan Surakarta.</p>
                         <a href="<?= Url::to(['site/about']) ?>" class="btn btn-light btn-sm rounded-pill px-4 fw-bold position-relative z-index-2 mt-2">Selengkapnya</a>
                         <i class="fas fa-university position-absolute text-white" style="bottom:-20px; right:-20px; font-size: 150px; opacity: 0.1;"></i>
                     </div>

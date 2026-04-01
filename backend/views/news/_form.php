@@ -61,10 +61,13 @@ use yii\bootstrap4\ActiveForm;
 
 <?php
 $js = <<<JS
-$('#news-form-ajax').on('submit', function(e) {
-    e.preventDefault();
+$('#news-form-ajax').on('beforeSubmit', function(e) {
     var form = $(this);
     var formData = new FormData(this);
+    var submitBtn = form.find('button[type="submit"]');
+    
+    // Matikan tombol agar tidak diklik 2x
+    submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Menyimpan...');
 
     $.ajax({
         url: form.attr('action'),
@@ -76,21 +79,22 @@ $('#news-form-ajax').on('submit', function(e) {
             if (response.success) {
                 $('#modal').modal('hide');
                 $.pjax.reload({container: '#pjax-container'});
-                // We'll use alert if toastr is not loaded
                 if(typeof toastr !== "undefined") {
                     toastr.success(response.message);
                 } else {
                     alert(response.message);
                 }
             } else {
-                // Handle validation errors if any
-                alert('Gagal menyimpan data. Periksa kembali inputan Anda.');
+                submitBtn.prop('disabled', false).html('<i class="fas fa-save me-1"></i> Coba Lagi');
+                alert('Gagal menyimpan data.');
             }
         },
         error: function() {
-            alert('Terjadi kesalahan pada server.');
+            submitBtn.prop('disabled', false).html('<i class="fas fa-save me-1"></i> Gagal');
+            alert('Terjadi kesalahan server.');
         }
     });
+    return false; // Hentikan pengiriman form standar
 });
 
 // Image preview logic

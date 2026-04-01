@@ -86,7 +86,14 @@ class NewsController extends Controller
                 $image = \yii\web\UploadedFile::getInstance($model, 'image');
                 if ($image) {
                     $fileName = time() . '_' . $image->baseName . '.' . $image->extension;
-                    $path = \Yii::getAlias('@frontend/web/uploads/news/') . $fileName;
+                    $dir = Yii::getAlias('@public/uploads/news/');
+                    
+                    // Pastikan folder ada
+                    if (!is_dir($dir)) {
+                        mkdir($dir, 0777, true);
+                    }
+
+                    $path = $dir . $fileName;
                     if ($image->saveAs($path)) {
                         $model->image = $fileName;
                     }
@@ -125,12 +132,12 @@ class NewsController extends Controller
                 $image = \yii\web\UploadedFile::getInstance($model, 'image');
                 if ($image) {
                     $fileName = time() . '_' . $image->baseName . '.' . $image->extension;
-                    $path = \Yii::getAlias('@frontend/web/uploads/news/') . $fileName;
+                    $path = \Yii::getAlias('@public/uploads/news/') . $fileName;
                     if ($image->saveAs($path)) {
                         $model->image = $fileName;
                         // Hapus file lama bila ada
-                        if ($oldImage && file_exists(\Yii::getAlias('@frontend/web/uploads/news/') . $oldImage)) {
-                            unlink(\Yii::getAlias('@frontend/web/uploads/news/') . $oldImage);
+                        if ($oldImage && file_exists(\Yii::getAlias('@public/uploads/news/') . $oldImage)) {
+                            unlink(\Yii::getAlias('@public/uploads/news/') . $oldImage);
                         }
                     }
                 } else {

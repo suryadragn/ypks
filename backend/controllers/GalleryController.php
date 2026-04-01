@@ -88,7 +88,14 @@ class GalleryController extends Controller
                 $image = UploadedFile::getInstance($model, 'image');
                 if ($image) {
                     $fileName = 'gallery_' . time() . '.' . $image->extension;
-                    $path = Yii::getAlias('@frontend/web/uploads/gallery/') . $fileName;
+                    $dir = Yii::getAlias('@public/uploads/gallery/');
+                    
+                    // Pastikan folder ada
+                    if (!is_dir($dir)) {
+                        mkdir($dir, 0777, true);
+                    }
+
+                    $path = $dir . $fileName;
                     if ($image->saveAs($path)) $model->image = $fileName;
                 }
                 if ($model->save()) {
@@ -115,11 +122,11 @@ class GalleryController extends Controller
             $image = UploadedFile::getInstance($model, 'image');
             if ($image) {
                 $fileName = 'gallery_' . time() . '.' . $image->extension;
-                $path = Yii::getAlias('@frontend/web/uploads/gallery/') . $fileName;
+                $path = Yii::getAlias('@public/uploads/gallery/') . $fileName;
                 if ($image->saveAs($path)) {
                     $model->image = $fileName;
-                    if ($oldImage && file_exists(Yii::getAlias('@frontend/web/uploads/gallery/') . $oldImage)) {
-                        unlink(Yii::getAlias('@frontend/web/uploads/gallery/') . $oldImage);
+                    if ($oldImage && file_exists(Yii::getAlias('@public/uploads/gallery/') . $oldImage)) {
+                        unlink(Yii::getAlias('@public/uploads/gallery/') . $oldImage);
                     }
                 }
             } else {
@@ -142,7 +149,7 @@ class GalleryController extends Controller
         $model = $this->findModel($id);
         $file = $model->image;
         if ($model->delete() && $file) {
-            $path = Yii::getAlias('@frontend/web/uploads/gallery/') . $file;
+            $path = Yii::getAlias('@public/uploads/gallery/') . $file;
             if (file_exists($path)) unlink($path);
         }
 

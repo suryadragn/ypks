@@ -39,10 +39,12 @@ use yii\bootstrap4\ActiveForm;
 
 <?php
 $js = <<<JS
-$('#gallery-form-ajax').on('submit', function(e) {
-    e.preventDefault();
+$('#gallery-form-ajax').on('beforeSubmit', function(e) {
     var form = $(this);
     var formData = new FormData(this);
+    var submitBtn = form.find('button[type="submit"]');
+
+    submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Sedang Mengunggah...');
 
     $.ajax({
         url: form.attr('action'),
@@ -56,9 +58,17 @@ $('#gallery-form-ajax').on('submit', function(e) {
                 $.pjax.reload({container: '#pjax-container'});
                 if(typeof toastr !== "undefined") toastr.success(response.message);
                 else alert(response.message);
+            } else {
+                submitBtn.prop('disabled', false).html('<i class="fas fa-upload me-1"></i> Unggah Sekarang');
+                alert('Gagal mengunggah foto.');
             }
+        },
+        error: function() {
+            submitBtn.prop('disabled', false).html('<i class="fas fa-upload me-1"></i> Unggah Sekarang');
+            alert('Terjadi kesalahan server.');
         }
     });
+    return false; // Hentikan pengiriman form standar
 });
 
 $('#gallery-image').on('change', function() {
