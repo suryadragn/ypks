@@ -111,9 +111,12 @@ AppAsset::register($this);
                 <div class="col-md-6 text-center text-md-start">
                     <p class="mb-0 opacity-75">&copy; <?= Html::encode('Yapendikra') ?> <?= date('Y') ?>. Hak Cipta Dilindungi.</p>
                 </div>
-                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0 opacity-75">
-                    <p class="mb-1">Ditenagai oleh Yii Framework</p>
-                    <p class="mb-0 small">Created by <span class="text-white fw-bold">Suryaism</span></p>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <p class="mb-1 text-white-50 small">Ditenagai oleh Yii Framework</p>
+                    <p class="mb-0 fw-bold" style="letter-spacing: 0.5px;">
+                        <span class="text-white-50 fw-normal small">Project by</span> 
+                        <span class="text-primary" style="color: #3b82f6 !important;">Surya</span><span class="text-white">ism</span>
+                    </p>
                 </div>
             </div>
         </div>
