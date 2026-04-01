@@ -1,0 +1,68 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="<?= \yii\helpers\Url::to(['site/index']) ?>" class="brand-link">
+        <img src="/image/logo-ypks.png" alt="YPKS Logo" class="brand-image img-circle elevation-3 shadow-sm bg-white" style="opacity: 1; border: 1px solid rgba(255,255,255,0.2);">
+        <span class="brand-text font-weight-bold"><?= Yii::$app->name ?></span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex border-bottom-0 shadow-none">
+            <div class="image">
+                <div class="bg-primary d-flex align-items-center justify-content-center rounded-circle elevation-1" style="width: 34px; height: 34px;">
+                    <i class="fas fa-user-shield text-white small"></i>
+                </div>
+            </div>
+            <div class="info">
+                <a href="#" class="d-block font-weight-bold text-uppercase"><?= Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username ?></a>
+            </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <!-- href be escaped -->
+        <!-- <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <?php
+            echo \hail812\adminlte3\widgets\Menu::widget([
+                'items' => [
+                    ['label' => 'DASHBOARD', 'header' => true],
+                    ['label' => 'Beranda', 'url' => ['site/index'], 'icon' => 'th-large'],
+                    [
+                        'label' => 'Pesan Masuk (Inbox)', 
+                        'url' => ['message/index'], 
+                        'icon' => 'envelope-open-text',
+                        'badge' => (function() {
+                            $count = \common\models\ContactMessage::find()->where(['is_read' => 0])->count();
+                            return $count > 0 ? '<span class="badge badge-danger right">'.$count.'</span>' : '';
+                        })(),
+                    ],
+                    ['label' => 'MANAJEMEN KONTEN', 'header' => true],
+                    ['label' => 'Berita', 'url' => ['news/index'], 'icon' => 'newspaper'],
+                    ['label' => 'Galeri', 'url' => ['gallery/index'], 'icon' => 'images'],
+                    ['label' => 'Lembaga', 'url' => ['institution/index'], 'icon' => 'university'],
+                    ['label' => 'Halaman Statis', 'url' => ['page/index'], 'icon' => 'file'],
+                    ['label' => 'SISTEM', 'header' => true],
+                    ['label' => 'User Manager', 'url' => ['user/index'], 'icon' => 'users'],
+                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
+                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
+                    ['label' => 'Logout', 'url' => ['site/logout'], 'icon' => 'sign-out-alt', 'visible' => !Yii::$app->user->isGuest, 'template' => '<a href="{url}" class="nav-link" data-method="post">{icon} <p>{label}</p></a>'],
+                ],
+            ]);
+            ?>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,12 @@
+<?php
+
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(dirname(dirname(__DIR__)));
+$dotenv->load();
+
+Yii::setAlias('@common', dirname(__DIR__));
+Yii::setAlias('@frontend', dirname(dirname(__DIR__)) . '/frontend');
+Yii::setAlias('@backend', dirname(dirname(__DIR__)) . '/backend');
+Yii::setAlias('@console', dirname(dirname(__DIR__)) . '/console');
+Yii::setAlias('@public', dirname(dirname(__DIR__)) . '/public');
+Yii::setAlias('@admin', dirname(dirname(__DIR__)) . '/public/admin');
+Yii::setAlias('@webroot', dirname(dirname(__DIR__)) . '/public');
