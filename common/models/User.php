@@ -39,17 +39,15 @@ class User extends ActiveRecord implements IdentityInterface
     public const PERM_MESSAGE = 'message';
 
     /**
-     * Daftar label izin untuk UI checkbox
+     * Daftar label izin yang diambil dari tabel referensi master_permissions
      */
     public static function getPermissionsList()
     {
-        return [
-            self::PERM_NEWS => 'Kelola Berita',
-            self::PERM_GALLERY => 'Kelola Galeri',
-            self::PERM_INSTITUTION => 'Kelola Lembaga',
-            self::PERM_PAGE => 'Kelola Halaman Statis',
-            self::PERM_MESSAGE => 'Kelola Pesan Masuk (Inbox)',
-        ];
+        return \yii\helpers\ArrayHelper::map(
+            MasterPermission::find()->asArray()->all(),
+            'code',
+            'name'
+        );
     }
 
     /**
