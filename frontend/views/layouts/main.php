@@ -43,6 +43,7 @@ AppAsset::register($this);
         $menuItems = [
             ['label' => 'Beranda', 'url' => ['/site/index']],
             ['label' => 'Profil', 'url' => ['/site/about']],
+            ['label' => 'Program', 'url' => ['/site/program']],
             ['label' => 'Lembaga', 'url' => ['/site/lembaga']],
             ['label' => 'Berita', 'url' => ['/site/berita']],
             ['label' => 'Galeri', 'url' => ['/site/galeri']],

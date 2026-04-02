@@ -324,4 +324,43 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+
+    public function actionProgram($id_type = null)
+    {
+        $query = \common\models\SocialProgram::find()->where(['status' => 1]);
+        
+        if ($id_type) {
+            $query->andWhere(['type_id' => $id_type]);
+            $selectedType = \common\models\SocialProgramType::findOne($id_type);
+        } else {
+            $selectedType = null;
+        }
+
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => $query->orderBy(['is_featured' => SORT_DESC, 'created_at' => SORT_DESC]),
+            'pagination' => [
+                'pageSize' => 6,
+            ],
+        ]);
+
+        $types = \common\models\SocialProgramType::find()->all();
+
+        return $this->render('program', [
+            'dataProvider' => $dataProvider,
+            'types' => $types,
+            'selectedType' => $selectedType,
+        ]);
+    }
+
+    public function actionViewProgram($slug)
+    {
+        $model = \common\models\SocialProgram::find()->where(['slug' => $slug])->one();
+        if (!$model) {
+            throw new \yii\web\NotFoundHttpException('Halaman tidak ditemukan.');
+        }
+
+        return Yii::$app->request->isAjax 
+            ? $this->renderAjax('view-program', ['model' => $model]) 
+            : $this->render('view-program', ['model' => $model]);
+    }
 }

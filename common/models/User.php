@@ -41,6 +41,7 @@ class User extends ActiveRecord implements IdentityInterface
     public const PERM_INSTITUTION = 'institution';
     public const PERM_PAGE = 'page';
     public const PERM_MESSAGE = 'message';
+    public const PERM_PROGRAM = 'program';
 
     /**
      * Relasi ke tabel aggregate user_permissions

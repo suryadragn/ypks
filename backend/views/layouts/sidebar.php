@@ -42,6 +42,7 @@
             $hasContentAccess = $user->canAccess(\common\models\User::PERM_NEWS) || 
                                 $user->canAccess(\common\models\User::PERM_GALLERY) || 
                                 $user->canAccess(\common\models\User::PERM_INSTITUTION) || 
+                                $user->canAccess(\common\models\User::PERM_PROGRAM) || 
                                 $user->canAccess(\common\models\User::PERM_PAGE);
 
             echo \hail812\adminlte3\widgets\Menu::widget([
@@ -64,7 +65,17 @@
                     ['label' => 'Galeri', 'url' => ['gallery/index'], 'icon' => 'images', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_GALLERY)],
                     ['label' => 'Lembaga', 'url' => ['institution/index'], 'icon' => 'university', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_INSTITUTION)],
                     ['label' => 'Halaman Statis', 'url' => ['page/index'], 'icon' => 'file', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_PAGE)],
-                    
+                    [
+                        'label' => 'Program Sosial', 
+                        'icon' => 'hands-helping', 
+                        'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_PROGRAM),
+                        'items' => [
+                            ['label' => 'Daftar Program', 'url' => ['social-program/index'], 'icon' => 'list-ul'],
+                            ['label' => 'Referensi Jenis', 'url' => ['social-program-type/index'], 'icon' => 'tags'],
+                            ['label' => 'Rekening Donasi', 'url' => ['donation-account/index'], 'icon' => 'credit-card'],
+                        ]
+                    ],
+
                     ['label' => 'SISTEM', 'header' => true, 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
                     ['label' => 'Manajemen Staff', 'url' => ['user/index'], 'icon' => 'users-cog', 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
                     ['label' => 'Gii', 'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
