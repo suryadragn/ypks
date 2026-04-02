@@ -9,7 +9,7 @@ use yii\helpers\Url;
 $this->title = 'Profil YPKS';
 $this->params['breadcrumbs'][] = $this->title;
 
-$foundationYear = 1985;
+$foundationYear = 1983;
 $yearsOfExperience = date('Y') - $foundationYear;
 ?>
 <div class="site-about pt-5 pb-5 bg-white">
