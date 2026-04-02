@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rencana Pembaruan Sistem YPKS - Program & Donasi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #f9f9f9;
+        }
+        .page {
+            background: white;
+            padding: 60px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-top: 8px solid #2c3e50;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+        h2 {
+            color: #2980b9;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            font-size: 20px;
+        }
+        h3 {
+            color: #34495e;
+            font-size: 17px;
+            margin-top: 20px;
+        }
+        p, li {
+            font-size: 15px;
+            text-align: justify;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .info-box {
+            background: #f1f8ff;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: right;
+            font-style: italic;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .tagline {
+            display: block;
+            margin-top: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .page { box-shadow: none; border: none; padding: 0; }
+            button { display: none; }
+        }
+        .no-print {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover { background: #219150; }
+    </style>
+</head>
+<body>
+    <div class="no-print">
+        <button onclick="window.print()">Cetak ke PDF</button>
+        <p><small>(Klik tombol di atas lalu pilih "Save as PDF")</small></p>
+    </div>
+
+    <div class="page">
+        <header>
+            <h1>Dokumen Perencanaan Pembaruan Sistem YPKS</h1>
+            <p class="subtitle">Implementasi Modul Program Sosial & Sistem Donasi Terintegrasi (Phase 2)</p>
+            <p><small>Tanggal: 02 April 2026</small></p>
+        </header>
+
+        <section>
+            <h2>1. Pendahuluan</h2>
+            <p>Seiring dengan berkembangnya aktivitas sosial dan pelayanan di bawah naungan **Yayasan Pendidikan Karanganyar Surakarta (YPKS)**, diperlukan wadah digital yang representatif untuk mengomunikasikan inisiatif sosial dan mempermudah keterlibatan masyarakat (donatur) dalam program-program kemanusiaan.</p>
+        </section>
+
+        <section>
+            <h2>2. Modul Program Sosial</h2>
+            <p>Berbeda dengan berita umum, modul Program Sosial dirancang khusus untuk memetakan proyek sosial aktif yang membutuhkan perhatian publik.</p>
+            <ul>
+                <li><strong>Katalog Program:</strong> Menampilkan daftar program yang sedang dijalankan (misal: Beasiswa, Bantuan Logistik, Program Lingkungan).</li>
+                <li><strong>Detail Progres:</strong> Memuat narasi lengkap, foto kegiatan, serta status ketersediaan donasi.</li>
+                <li><strong>CTA (Call to Action):</strong> Tombol khusus yang menghubungkan setiap program langsung ke sistem donasi.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Sistem Donasi Manual (Tracking System)</h2>
+            <p>Mengingat efisiensi biaya operasional yayasan, kami merekomendasikan **Sistem Donasi Manual Transfer** yang aman dan tetap profesional.</p>
+            
+            <h3>Alur Kerja (Workflow):</h3>
+            <ul>
+                <li><strong>Proses Input:</strong> Donatur mengisi formulir (Nama, Kontak, Program, Nominal).</li>
+                <li><strong>Generation Ticket ID:</strong> Sistem memberikan ID Transaksi unik (misal: <code>YPKS-24-0012</code>) sebagai nomor referensi.</li>
+                <li><strong>Konfirmasi Pembayaran:</strong> Donatur mengunggah foto bukti transfer melalui modal/halaman konfirmasi di website.</li>
+                <li><strong>Monitoring Status:</strong> Donatur dapat memasukkan Ticket ID kapan saja untuk mengecek apakah dana telah diverifikasi oleh yayasan.</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Keunggulan Strategis:</strong>
+                Dana 100% langsung masuk ke rekening yayasan tanpa potongan komisi dari aplikasi pihak ketiga (Payment Gateway).
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Manajemen Admin (Backend)</h2>
+            <p>Dashboard admin akan diperbarui dengan menu "Manajemen Donasi" untuk memudahkan pengurus memproses verifikasi dan melaporkan ringkasan dana yang terkumpul secara periodik.</p>
+        </section>
+
+        <section>
+            <h2>5. Masa Pengembangan</h2>
+            <p>Pengembangan diperkirakan memakan waktu yang singkat dengan fokus pada fungsionalitas utama (Minimum Viable Product) agar sistem segera dapat digunakan untuk kegiatan mendesak yayasan.</p>
+        </section>
+
+        <div class="footer">
+            <p>Hormat Kami,</p>
+            <br><br>
+            <span class="tagline">Tim Pengembangan Sistem Informasi YPKS</span>
+        </div>
+    </div>
+</body>
+</html>
