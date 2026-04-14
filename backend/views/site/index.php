@@ -53,24 +53,32 @@ $this->params['breadcrumbs'] = [['label' => 'Dashboard']];
                 <div class="card-body p-4">
                     <div class="vision-section mb-4">
                         <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-2">Visi Utama</h6>
-                        <p class="text-dark-50 border-left pl-3" style="font-size: 1.1rem; line-height: 1.7;">
-                            Menjadi yayasan pendidikan yang unggul, berkarakter, dan berdaya saing global dalam mencetak sumber daya manusia yang berkualitas di wilayah Karanganyar dan sekitarnya.
+                        <p class="text-dark-50 border-left pl-3 font-italic" style="font-size: 1.1rem; line-height: 1.7;">
+                            "Menjadi badan hukum penyelenggara pendidikan dan sosial yang terpercaya, unggul dan lestari."
                         </p>
                     </div>
                     <div class="mission-section">
-                        <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-2">Misi Utama</h6>
+                        <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-3">Misi Utama</h6>
                         <ul class="list-unstyled text-muted pl-1">
-                            <li class="mb-2 d-flex align-items-start">
+                            <li class="mb-3 d-flex align-items-start">
                                 <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
-                                <span>Menyelenggarakan pendidikan formal yang berkualitas di semua jenjang.</span>
+                                <span>Mewujudkan pertumbuhan secara bertahap.</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
+                                <span>Merekrut dan membina Sumber Daya Manusia profesional dalam lingkungan kerja yang sehat.</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
+                                <span>Mengembangkan nilai-nilai luhur dalam setiap lembaga/unit pelaksana.</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
+                                <span>Menyelenggarakan operasional Sekolah/Perguruan Tinggi sesuai standar Pendidikan Kebudayaan Nasional.</span>
                             </li>
                             <li class="mb-2 d-flex align-items-start">
                                 <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
-                                <span>Meningkatkan sarana dan prasarana pendidikan yang modern dan ramah lingkungan.</span>
-                            </li>
-                            <li class="mb-2 d-flex align-items-start">
-                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
-                                <span>Memperkuat sinergi antara dunia pendidikan dengan kebutuhan industri.</span>
+                                <span>Menjadi lembaga inovatif dan produktif.</span>
                             </li>
                         </ul>
                     </div>
@@ -89,19 +97,11 @@ $this->params['breadcrumbs'] = [['label' => 'Dashboard']];
                 <div class="card-body p-0">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item p-4">
-                            <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-3">Kantor Pusat YPKS</h6>
+                            <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-3">Kantor YPKS</h6>
                             <p class="mb-0 text-muted small">
                                 <i class="fas fa-map-marker-alt text-danger mr-2"></i> Jl. Lawu No.115 Karanganyar<br>
                                 <i class="fas fa-phone text-success mr-2 mt-2"></i> Telp./Fax: (0271) 495212<br>
                                 <i class="fas fa-envelope text-info mr-2 mt-2"></i> Kode Pos 57716
-                            </p>
-                        </li>
-                        <li class="list-group-item p-4">
-                            <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-3">Sekretariat YPKS</h6>
-                            <p class="mb-0 text-muted small">
-                                <i class="fas fa-map-marker-alt text-danger mr-2"></i> Jl. Lawu, Harjosari, Popongan, Karanganyar<br>
-                                <i class="fas fa-phone text-success mr-2 mt-2"></i> Telp./Fax: (0271) 495284<br>
-                                <i class="fas fa-envelope text-info mr-2 mt-2"></i> Kode Pos 57715
                             </p>
                         </li>
                     </ul>

@@ -7,7 +7,7 @@ $this->title = Yii::$app->name . ' - ' . Yii::$app->params['appFullName'];
 ?>
 <div class="site-index">
     <!-- Hero Section -->
-    <div class="hero-section d-flex align-items-center justify-content-center text-white" style="min-height: 85vh; background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), url('<?= Url::to('@web/image/ypks_home.jpg') ?>') no-repeat center center; background-size: cover;">
+    <div class="hero-section d-flex align-items-center justify-content-center text-white" style="min-height: 85vh; background: linear-gradient(rgba(66, 32, 6, 0.75), rgba(66, 32, 6, 0.85)), url('<?= Url::to('@web/image/ypks_home.jpg') ?>') no-repeat center center; background-size: cover;">
         <div class="container text-center px-4" style="max-width: 900px;">
             <h1 class="display-2 fw-black mb-4 animate-up" style="letter-spacing: -1px;">Membangun Generasi Cerdas & Berakhlak</h1>
             <p class="lead mb-5 px-md-5 fw-light opacity-90" style="font-size: 1.35rem; line-height: 1.6;">Selamat datang di portal resmi <?= Yii::$app->name ?>. Kami berkomitmen menyelenggarakan pendidikan berkualitas dengan landasan nilai-nilai keagamaan yang kuat.</p>
@@ -18,51 +18,51 @@ $this->title = Yii::$app->name . ' - ' . Yii::$app->params['appFullName'];
         </div>
     </div>
 
-    <!-- Institutions Section -->
+    <!-- Keunggulan Section -->
     <div class="container my-5 py-5">
         <div class="text-center mb-5">
-            <h6 class="text-primary fw-bold text-uppercase mb-2" style="letter-spacing: 2px;">Jenjang Pendidikan</h6>
-            <h2 class="display-5 fw-black text-dark">Lembaga Kami</h2>
+            <h6 class="text-primary fw-bold text-uppercase mb-2" style="letter-spacing: 2px;">Mengapa Memilih Kami</h6>
+            <h2 class="display-5 fw-black text-dark">Keunggulan YPKS</h2>
             <div class="mx-auto bg-primary mt-3 rounded" style="height: 4px; width: 60px;"></div>
         </div>
 
         <div class="row g-4 mt-4">
-            <!-- SD/MI -->
+            <!-- Poin 1 -->
             <div class="col-md-4">
                 <div class="card h-100 card-premium text-center">
                     <div class="card-body p-5">
                         <div class="mb-4 d-inline-flex bg-primary bg-opacity-10 p-4 rounded-circle">
-                            <span style="font-size: 3rem;">🎒</span>
+                            <span style="font-size: 3rem;">🌟</span>
                         </div>
-                        <h4 class="card-title fw-bold mb-3">Pendidikan Dasar</h4>
-                        <p class="card-text text-muted mb-4 small">Memberikan pondasi kuat bagi perkembangan kognitif, afektif, dan psikomotorik anak di usia dini di lingkungan <?= Yii::$app->params['appShortName'] ?>.</p>
-                        <a href="<?= Url::to(['/site/lembaga']) ?>" class="btn btn-link text-decoration-none fw-bold">Detail Lembaga <i class="bi bi-arrow-right"></i></a>
+                        <h4 class="card-title fw-bold mb-3">Lingkungan Terpadu</h4>
+                        <p class="card-text text-muted mb-4 small">Menciptakan ekosistem belajar yang kondusif, beretika, dan mengedepankan nilai-nilai budi pekerti yang luhur.</p>
+                        <hr class="w-25 mx-auto bg-primary">
                     </div>
                 </div>
             </div>
-            <!-- SMP/MTs -->
+            <!-- Poin 2 -->
             <div class="col-md-4">
                 <div class="card h-100 card-premium text-center">
                     <div class="card-body p-5">
                         <div class="mb-4 d-inline-flex bg-success bg-opacity-10 p-4 rounded-circle">
-                            <span style="font-size: 3rem;">🏫</span>
+                            <span style="font-size: 3rem;">👩‍🏫</span>
                         </div>
-                        <h4 class="card-title fw-bold mb-3">Pendidikan Menengah</h4>
-                        <p class="card-text text-muted mb-4 small">Mengembangkan potensi siswa secara optimal menuju kedewasaan dan kemandirian berkarakter.</p>
-                        <a href="<?= Url::to(['/site/lembaga']) ?>" class="btn btn-link text-decoration-none fw-bold">Detail Lembaga <i class="bi bi-arrow-right"></i></a>
+                        <h4 class="card-title fw-bold mb-3">Pendidik Profesional</h4>
+                        <p class="card-text text-muted mb-4 small">Didukung oleh tenaga pendidik dan kependidikan yang kompeten, berdedikasi tinggi, dan sarat pengalaman.</p>
+                        <hr class="w-25 mx-auto bg-success">
                     </div>
                 </div>
             </div>
-            <!-- SMA/MA -->
+            <!-- Poin 3 -->
             <div class="col-md-4">
                 <div class="card h-100 card-premium text-center">
                     <div class="card-body p-5">
                         <div class="mb-4 d-inline-flex bg-warning bg-opacity-10 p-4 rounded-circle">
-                            <span style="font-size: 3rem;">🎓</span>
+                            <span style="font-size: 3rem;">💡</span>
                         </div>
-                        <h4 class="card-title fw-bold mb-3">Pendidikan Atas</h4>
-                        <p class="card-text text-muted mb-4 small">Mempersiapkan lulusan yang siap bersaing secara global dengan bekal ilmu pengetahuan.</p>
-                        <a href="<?= Url::to(['/site/lembaga']) ?>" class="btn btn-link text-decoration-none fw-bold">Detail Lembaga <i class="bi bi-arrow-right"></i></a>
+                        <h4 class="card-title fw-bold mb-3">Fasilitas Inovatif</h4>
+                        <p class="card-text text-muted mb-4 small">Menyediakan sarana dan prasarana terdepan untuk memastikan siswa siap menghadapi tantangan globalisasi.</p>
+                        <hr class="w-25 mx-auto bg-warning">
                     </div>
                 </div>
             </div>

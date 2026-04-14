@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'image',
                     'format' => 'raw',
                     'value' => function($model) {
-                        $url = $model->image ? Yii::getAlias('@web/../../public/uploads/programs/') . $model->image : 'https://placehold.co/100x60?text=No+Image';
+                        $url = $model->image ? Yii::getAlias('@web/../../uploads/programs/') . $model->image : 'https://placehold.co/100x60?text=No+Image';
                         return Html::img($url, ['class' => 'img-thumbnail', 'style' => 'width:80px; height:50px; object-fit:cover;']);
                     },
                     'headerOptions' => ['style' => 'width:100px'],

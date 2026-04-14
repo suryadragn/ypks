@@ -14,6 +14,7 @@ use common\models\SocialProgramType;
 
     <?php $form = ActiveForm::begin([
         'id' => 'social-program-form-ajax',
+        'action' => $model->isNewRecord ? \yii\helpers\Url::to(['social-program/create']) : \yii\helpers\Url::to(['social-program/update', 'id' => $model->id]),
         'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
 
@@ -72,7 +73,7 @@ use common\models\SocialProgramType;
                 <?php if ($model->image): ?>
                     <div class="mb-2 text-center" id="image-preview">
                         <label class="d-block text-left font-weight-bold"><i class="fas fa-image mr-1"></i> Gambar Saat Ini:</label>
-                        <?= Html::img(Yii::getAlias('@web/../../public/uploads/programs/') . $model->image, ['class' => 'img-fluid rounded shadow-sm border p-1 bg-white', 'style' => 'max-height: 120px;']) ?>
+                        <?= Html::img(Yii::getAlias('@web/../../uploads/programs/') . $model->image, ['class' => 'img-fluid rounded shadow-sm border p-1 bg-white', 'style' => 'max-height: 120px;']) ?>
                     </div>
                 <?php else: ?>
                     <div class="mb-2 text-center" id="image-preview"></div>
@@ -94,10 +95,10 @@ use common\models\SocialProgramType;
 
 <?php
 $js = <<<JS
-$('#social-program-form-ajax').on('submit', function(e) {
+$('#social-program-form-ajax').off('submit').on('submit', function(e) {
     e.preventDefault();
     var form = $(this);
-    var formData = new FormData(this[0]);
+    var formData = new FormData(this);
 
     $.ajax({
         url: form.attr('action'),

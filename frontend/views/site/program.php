@@ -92,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <!-- Image section with hover zoom -->
                             <div class="program-img-wrapper position-relative overflow-hidden" style="height: 260px;">
                                 <div class="img-overlay"></div>
-                                <?= Html::img($model->image ? Url::to('@web/uploads/programs/' . $model->image) : 'https://images.unsplash.com/photo-1542601906990-b4d3fb773b09?auto=format&fit=crop&w=800', [
+                                <?= Html::img($model->image ? Url::to('@web/uploads/programs/' . $model->image) : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80', [
                                     'class' => 'card-img-top program-img-zoom w-100 h-100 object-fit-cover',
                                     'alt' => $model->title
                                 ]) ?>

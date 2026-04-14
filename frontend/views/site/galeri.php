@@ -11,9 +11,10 @@ $this->params['breadcrumbs'][] = 'Galeri';
 ?>
 <div class="site-galeri bg-light-soft min-vh-100 pb-5">
     <!-- Hero Header Gallery -->
-    <div class="container-fluid bg-primary py-5 mb-5 text-white text-center shadow-sm" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);">
-        <div class="container py-4 animate-up">
+    <div class="container-fluid bg-primary py-5 mb-5 text-white text-center shadow-sm" style="background: linear-gradient(135deg, #422006 0%, #d97706 100%);">
+        <div class="container py-4 animate-up" style="color: white;">
             <h1 class="display-4 fw-black text-uppercase mb-3 ls-2">Galeri Kehidupan</h1>
+            <div class="mx-auto bg-white mb-4 rounded" style="height: 4px; width: 360px; opacity: 0.9;"></div>
             <p class="lead opacity-75">Dokumentasi momen berharga, fasilitas, dan kegiatan seluruh unit pendidikan YPKS.</p>
         </div>
     </div>
@@ -23,18 +24,18 @@ $this->params['breadcrumbs'][] = 'Galeri';
             <div class="gallery-masonry" id="gallery-grid">
                 <?php foreach ($galleries as $index => $gallery): ?>
                     <div class="gallery-masonry-item mb-4" data-aos="fade-up" data-aos-delay="<?= $index * 50 ?>">
-                        <?php 
-                            $imgUrl = null;
-                            if ($gallery->image && file_exists(Yii::getAlias('@public/uploads/gallery/') . $gallery->image)) {
-                                $imgUrl = Url::to('@web/uploads/gallery/' . $gallery->image);
-                            } else {
-                                $imgUrl = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop';
-                            }
+                        <?php
+                        $imgUrl = null;
+                        if ($gallery->image && file_exists(Yii::getAlias('@public/uploads/gallery/') . $gallery->image)) {
+                            $imgUrl = Url::to('@web/uploads/gallery/' . $gallery->image);
+                        } else {
+                            $imgUrl = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop';
+                        }
                         ?>
-                        <div class="gallery-card-premium rounded-4 shadow-sm overflow-hidden bg-white position-relative clickable-gallery" 
-                             data-img="<?= $imgUrl ?>" 
-                             data-title="<?= Html::encode($gallery->title) ?>"
-                             style="cursor: pointer;">
+                        <div class="gallery-card-premium rounded-4 shadow-sm overflow-hidden bg-white position-relative clickable-gallery"
+                            data-img="<?= $imgUrl ?>"
+                            data-title="<?= Html::encode($gallery->title) ?>"
+                            style="cursor: pointer;">
                             <div class="img-wrapper overflow-hidden">
                                 <img src="<?= $imgUrl ?>" alt="<?= Html::encode($gallery->title) ?>" class="img-fluid gallery-image">
                                 <div class="gallery-info-overlay d-flex flex-column align-items-center justify-content-center text-center p-3">
@@ -88,60 +89,144 @@ $this->params['breadcrumbs'][] = 'Galeri';
 </div>
 
 <style>
-    .bg-light-soft { background-color: #f1f5f9; }
-    .bg-primary-soft { background-color: rgba(37, 99, 235, 0.1); }
-    .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
-    .fw-black { font-weight: 900; }
-    .ls-2 { letter-spacing: 2px; }
-    .ls-neg-1 { letter-spacing: -1px; }
-    .rounded-5 { border-radius: 24px; }
-    .rounded-4 { border-radius: 16px; }
-    .btn-circle { display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
-    .btn-circle:hover { transform: rotate(90deg) scale(1.1); background: #f1f5f9 !important; }
-    
+    .bg-light-soft {
+        background-color: #f1f5f9;
+    }
+
+    .bg-primary-soft {
+        background-color: rgba(37, 99, 235, 0.1);
+    }
+
+    .shadow-2xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .fw-black {
+        font-weight: 900;
+    }
+
+    .ls-2 {
+        letter-spacing: 2px;
+    }
+
+    .ls-neg-1 {
+        letter-spacing: -1px;
+    }
+
+    .rounded-5 {
+        border-radius: 24px;
+    }
+
+    .rounded-4 {
+        border-radius: 16px;
+    }
+
+    .btn-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .btn-circle:hover {
+        transform: rotate(90deg) scale(1.1);
+        background: #f1f5f9 !important;
+    }
+
     /* Masonry Grid */
     .gallery-masonry {
         column-count: 3;
         column-gap: 30px;
     }
-    
+
     @media (max-width: 991.98px) {
-        .gallery-masonry { column-count: 2; }
+        .gallery-masonry {
+            column-count: 2;
+        }
     }
+
     @media (max-width: 767.98px) {
-        .gallery-masonry { column-count: 1; }
+        .gallery-masonry {
+            column-count: 1;
+        }
     }
-    
+
     .gallery-masonry-item {
         display: inline-block;
         width: 100%;
     }
-    
+
     /* Card Styles */
-    .gallery-card-premium { transition: transform 0.4s ease, box-shadow 0.4s ease; border: none; }
-    .gallery-card-premium:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important; }
-    
-    .img-wrapper { position: relative; }
-    .gallery-image { width: 100%; height: auto; transition: transform 0.6s ease; }
-    .gallery-card-premium:hover .gallery-image { transform: scale(1.1); }
-    
+    .gallery-card-premium {
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        border: none;
+    }
+
+    .gallery-card-premium:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .img-wrapper {
+        position: relative;
+    }
+
+    .gallery-image {
+        width: 100%;
+        height: auto;
+        transition: transform 0.6s ease;
+    }
+
+    .gallery-card-premium:hover .gallery-image {
+        transform: scale(1.1);
+    }
+
     /* Hover Overlay */
     .gallery-info-overlay {
-        position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(37, 99, 235, 0.7); backdrop-filter: blur(5px);
-        opacity: 0; transition: opacity 0.4s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(37, 99, 235, 0.7);
+        backdrop-filter: blur(5px);
+        opacity: 0;
+        transition: opacity 0.4s ease;
     }
-    .gallery-card-premium:hover .gallery-info-overlay { opacity: 1; }
-    
-    .badge-light-soft { background-color: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: white; }
-    .zoom-icon { transform: scale(0.5); transition: transform 0.4s ease; }
-    .gallery-card-premium:hover .zoom-icon { transform: scale(1); }
-    
-    .animate-up { animation: fadeInUp 0.8s ease-out; }
-    
+
+    .gallery-card-premium:hover .gallery-info-overlay {
+        opacity: 1;
+    }
+
+    .badge-light-soft {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+
+    .zoom-icon {
+        transform: scale(0.5);
+        transition: transform 0.4s ease;
+    }
+
+    .gallery-card-premium:hover .zoom-icon {
+        transform: scale(1);
+    }
+
+    .animate-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
     @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
 

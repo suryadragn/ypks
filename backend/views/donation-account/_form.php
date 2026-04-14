@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
@@ -12,6 +13,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin([
         'id' => 'donation-account-form',
+        'action' => $model->isNewRecord ? Url::to(['create']) : Url::to(['update', 'id' => $model->id]),
         'enableAjaxValidation' => false,
         'options' => ['class' => 'row g-3'],
     ]); ?>
@@ -70,17 +72,19 @@ use yii\widgets\ActiveForm;
 
 <?php
 $js = <<<JS
-$('#donation-account-form').on('beforeSubmit', function(e) {
+$('#donation-account-form').off('submit').on('submit', function(e) {
+    e.preventDefault();
     var form = $(this);
     $.ajax({
         url: form.attr('action'),
-        type: 'post',
+        type: 'POST',
         data: form.serialize(),
-        success: function(data) {
-            if (data.success) {
+        success: function(response) {
+            if (response.success) {
                 $('#modal').modal('hide');
                 $.pjax.reload({container: '#pjax-container'});
-                if(typeof toastr !== "undefined") toastr.success(data.message);
+                if(typeof toastr !== "undefined") toastr.success(response.message);
+                else alert(response.message);
             }
         }
     });

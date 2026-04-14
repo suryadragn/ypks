@@ -65,7 +65,7 @@ class SocialProgramController extends Controller
             $imageFile = UploadedFile::getInstance($model, 'image');
             if ($imageFile) {
                 $imageName = 'program_' . time() . '.' . $imageFile->extension;
-                $imagePath = Yii::getAlias('@frontend/web/uploads/programs/') . $imageName;
+                $imagePath = Yii::getAlias('@public/uploads/programs/') . $imageName;
                 
                 // Ensure directory exists
                 if (!is_dir(dirname($imagePath))) {
@@ -84,6 +84,11 @@ class SocialProgramController extends Controller
                 }
                 Yii::$app->session->setFlash('success', 'Program berhasil ditambahkan.');
                 return $this->redirect(['index']);
+            } else {
+                if ($this->request->isAjax) {
+                    Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                    return ['success' => false, 'message' => 'Gagal disimpan: ' . json_encode($model->getErrors())];
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -105,7 +110,7 @@ class SocialProgramController extends Controller
             $imageFile = UploadedFile::getInstance($model, 'image');
             if ($imageFile) {
                 $imageName = 'program_' . time() . '.' . $imageFile->extension;
-                $imagePath = Yii::getAlias('@frontend/web/uploads/programs/') . $imageName;
+                $imagePath = Yii::getAlias('@public/uploads/programs/') . $imageName;
                 
                 if (!is_dir(dirname($imagePath))) {
                     mkdir(dirname($imagePath), 0777, true);
@@ -114,8 +119,8 @@ class SocialProgramController extends Controller
                 if ($imageFile->saveAs($imagePath)) {
                     $model->image = $imageName;
                     // Delete old image
-                    if ($oldImage && file_exists(Yii::getAlias('@frontend/web/uploads/programs/') . $oldImage)) {
-                        unlink(Yii::getAlias('@frontend/web/uploads/programs/') . $oldImage);
+                    if ($oldImage && file_exists(Yii::getAlias('@public/uploads/programs/') . $oldImage)) {
+                        unlink(Yii::getAlias('@public/uploads/programs/') . $oldImage);
                     }
                 }
             } else {
@@ -129,6 +134,11 @@ class SocialProgramController extends Controller
                 }
                 Yii::$app->session->setFlash('success', 'Program berhasil diperbarui.');
                 return $this->redirect(['index']);
+            } else {
+                if ($this->request->isAjax) {
+                    Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                    return ['success' => false, 'message' => 'Gagal disimpan: ' . json_encode($model->getErrors())];
+                }
             }
         }
 

@@ -12,6 +12,7 @@ use yii\bootstrap4\ActiveForm;
 
     <?php $form = ActiveForm::begin([
         'id' => 'social-program-type-form-ajax',
+        'action' => $model->isNewRecord ? \yii\helpers\Url::to(['social-program-type/create']) : \yii\helpers\Url::to(['social-program-type/update', 'id' => $model->id]),
     ]); ?>
 
     <div class="row">
@@ -36,10 +37,10 @@ use yii\bootstrap4\ActiveForm;
 
 <?php
 $js = <<<JS
-$('#social-program-type-form-ajax').on('submit', function(e) {
+$('#social-program-type-form-ajax').off('submit').on('submit', function(e) {
     e.preventDefault();
     var form = $(this);
-    var formData = new FormData(this[0]);
+    var formData = new FormData(this);
 
     $.ajax({
         url: form.attr('action'),

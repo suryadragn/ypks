@@ -23,6 +23,42 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" href="<?= Yii::getAlias('@web/image/logo-ypks.png') ?>" type="image/x-icon">
     <?php $this->head() ?>
+    <style>
+        /* YPKS Golden Yellow Theme Overrides */
+        :root {
+            --bs-primary: #eab308;
+            --bs-primary-rgb: 234, 179, 8;
+        }
+        .text-primary { color: #ca8a04 !important; }
+        .bg-primary { background-color: #facc15 !important; color: #1e293b !important; }
+        .bg-gradient-blue { background: linear-gradient(135deg, #422006 0%, #b45309 100%) !important; }
+        .btn-primary, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+            background-color: #facc15 !important;
+            border-color: #facc15 !important;
+            color: #1e293b !important;
+            font-weight: 600 !important;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #eab308 !important;
+            border-color: #eab308 !important;
+            color: #111827 !important;
+        }
+        .btn-outline-primary {
+            border-color: #eab308;
+            color: #ca8a04;
+        }
+        .btn-outline-primary:hover {
+            background-color: #eab308;
+            color: #1e293b;
+        }
+        .border-primary { border-color: #facc15 !important; }
+        
+        /* Dark Gradient that complements Gold */
+        .hero-section {
+            background: linear-gradient(rgba(30, 20, 5, 0.75), rgba(30, 20, 5, 0.85)), url('<?= Yii::getAlias("@web/image/ypks_home.jpg") ?>') no-repeat center center !important;
+            background-size: cover !important;
+        }
+    </style>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -81,7 +117,7 @@ AppAsset::register($this);
         </div>
     </main>
 
-    <footer class="footer mt-auto py-5 text-muted shadow-lg" style="background-color: #0f172a;">
+    <footer class="footer mt-auto py-5 text-muted shadow-lg" style="background-color: #422006;">
         <div class="container">
             <div class="row text-center text-md-start gap-4 gap-md-0">
                 <div class="col-md-4">
@@ -91,19 +127,11 @@ AppAsset::register($this);
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">Kantor Pusat YPKS</h5>
+                    <h5 class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">Kantor YPKS</h5>
                     <p class="text-light opacity-75">
                         <span class="d-block mb-2">📍 Jl. Lawu No.115 Karanganyar</span>
                         <span class="d-block mb-2">📞 Telp./Fax: (0271) 495212</span>
                         <span class="d-block">📮 Kode Pos 57716</span>
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">Sekretariat YPKS</h5>
-                    <p class="text-light opacity-75">
-                        <span class="d-block mb-2">📍 Jl. Lawu, Harjosari, Popongan, Karanganyar</span>
-                        <span class="d-block mb-2">📞 Telp./Fax: (0271) 495284</span>
-                        <span class="d-block">📮 Kode Pos 57715</span>
                     </p>
                 </div>
             </div>
@@ -115,7 +143,7 @@ AppAsset::register($this);
                 <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
                     <p class="mb-1 text-white-50 small">Ditenagai oleh Yii Framework</p>
                     <p class="mb-0 fw-bold" style="letter-spacing: 0.5px;">
-                        <span class="text-white-50 fw-normal small">Project by</span> 
+                        <span class="text-white-50 fw-normal small">Project by</span>
                         <span class="text-primary" style="color: #3b82f6 !important;">Surya</span><span class="text-white">ism</span>
                     </p>
                 </div>
