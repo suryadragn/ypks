@@ -10,7 +10,13 @@ $percent = $model->target_amount > 0 ? min(100, ($model->current_amount / $model
 ?>
 <div class="program-view-modal px-0">
     <!-- Immersive Header Image -->
-    <div class="position-relative overflow-hidden mb-5 d-flex align-items-end" style="border-radius: 0 0 40px 40px; height: 450px; background: url('<?= $model->image ? Url::to('@web/uploads/programs/' . $model->image) : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80' ?>') center/cover no-repeat;">
+    <?php 
+        $imgPath = Yii::getAlias('@public/uploads/programs/') . $model->image;
+        $modalImgUrl = ($model->image && file_exists($imgPath)) 
+            ? Url::to('@web/uploads/programs/' . $model->image) 
+            : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80';
+    ?>
+    <div class="position-relative overflow-hidden mb-5 d-flex align-items-end" style="border-radius: 0 0 40px 40px; height: 450px; background: url('<?= $modalImgUrl ?>') center/cover no-repeat;">
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);"></div>
         
         <div class="container position-relative z-index-2 px-4 p-xl-5 pb-5 w-100">

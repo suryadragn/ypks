@@ -90,9 +90,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             
                             <!-- Image section with hover zoom -->
+                            <?php 
+                                $imgPath = Yii::getAlias('@public/uploads/programs/') . $model->image;
+                                $displayUrl = ($model->image && file_exists($imgPath)) 
+                                    ? Url::to('@web/uploads/programs/' . $model->image) 
+                                    : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80';
+                            ?>
                             <div class="program-img-wrapper position-relative overflow-hidden" style="height: 260px;">
                                 <div class="img-overlay"></div>
-                                <?= Html::img($model->image ? Url::to('@web/uploads/programs/' . $model->image) : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80', [
+                                <?= Html::img($displayUrl, [
                                     'class' => 'card-img-top program-img-zoom w-100 h-100 object-fit-cover',
                                     'alt' => $model->title
                                 ]) ?>

@@ -151,6 +151,14 @@ AppAsset::register($this);
         </div>
     </footer>
     <?php $this->endBody() ?>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    </script>
 </body>
 
 </html>

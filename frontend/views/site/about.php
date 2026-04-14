@@ -39,8 +39,8 @@ $yearsOfExperience = date('Y') - $foundationYear;
                                 <div class="bg-primary-soft p-3 rounded-circle mr-3">
                                     <i class="fas fa-university text-primary"></i>
                                 </div>
-                                <h3 class="h2 fw-bold mb-0"><?= $activeInstitutionCount ?></h3>
-                                <span class="small text-muted ml-2">Lembaga aktif</span>
+                                <h3 class="h2 fw-bold mb-0">&nbsp;<?= $activeInstitutionCount ?></h3>
+                                <span class="small text-muted ml-2">&nbsp;Lembaga aktif</span>
                             </div>
                         </div>
                         <div class="col-6">
@@ -48,8 +48,8 @@ $yearsOfExperience = date('Y') - $foundationYear;
                                 <div class="bg-success-soft p-3 rounded-circle mr-3">
                                     <i class="fas fa-history text-success"></i>
                                 </div>
-                                <h3 class="h2 fw-bold mb-0"><?= $yearsOfExperience ?></h3>
-                                <span class="small text-muted ml-2">Thn Berkarya</span>
+                                <h3 class="h2 fw-bold mb-0">&nbsp;<?= $yearsOfExperience ?></h3>
+                                <span class="small text-muted ml-2">&nbsp;Tahun Berkarya</span>
                             </div>
                         </div>
                     </div>
@@ -125,30 +125,30 @@ $yearsOfExperience = date('Y') - $foundationYear;
                     <div class="founders-box mt-5 p-4 bg-light rounded-4 shadow-sm border">
                         <h5 class="fw-bold mb-4 text-dark border-bottom pb-2">Tokoh & Penghadap Pendiri:</h5>
                         <ul class="list-unstyled row g-3 small">
-                            <?php 
-                                $pendiri = [
-                                    "Drs. Hartono (Bupati KDH Tingkat II Karanganyar)",
-                                    "Indardi, B.A. (Sekwilda Tingkat II Karanganyar)",
-                                    "Toekoel Yoedoharsono (Kepala Kantor Depdikbud Karanganyar)",
-                                    "Ir. Antonius Dwidoyo (Ketua BAPEDA Karanganyar)",
-                                    "Drs. Gunawan (Kabag Kesra Setwilda Karanganyar)",
-                                    "Marius Soedomo, B.A. (Guru SMA Negeri Karanganyar)",
-                                    "Wariso, B.A. (Camat Karanganyar)",
-                                    "Drs. Agus Suhardjo (Guru SMA Negeri Karanganyar)",
-                                    "Soetarmo (Staf Bagian Kesra Karanganyar)",
-                                    "Joanes Soewardo Sastrosumarto (Guru SMA Negeri Karanganyar)",
-                                    "Sadari (Karyawan SMEA Negeri Karanganyar)",
-                                    "Rachsananto, B.A. (Guru SMA Negeri Karanganyar)",
-                                    "Pardiyanto, B.A. (Guru STM Pertanian Karanganyar)",
-                                    "Tjahjono Padmohudojo (Pensiunan Pegawai Negeri Pemda Karanganyar)",
-                                    "Soetarno (Kepala Desa Popongan)"
-                                ];
-                                foreach ($pendiri as $p):
+                            <?php
+                            $pendiri = [
+                                "Drs. Hartono (Bupati KDH Tingkat II Karanganyar)",
+                                "Indardi, B.A. (Sekwilda Tingkat II Karanganyar)",
+                                "Toekoel Yoedoharsono (Kepala Kantor Depdikbud Karanganyar)",
+                                "Ir. Antonius Dwidoyo (Ketua BAPEDA Karanganyar)",
+                                "Drs. Gunawan (Kabag Kesra Setwilda Karanganyar)",
+                                "Marius Soedomo, B.A. (Guru SMA Negeri Karanganyar)",
+                                "Wariso, B.A. (Camat Karanganyar)",
+                                "Drs. Agus Suhardjo (Guru SMA Negeri Karanganyar)",
+                                "Soetarmo (Staf Bagian Kesra Karanganyar)",
+                                "Joanes Soewardo Sastrosumarto (Guru SMA Negeri Karanganyar)",
+                                "Sadari (Karyawan SMEA Negeri Karanganyar)",
+                                "Rachsananto, B.A. (Guru SMA Negeri Karanganyar)",
+                                "Pardiyanto, B.A. (Guru STM Pertanian Karanganyar)",
+                                "Tjahjono Padmohudojo (Pensiunan Pegawai Negeri Pemda Karanganyar)",
+                                "Soetarno (Kepala Desa Popongan)"
+                            ];
+                            foreach ($pendiri as $p):
                             ?>
                                 <div class="col-md-6">
                                     <li class="d-flex align-items-start text-dark opacity-75">
                                         <i class="fas fa-check-circle text-success mt-1 mr-2 opacity-50"></i>
-                                        <span><?= $p ?></span>
+                                        &nbsp;<span><?= $p ?></span>
                                     </li>
                                 </div>
                             <?php endforeach; ?>
@@ -160,26 +160,26 @@ $yearsOfExperience = date('Y') - $foundationYear;
                     <div class="legal-evolution-card p-4 p-xl-5 bg-gradient-dark text-white rounded-4 shadow-lg sticky-top" style="top: 100px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
                         <h4 class="fw-bold mb-4 ls-1">Transformasi & Badan Hukum</h4>
                         <p class="small opacity-75 mb-5">Seiring perkembangan regulasi, YPKS telah melakukan beberapa kali penyesuaian Anggaran Dasar:</p>
-                        
+
                         <div class="timeline-legal">
-                            <?php 
-                                $legal = [
-                                    "1994" => "Akte Notaris No. 8: Perubahan Susunan Pengurus & Anggaran Dasar Yayasan.",
-                                    "1999" => "Akte Notaris No. 1: Perubahan Susunan Pengurus & Anggaran Dasar Yayasan.",
-                                    "2008" => "Akte Notaris No. 08: Penyesuaian UU No. 16/2001 & Perubahan nama menjadi Yayasan Pendidikan Karanganyar Surakarta.",
-                                    "2013" => "Akte Notaris No. 283: Perubahan Susunan Organ Yayasan.",
-                                    "2014" => "Akte Notaris No. 05: Perubahan Susunan Organ Yayasan sesuai regulasi terbaru."
-                                ];
-                                foreach ($legal as $year => $desc):
+                            <?php
+                            $legal = [
+                                "1994" => "Akte Notaris No. 8: Perubahan Susunan Pengurus & Anggaran Dasar Yayasan.",
+                                "1999" => "Akte Notaris No. 1: Perubahan Susunan Pengurus & Anggaran Dasar Yayasan.",
+                                "2008" => "Akte Notaris No. 08: Penyesuaian UU No. 16/2001 & Perubahan nama menjadi Yayasan Pendidikan Karanganyar Surakarta.",
+                                "2013" => "Akte Notaris No. 283: Perubahan Susunan Organ Yayasan.",
+                                "2014" => "Akte Notaris No. 05: Perubahan Susunan Organ Yayasan sesuai regulasi terbaru."
+                            ];
+                            foreach ($legal as $year => $desc):
                             ?>
                                 <div class="timeline-item mb-4 border-left pl-3 ml-2 position-relative">
                                     <div class="dot position-absolute bg-warning rounded-circle" style="width:12px; height:12px; left:-7px; top:5px;"></div>
-                                    <h6 class="fw-black text-warning mb-1 ls-1"><?= $year ?></h6>
+                                    <h6 class="fw-black text-warning mb-1 ls-1">&nbsp;&nbsp;<?= $year ?></h6>
                                     <p class="small mb-0 opacity-80"><?= $desc ?></p>
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        
+
                         <div class="mt-5 pt-4 border-top border-secondary text-center">
                             <i class="fas fa-certificate text-warning mb-3 display-6 opacity-50"></i>
                             <p class="small font-italic opacity-50 mb-0">Legalitas Terjamin & Akuntabel</p>
