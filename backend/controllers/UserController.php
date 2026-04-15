@@ -24,9 +24,10 @@ class UserController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete'     => ['POST'],
-                    'verify'     => ['POST'],
-                    'deactivate' => ['POST'],
+                    'delete'          => ['POST'],
+                    'verify'          => ['POST'],
+                    'deactivate'      => ['POST'],
+                    'change-password' => ['POST', 'GET'],
                 ],
             ],
         ];
@@ -38,7 +39,14 @@ class UserController extends Controller
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
-            // Hanya Superadmin yang boleh mengelola user
+            // Change password is accessible to all logged-in users
+            if ($action->id === 'change-password') {
+                if (Yii::$app->user->isGuest) {
+                    return $this->redirect(['/site/login']);
+                }
+                return true;
+            }
+            // Other actions: Superadmin only
             if (Yii::$app->user->isGuest || !Yii::$app->user->identity->is_superadmin) {
                 throw new ForbiddenHttpException('Hanya Superadmin yang boleh mengakses halaman ini.');
             }
@@ -48,9 +56,43 @@ class UserController extends Controller
     }
 
     /**
+     * Change the current user's password.
+     */
+    public function actionChangePassword()
+    {
+        $user = Yii::$app->user->identity;
+        $error   = null;
+        $success = null;
+
+        if (Yii::$app->request->isPost) {
+            $old  = Yii::$app->request->post('old_password');
+            $new  = Yii::$app->request->post('new_password');
+            $conf = Yii::$app->request->post('confirm_password');
+
+            if (!$user->validatePassword($old)) {
+                $error = 'Password lama tidak sesuai.';
+            } elseif (strlen($new) < 8) {
+                $error = 'Password baru minimal 8 karakter.';
+            } elseif ($new !== $conf) {
+                $error = 'Konfirmasi password tidak cocok.';
+            } else {
+                $user->setPassword($new);
+                if ($user->save(false)) {
+                    Yii::$app->session->setFlash('success', 'Password berhasil diubah!');
+                    return $this->redirect(['user/change-password']);
+                }
+                $error = 'Gagal menyimpan password baru.';
+            }
+        }
+
+        return $this->render('change-password', [
+            'user'    => $user,
+            'error'   => $error,
+        ]);
+    }
+
+    /**
      * Lists all User models.
-     *
-     * @return string
      */
     public function actionIndex()
     {

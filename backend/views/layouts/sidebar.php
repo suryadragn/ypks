@@ -77,13 +77,12 @@
                     ],
 
                     ['label' => 'SISTEM', 'header' => true, 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
-                    ['label' => 'Manajemen Staff', 'url' => ['user/index'], 'icon' => 'users-cog', 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
                     [
-                        'label' => 'Verifikasi Akun',
-                        'icon'  => 'user-check',
-                        'url'   => ['user/index'],
+                        'label'   => 'Verifikasi Akun',
+                        'icon'    => 'user-check',
+                        'url'     => ['user/index'],
                         'visible' => !Yii::$app->user->isGuest && $user->is_superadmin,
-                        'badge' => (function() {
+                        'badge'   => (function() {
                             $count = \common\models\User::find()
                                 ->where(['status' => \common\models\User::STATUS_INACTIVE])
                                 ->count();
@@ -92,8 +91,9 @@
                     ],
                     ['label' => 'Gii', 'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
                     ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
-                    
+
                     ['label' => 'KONTROL AKUN', 'header' => true],
+                    ['label' => 'Ganti Password', 'url' => ['user/change-password'], 'icon' => 'key', 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Logout', 'url' => ['site/logout'], 'icon' => 'sign-out-alt', 'visible' => !Yii::$app->user->isGuest, 'template' => '<a href="{url}" class="nav-link" data-method="post">{icon} <p>{label}</p></a>'],
                 ],
             ]);
