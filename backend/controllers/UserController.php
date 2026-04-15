@@ -86,6 +86,7 @@ class UserController extends Controller
      */
     public function actionChangePassword()
     {
+        /** @var \common\models\User $user */
         $user = Yii::$app->user->identity;
         $error   = null;
         $success = null;
