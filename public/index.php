@@ -1,9 +1,14 @@
 <?php
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
-
 require __DIR__ . '/../vendor/autoload.php';
+
+// Load .env
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(dirname(__DIR__));
+$dotenv->safeLoad();
+
+defined('YII_DEBUG') or define('YII_DEBUG', getenv('YII_DEBUG') === 'true');
+defined('YII_ENV') or define('YII_ENV', getenv('YII_ENV') ?: 'prod');
+
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 require __DIR__ . '/../common/config/bootstrap.php';
 require __DIR__ . '/../frontend/config/bootstrap.php';
