@@ -22,7 +22,7 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
     </div>
     <?php endif; ?>
 
-    <div class="card card-outline card-primary shadow-sm rounded-lg overflow-hidden">
+    <div class="card card-outline card-primary shadow-sm rounded-lg">
         <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
             <h3 class="card-title font-weight-bold mb-0">
                 <i class="fas fa-users-cog mr-2 text-primary"></i>
@@ -153,6 +153,11 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
 <style>
     .table-warning td { background-color: rgba(255, 193, 7, 0.08) !important; }
     .btn-xs { font-size: 0.75rem; padding: 0.2rem 0.6rem; }
+    /* Fix dropdown clipping inside card/table */
+    .user-index .card,
+    .user-index .card-body,
+    .user-index .table-responsive { overflow: visible !important; }
+    .user-index table { overflow: visible !important; }
 </style>
 
 <!-- ===== RESET PASSWORD MODAL ===== -->
