@@ -24,10 +24,11 @@ class UserController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete'          => ['POST'],
-                    'verify'          => ['POST'],
-                    'deactivate'      => ['POST'],
-                    'change-password' => ['POST', 'GET'],
+                    'delete'               => ['POST'],
+                    'verify'               => ['POST'],
+                    'deactivate'           => ['POST'],
+                    'change-password'      => ['POST', 'GET'],
+                    'admin-reset-password' => ['POST'],
                 ],
             ],
         ];
@@ -53,6 +54,31 @@ class UserController extends Controller
             return true;
         }
         return false;
+    }
+
+    /**
+     * Superadmin reset password for any user (force, no old password needed).
+     */
+    public function actionAdminResetPassword($id)
+    {
+        $model = $this->findModel($id);
+        $new   = Yii::$app->request->post('new_password');
+        $conf  = Yii::$app->request->post('confirm_password');
+
+        if (strlen($new) < 8) {
+            Yii::$app->session->setFlash('error', "Gagal: Password minimal 8 karakter.");
+        } elseif ($new !== $conf) {
+            Yii::$app->session->setFlash('error', "Gagal: Konfirmasi password tidak cocok.");
+        } else {
+            $model->setPassword($new);
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('success', "Password akun \"$model->username\" berhasil direset oleh Superadmin.");
+            } else {
+                Yii::$app->session->setFlash('error', "Gagal menyimpan password baru.");
+            }
+        }
+
+        return $this->redirect(['index']);
     }
 
     /**
