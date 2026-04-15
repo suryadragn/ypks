@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="text-center mt-4">
-                            <p class="small text-secondary mb-0">Sudah memiliki akun? <?= Html::a('Masuk di sini', ['site/login'], ['class' => 'text-primary fw-bold text-decoration-none']) ?></p>
+                            <p class="small text-secondary mb-0">Sudah memiliki akun? <?= Html::a('Masuk di sini', ['admin/site/login'], ['class' => 'text-primary fw-bold text-decoration-none']) ?></p>
                         </div>
 
                         <?php ActiveForm::end(); ?>
@@ -54,14 +54,44 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <style>
-    .site-signup { font-family: 'Outfit', sans-serif; }
-    .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45); }
-    .rounded-4 { border-radius: 1.5rem; }
-    .fw-black { font-weight: 900; }
-    .ls-1 { letter-spacing: 1px; }
-    .transition-all { transition: all 0.3s ease; }
-    .form-control:focus { border-color: #eab308; box-shadow: 0 0 0 0.25rem rgba(234, 179, 8, 0.15); }
-    .shadow-primary { box-shadow: 0 10px 15px -3px rgba(234, 179, 8, 0.3); }
-    .hover-lift { transition: transform 0.2s ease; }
-    .hover-lift:hover { transform: translateY(-3px); }
+    .site-signup {
+        font-family: 'Outfit', sans-serif;
+    }
+
+    .shadow-2xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+    }
+
+    .rounded-4 {
+        border-radius: 1.5rem;
+    }
+
+    .fw-black {
+        font-weight: 900;
+    }
+
+    .ls-1 {
+        letter-spacing: 1px;
+    }
+
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #eab308;
+        box-shadow: 0 0 0 0.25rem rgba(234, 179, 8, 0.15);
+    }
+
+    .shadow-primary {
+        box-shadow: 0 10px 15px -3px rgba(234, 179, 8, 0.3);
+    }
+
+    .hover-lift {
+        transition: transform 0.2s ease;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-3px);
+    }
 </style>
