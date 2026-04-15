@@ -168,13 +168,8 @@ $this->title = 'Admin Central - YPKS';
 
     .logo-glow {
         display: inline-block;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
+        padding: 0.5rem;
         margin-bottom: 1.25rem;
-        box-shadow: 0 0 40px rgba(250, 204, 21, 0.12);
-        backdrop-filter: blur(6px);
     }
 
     .logo-img {

@@ -20,7 +20,7 @@ $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/admi
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <link rel="shortcut icon" href="<?= Yii::getAlias('@web/image/logo-ypks.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="/image/logo-ypks.png" type="image/x-icon">
     <?php $this->head() ?>
 </head>
 <body class="hold-transition sidebar-mini">

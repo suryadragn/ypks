@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="<?= \yii\helpers\Url::to(['site/index']) ?>" class="brand-link">
-        <img src="/image/logo-ypks.png" alt="YPKS Logo" class="brand-image img-circle elevation-3 shadow-sm bg-white" style="opacity: 1; border: 1px solid rgba(255,255,255,0.2);">
+        <img src="/image/logo-ypks.png" alt="YPKS Logo" class="brand-image elevation-1" style="opacity: 1; max-height: 33px;">
         <span class="brand-text font-weight-bold"><?= Yii::$app->name ?></span>
     </a>
 
@@ -10,8 +10,8 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex border-bottom-0 shadow-none">
             <div class="image">
-                <div class="bg-primary d-flex align-items-center justify-content-center rounded-circle elevation-1" style="width: 34px; height: 34px;">
-                    <i class="fas fa-user-shield text-white small"></i>
+                <div class="d-flex align-items-center justify-content-center text-primary" style="width: 34px; height: 34px;">
+                    <i class="fas fa-user-shield small"></i>
                 </div>
             </div>
             <div class="info">
