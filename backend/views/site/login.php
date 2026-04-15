@@ -1,11 +1,11 @@
 <?php
 
 /** @var yii\web\View $this */
-/** @var yii\bootstrap5\ActiveForm $form */
+/** @var yii\bootstrap4\ActiveForm $form */
 /** @var \common\models\LoginForm $model */
 
-use yii\bootstrap5\ActiveForm;
-use yii\bootstrap5\Html;
+use yii\bootstrap4\ActiveForm;
+use yii\bootstrap4\Html;
 use yii\helpers\Url;
 
 $this->title = 'Admin Central - YPKS';
@@ -48,8 +48,8 @@ $this->title = 'Admin Central - YPKS';
         </div>
 
         <div class="text-center mt-5">
-            <a href="<?= Yii::$app->urlManagerFrontend->createUrl(['site/index']) ?>" class="text-white-50 small text-decoration-none hover-white transition-all">
-                <i class="fas fa-long-arrow-alt-left me-2"></i> Kembali ke Website Utama
+            <a href="/" class="text-white-50 small text-decoration-none hover-white transition-all">
+                <i class="fas fa-arrow-left me-2"></i> Kembali ke Website Utama
             </a>
         </div>
     </div>
