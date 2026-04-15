@@ -50,10 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::submitButton('MASUK SEKARANG', ['class' => 'btn btn-primary btn-lg w-100 rounded-pill fw-black py-3 shadow-primary hover-lift', 'name' => 'login-button']) ?>
                         </div>
 
-                        <div class="text-center mt-4">
+                        <div class="text-center mt-4 border-top pt-4">
                             <p class="small text-secondary mb-0">Belum punya akun? <?= Html::a('Daftar di sini', ['site/signup'], ['class' => 'text-primary fw-bold text-decoration-none']) ?></p>
-                            <hr class="my-4 opacity-5">
-                            <p class="extra-small text-muted mb-0">Butuh email verifikasi? <?= Html::a('Kirim Ulang', ['site/resend-verification-email'], ['class' => 'text-secondary fw-bold']) ?></p>
                         </div>
 
                         <?php ActiveForm::end(); ?>

@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="text-center mt-4 border-top pt-4">
-                            <p class="small text-secondary mb-0">Sudah memiliki akun? <?= Html::a('Masuk di sini', ['site/login'], ['class' => 'text-primary fw-bold text-decoration-none']) ?></p>
+                            <p class="small text-secondary mb-0">Sudah memiliki akun? <a href="/admin/site/login" class="text-primary fw-bold text-decoration-none">Masuk di sini</a></p>
                         </div>
 
                         <?php ActiveForm::end(); ?>
