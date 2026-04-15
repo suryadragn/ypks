@@ -42,8 +42,7 @@
             $hasContentAccess = $user->canAccess(\common\models\User::PERM_NEWS) ||
                 $user->canAccess(\common\models\User::PERM_GALLERY) ||
                 $user->canAccess(\common\models\User::PERM_INSTITUTION) ||
-                $user->canAccess(\common\models\User::PERM_PROGRAM) ||
-                $user->canAccess(\common\models\User::PERM_PAGE);
+                $user->canAccess(\common\models\User::PERM_PROGRAM);
 
             echo \hail812\adminlte3\widgets\Menu::widget([
                 'items' => [
@@ -64,7 +63,6 @@
                     ['label' => 'Berita', 'url' => ['news/index'], 'icon' => 'newspaper', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_NEWS)],
                     ['label' => 'Galeri', 'url' => ['gallery/index'], 'icon' => 'images', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_GALLERY)],
                     ['label' => 'Lembaga', 'url' => ['institution/index'], 'icon' => 'university', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_INSTITUTION)],
-                    ['label' => 'Halaman Statis', 'url' => ['page/index'], 'icon' => 'file', 'visible' => !Yii::$app->user->isGuest && $user->canAccess(\common\models\User::PERM_PAGE)],
                     [
                         'label' => 'Program Sosial',
                         'icon' => 'hands-helping',
