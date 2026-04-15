@@ -78,67 +78,70 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
                         'contentOptions' => ['class' => 'text-muted small', 'style' => 'width: 160px'],
                     ],
                     [
-                        'label' => 'Aksi',
-                        'format' => 'raw',
-                        'contentOptions' => ['class' => 'text-center', 'style' => 'width: 220px'],
+                        'label'          => 'Aksi',
+                        'format'         => 'raw',
+                        'headerOptions'  => ['class' => 'text-center', 'style' => 'width: 120px'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width: 120px'],
                         'value' => function ($model) {
-                            $buttons = '';
+                            $uid      = $model->id;
+                            $uname    = Html::encode($model->username);
+                            $isSelf   = ($uid == Yii::$app->user->id);
+                            $isActive = ($model->status === User::STATUS_ACTIVE);
 
-                            // Verify button
-                            if ($model->status !== User::STATUS_ACTIVE) {
-                                $buttons .= Html::a(
-                                    '<i class="fas fa-check-circle mr-1"></i> Verifikasi',
-                                    ['user/verify', 'id' => $model->id],
-                                    [
-                                        'class' => 'btn btn-xs btn-success rounded-pill px-2 mr-1',
-                                        'data-confirm' => "Verifikasi & aktifkan akun \"$model->username\"?",
-                                        'data-method' => 'post',
-                                        'encode' => false,
-                                    ]
+                            // Primary status action
+                            if (!$isActive) {
+                                $statusItem = Html::a(
+                                    '<i class="fas fa-check-circle mr-2 text-success"></i> Verifikasi Akun',
+                                    ['user/verify', 'id' => $uid],
+                                    ['class' => 'dropdown-item', 'data-confirm' => "Aktifkan akun \"$uname\"?", 'data-method' => 'post', 'encode' => false]
                                 );
                             } else {
-                                $buttons .= Html::a(
-                                    '<i class="fas fa-pause-circle mr-1"></i> Nonaktifkan',
-                                    ['user/deactivate', 'id' => $model->id],
-                                    [
-                                        'class' => 'btn btn-xs btn-outline-warning rounded-pill px-2 mr-1',
-                                        'data-confirm' => "Nonaktifkan akun \"$model->username\"?",
-                                        'data-method' => 'post',
-                                        'encode' => false,
-                                    ]
+                                $statusItem = Html::a(
+                                    '<i class="fas fa-pause-circle mr-2 text-warning"></i> Nonaktifkan',
+                                    ['user/deactivate', 'id' => $uid],
+                                    ['class' => 'dropdown-item', 'data-confirm' => "Nonaktifkan akun \"$uname\"?", 'data-method' => 'post', 'encode' => false]
                                 );
                             }
 
-                            // Edit permissions button
-                            $buttons .= Html::a(
-                                '<i class="fas fa-edit"></i>',
-                                ['user/update', 'id' => $model->id],
-                                ['class' => 'btn btn-xs btn-outline-primary rounded-pill px-2 mr-1', 'title' => 'Atur Hak Akses']
+                            // Edit permissions
+                            $editItem = Html::a(
+                                '<i class="fas fa-shield-alt mr-2 text-primary"></i> Atur Hak Akses',
+                                ['user/update', 'id' => $uid],
+                                ['class' => 'dropdown-item', 'encode' => false]
                             );
 
-                            // Reset password button (superadmin force-reset)
-                            $buttons .= '<button type="button" class="btn btn-xs btn-outline-secondary rounded-pill px-2 mr-1 btn-reset-pw"'
-                                . ' data-id="' . $model->id . '"'
-                                . ' data-username="' . Html::encode($model->username) . '"'
-                                . ' data-toggle="modal" data-target="#resetPwModal"'
-                                . ' title="Reset Password">'
-                                . '<i class="fas fa-key"></i></button>';
+                            // Reset password (modal trigger)
+                            $resetItem = '<a href="#" class="dropdown-item btn-reset-pw"'
+                                . ' data-id="' . $uid . '"'
+                                . ' data-username="' . $uname . '"'
+                                . ' data-toggle="modal" data-target="#resetPwModal">'
+                                . '<i class="fas fa-key mr-2 text-secondary"></i> Reset Password</a>';
 
-                            // Delete button (not self)
-                            if ($model->id != Yii::$app->user->id) {
-                                $buttons .= Html::a(
-                                    '<i class="fas fa-trash"></i>',
-                                    ['user/delete', 'id' => $model->id],
-                                    [
-                                        'class' => 'btn btn-xs btn-outline-danger rounded-pill px-2',
-                                        'data-confirm' => "Hapus akun \"$model->username\" secara permanen?",
-                                        'data-method' => 'post',
-                                        'encode' => false,
-                                    ]
-                                );
-                            }
+                            // Delete (not self)
+                            $deleteItem = !$isSelf
+                                ? Html::a(
+                                    '<i class="fas fa-trash-alt mr-2 text-danger"></i> Hapus Akun',
+                                    ['user/delete', 'id' => $uid],
+                                    ['class' => 'dropdown-item text-danger', 'data-confirm' => "Hapus akun \"$uname\" secara permanen?", 'data-method' => 'post', 'encode' => false]
+                                )
+                                : '';
 
-                            return $buttons;
+                            $divider = !$isSelf ? '<div class="dropdown-divider"></div>' : '';
+
+                            return '
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-light rounded-pill border dropdown-toggle px-3"
+                                        type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right shadow border-0 rounded-lg py-1" style="min-width:185px; font-size:0.875rem;">
+                                    ' . $statusItem . '
+                                    ' . $editItem . '
+                                    ' . $resetItem . '
+                                    ' . $divider . '
+                                    ' . $deleteItem . '
+                                </div>
+                            </div>';
                         },
                     ],
                 ],
