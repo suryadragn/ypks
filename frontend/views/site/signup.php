@@ -17,7 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-5">
                 <div class="card border-0 shadow-2xl rounded-4 overflow-hidden animate-up" data-aos="zoom-in">
                     <div class="card-header bg-white pt-5 pb-4 text-center border-0">
-                        <img src="<?= Yii::getAlias('@web/image/logo-ypks.png') ?>" alt="Logo YPKS" style="height: 80px;" class="mb-4">
+                        <a href="<?= Url::to(['site/index']) ?>" title="Kembali ke Beranda">
+                            <img src="<?= Url::to('@web/image/logo-ypks.png') ?>" alt="Logo YPKS" style="height: 80px; transition: opacity 0.2s;" class="mb-4" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                        </a>
                         <h2 class="fw-black text-dark mb-1">Daftar Akun</h2>
                         <p class="text-secondary opacity-75 small text-uppercase ls-1">Bergabunglah bersama keluarga besar YPKS</p>
                     </div>
@@ -41,8 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::submitButton('DAFTAR SEKARANG', ['class' => 'btn btn-primary btn-lg w-100 rounded-pill fw-black py-3 shadow-primary hover-lift', 'name' => 'signup-button']) ?>
                         </div>
 
-                        <div class="text-center mt-4">
-                            <p class="small text-secondary mb-0">Sudah memiliki akun? <?= Html::a('Masuk di sini', ['admin/site/login'], ['class' => 'text-primary fw-bold text-decoration-none']) ?></p>
+                        <div class="text-center mt-4 border-top pt-4">
+                            <p class="small text-secondary mb-0">Sudah memiliki akun? <?= Html::a('Masuk di sini', ['site/login'], ['class' => 'text-primary fw-bold text-decoration-none']) ?></p>
                         </div>
 
                         <?php ActiveForm::end(); ?>

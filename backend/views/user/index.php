@@ -15,11 +15,11 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
 <div class="user-index container-fluid p-4">
 
     <?php if ($pendingCount > 0): ?>
-    <div class="alert alert-warning alert-dismissible fade show shadow-sm rounded-lg mb-4" role="alert">
-        <i class="fas fa-exclamation-triangle mr-2"></i>
-        <strong><?= $pendingCount ?> akun</strong> menunggu verifikasi manual dari admin.
-        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-    </div>
+        <div class="alert alert-warning alert-dismissible fade show shadow-sm rounded-lg mb-4" role="alert">
+            <i class="fas fa-exclamation-triangle mr-2"></i>
+            <strong><?= $pendingCount ?> akun</strong> menunggu verifikasi manual dari admin.
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        </div>
     <?php endif; ?>
 
     <div class="card card-outline card-primary shadow-sm rounded-lg">
@@ -151,13 +151,25 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
 </div>
 
 <style>
-    .table-warning td { background-color: rgba(255, 193, 7, 0.08) !important; }
-    .btn-xs { font-size: 0.75rem; padding: 0.2rem 0.6rem; }
+    .table-warning td {
+        background-color: rgba(255, 193, 7, 0.08) !important;
+    }
+
+    .btn-xs {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+    }
+
     /* Fix dropdown clipping inside card/table */
     .user-index .card,
     .user-index .card-body,
-    .user-index .table-responsive { overflow: visible !important; }
-    .user-index table { overflow: visible !important; }
+    .user-index .table-responsive {
+        overflow: visible !important;
+    }
+
+    .user-index table {
+        overflow: visible !important;
+    }
 </style>
 
 <!-- ===== RESET PASSWORD MODAL ===== -->
@@ -168,7 +180,7 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
             <div class="modal-header border-0 pb-0" style="background: linear-gradient(135deg, #1e293b, #334155);">
                 <div class="d-flex align-items-center">
                     <div class="bg-warning d-flex align-items-center justify-content-center rounded-circle mr-3"
-                         style="width:44px;height:44px;min-width:44px;">
+                        style="width:44px;height:44px;min-width:44px;">
                         <i class="fas fa-key text-dark"></i>
                     </div>
                     <div>
@@ -191,16 +203,16 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
 
                 <form id="resetPwForm" method="post" action="">
                     <input type="hidden" name="<?= Yii::$app->request->csrfParam ?>"
-                           value="<?= Yii::$app->request->csrfToken ?>">
+                        value="<?= Yii::$app->request->csrfToken ?>">
 
                     <div class="form-group mb-4">
                         <label class="font-weight-bold small text-uppercase text-muted">
                             <i class="fas fa-lock-open mr-1"></i> Password Baru
                         </label>
                         <input type="password" name="new_password" id="admin-new-password"
-                               class="form-control rounded-lg py-3"
-                               placeholder="Minimal 8 karakter" required minlength="8"
-                               autocomplete="new-password">
+                            class="form-control rounded-lg py-3"
+                            placeholder="Minimal 8 karakter" required minlength="8"
+                            autocomplete="new-password">
                     </div>
 
                     <div class="form-group mb-0">
@@ -208,8 +220,8 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
                             <i class="fas fa-check-double mr-1"></i> Konfirmasi Password
                         </label>
                         <input type="password" name="confirm_password" id="admin-confirm-password"
-                               class="form-control rounded-lg py-3"
-                               placeholder="Ulangi password baru" required autocomplete="new-password">
+                            class="form-control rounded-lg py-3"
+                            placeholder="Ulangi password baru" required autocomplete="new-password">
                         <small id="pw-match-msg" class="mt-1 d-block"></small>
                     </div>
                 </form>
@@ -228,51 +240,50 @@ $pendingCount = User::find()->where(['status' => User::STATUS_INACTIVE])->andWhe
 </div>
 
 <script>
-// Isi modal berdasarkan tombol yang diklik
-document.querySelectorAll('.btn-reset-pw').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-        var userId   = this.getAttribute('data-id');
-        var username = this.getAttribute('data-username');
-        var action   = '/admin/user/admin-reset-password?id=' + userId;
+    // Isi modal berdasarkan tombol yang diklik
+    document.querySelectorAll('.btn-reset-pw').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var userId = this.getAttribute('data-id');
+            var username = this.getAttribute('data-username');
+            var action = '/admin/user/admin-reset-password?id=' + userId;
 
-        document.getElementById('resetPwModalLabel').textContent = 'Reset Password';
-        document.getElementById('reset-username-label').textContent = username;
-        document.getElementById('resetPwForm').action = action;
+            document.getElementById('resetPwModalLabel').textContent = 'Reset Password';
+            document.getElementById('reset-username-label').textContent = username;
+            document.getElementById('resetPwForm').action = action;
 
-        // Clear fields
-        document.getElementById('admin-new-password').value = '';
-        document.getElementById('admin-confirm-password').value = '';
-        document.getElementById('pw-match-msg').textContent = '';
+            // Clear fields
+            document.getElementById('admin-new-password').value = '';
+            document.getElementById('admin-confirm-password').value = '';
+            document.getElementById('pw-match-msg').textContent = '';
+        });
     });
-});
 
-// Live password match check
-document.getElementById('admin-confirm-password').addEventListener('input', function() {
-    var pw1 = document.getElementById('admin-new-password').value;
-    var pw2 = this.value;
-    var msg = document.getElementById('pw-match-msg');
-    if (pw2.length === 0) {
-        msg.textContent = '';
-    } else if (pw1 === pw2) {
-        msg.innerHTML = '<span class="text-success"><i class="fas fa-check mr-1"></i>Password cocok</span>';
-    } else {
-        msg.innerHTML = '<span class="text-danger"><i class="fas fa-times mr-1"></i>Password tidak cocok</span>';
-    }
-});
+    // Live password match check
+    document.getElementById('admin-confirm-password').addEventListener('input', function() {
+        var pw1 = document.getElementById('admin-new-password').value;
+        var pw2 = this.value;
+        var msg = document.getElementById('pw-match-msg');
+        if (pw2.length === 0) {
+            msg.textContent = '';
+        } else if (pw1 === pw2) {
+            msg.innerHTML = '<span class="text-success"><i class="fas fa-check mr-1"></i>Password cocok</span>';
+        } else {
+            msg.innerHTML = '<span class="text-danger"><i class="fas fa-times mr-1"></i>Password tidak cocok</span>';
+        }
+    });
 
-// Submit form via tombol modal
-document.getElementById('btn-submit-reset').addEventListener('click', function() {
-    var pw1 = document.getElementById('admin-new-password').value;
-    var pw2 = document.getElementById('admin-confirm-password').value;
-    if (pw1.length < 8) {
-        alert('Password minimal 8 karakter!');
-        return;
-    }
-    if (pw1 !== pw2) {
-        alert('Password tidak cocok!');
-        return;
-    }
-    document.getElementById('resetPwForm').submit();
-});
+    // Submit form via tombol modal
+    document.getElementById('btn-submit-reset').addEventListener('click', function() {
+        var pw1 = document.getElementById('admin-new-password').value;
+        var pw2 = document.getElementById('admin-confirm-password').value;
+        if (pw1.length < 8) {
+            alert('Password minimal 8 karakter!');
+            return;
+        }
+        if (pw1 !== pw2) {
+            alert('Password tidak cocok!');
+            return;
+        }
+        document.getElementById('resetPwForm').submit();
+    });
 </script>
-

@@ -17,6 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-5">
                 <div class="card border-0 shadow-2xl rounded-4 overflow-hidden animate-up" data-aos="zoom-in">
                     <div class="card-header bg-white pt-5 pb-4 text-center border-0">
+                        <a href="<?= Url::to(['site/index']) ?>" title="Kembali ke Beranda">
+                            <img src="<?= Url::to('@web/image/logo-ypks.png') ?>" alt="Logo YPKS" style="height: 60px; transition: opacity 0.2s;" class="mb-3 d-block mx-auto" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                        </a>
                         <div class="icon-circle bg-primary-soft mx-auto mb-4" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
                             <i class="fas fa-key text-primary"></i>
                         </div>

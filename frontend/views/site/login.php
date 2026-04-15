@@ -17,7 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-5">
                 <div class="card border-0 shadow-2xl rounded-4 overflow-hidden animate-up" data-aos="zoom-in">
                     <div class="card-header bg-white pt-5 pb-4 text-center border-0">
-                        <img src="<?= Yii::getAlias('@web/image/logo-ypks.png') ?>" alt="Logo YPKS" style="height: 80px;" class="mb-4">
+                        <a href="<?= Url::to(['site/index']) ?>" title="Kembali ke Beranda">
+                            <img src="<?= Url::to('@web/image/logo-ypks.png') ?>" alt="Logo YPKS" style="height: 80px; transition: opacity 0.2s;" class="mb-4" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                        </a>
                         <h2 class="fw-black text-dark mb-1">Selamat Datang</h2>
                         <p class="text-secondary opacity-75 small text-uppercase ls-1">Silakan masuk ke akun Anda</p>
                     </div>
