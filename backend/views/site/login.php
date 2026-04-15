@@ -84,7 +84,11 @@ $this->title = 'Admin Central - YPKS';
 
 <style>
     /* === RESET & BASE === */
-    *, *::before, *::after { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
 
     .site-login-backend {
         font-family: 'Outfit', 'Inter', sans-serif;
@@ -107,29 +111,44 @@ $this->title = 'Admin Central - YPKS';
         animation: blobFloat 8s ease-in-out infinite alternate;
         pointer-events: none;
     }
+
     .blob-1 {
-        width: 500px; height: 500px;
+        width: 500px;
+        height: 500px;
         background: radial-gradient(circle, #facc15, transparent);
-        top: -150px; left: -150px;
+        top: -150px;
+        left: -150px;
         animation-delay: 0s;
     }
+
     .blob-2 {
-        width: 400px; height: 400px;
+        width: 400px;
+        height: 400px;
         background: radial-gradient(circle, #b45309, transparent);
-        bottom: -100px; right: -100px;
+        bottom: -100px;
+        right: -100px;
         animation-delay: 3s;
     }
+
     .blob-3 {
-        width: 300px; height: 300px;
+        width: 300px;
+        height: 300px;
         background: radial-gradient(circle, #1d4ed8, transparent);
-        top: 50%; left: 50%;
+        top: 50%;
+        left: 50%;
         transform: translate(-50%, -50%);
         animation-delay: 1.5s;
         opacity: 0.08;
     }
+
     @keyframes blobFloat {
-        0%   { transform: scale(1)   translate(0, 0); }
-        100% { transform: scale(1.2) translate(30px, -30px); }
+        0% {
+            transform: scale(1) translate(0, 0);
+        }
+
+        100% {
+            transform: scale(1.2) translate(30px, -30px);
+        }
     }
 
     /* === WRAPPER === */
@@ -146,28 +165,35 @@ $this->title = 'Admin Central - YPKS';
         margin-bottom: 2rem;
         animation: fadeDown 0.7s ease both;
     }
+
     .logo-glow {
         display: inline-block;
         padding: 1rem;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         margin-bottom: 1.25rem;
-        box-shadow: 0 0 40px rgba(250,204,21,0.12);
+        box-shadow: 0 0 40px rgba(250, 204, 21, 0.12);
         backdrop-filter: blur(6px);
     }
-    .logo-img { height: 90px; filter: drop-shadow(0 0 12px rgba(250,204,21,0.4)); }
+
+    .logo-img {
+        height: 90px;
+        filter: drop-shadow(0 0 12px rgba(250, 204, 21, 0.4));
+    }
+
     .brand-title {
         font-size: 1.5rem;
         font-weight: 900;
         color: #fff;
         letter-spacing: 4px;
         margin-bottom: 0.25rem;
-        text-shadow: 0 0 20px rgba(250,204,21,0.3);
+        text-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
     }
+
     .brand-subtitle {
         font-size: 0.7rem;
-        color: rgba(255,255,255,0.4);
+        color: rgba(255, 255, 255, 0.4);
         text-transform: uppercase;
         letter-spacing: 2px;
         margin: 0;
@@ -175,21 +201,22 @@ $this->title = 'Admin Central - YPKS';
 
     /* === LOGIN CARD === */
     .login-card {
-        background: rgba(255,255,255,0.04);
+        background: rgba(255, 255, 255, 0.04);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         padding: 2.5rem;
         box-shadow:
-            0 25px 50px rgba(0,0,0,0.5),
-            inset 0 1px 0 rgba(255,255,255,0.06);
+            0 25px 50px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.06);
         animation: fadeUp 0.7s ease 0.1s both;
     }
 
     /* Gold accent bar */
     .gold-accent-bar {
-        width: 60px; height: 4px;
+        width: 60px;
+        height: 4px;
         background: linear-gradient(to right, #facc15, #b45309);
         border-radius: 2px;
         margin: 0 auto 2rem;
@@ -197,7 +224,7 @@ $this->title = 'Admin Central - YPKS';
 
     /* === FORM FIELDS === */
     .field-label {
-        color: rgba(255,255,255,0.55) !important;
+        color: rgba(255, 255, 255, 0.55) !important;
         font-size: 0.8rem;
         font-weight: 600;
         letter-spacing: 0.5px;
@@ -205,27 +232,52 @@ $this->title = 'Admin Central - YPKS';
         margin-bottom: 0.5rem;
         display: block;
     }
+
+    /* Force all bootstrap form wrappers to be full width */
+    .login-card .form-group,
+    .login-card .field-group,
+    .login-card [class*="col-"] { width: 100% !important; max-width: 100% !important; padding: 0 !important; }
+
+    .field-group { width: 100%; }
+
     .field-input {
-        background: rgba(255,255,255,0.06) !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
+        width: 100% !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 12px !important;
         color: #fff !important;
         padding: 0.85rem 1rem !important;
         font-size: 0.95rem;
         transition: all 0.3s ease;
     }
-    .field-input::placeholder { color: rgba(255,255,255,0.25) !important; }
+
+    .field-input::placeholder {
+        color: rgba(255, 255, 255, 0.25) !important;
+    }
+
     .field-input:focus {
-        background: rgba(255,255,255,0.1) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         border-color: #facc15 !important;
         outline: none !important;
-        box-shadow: 0 0 0 3px rgba(250,204,21,0.15) !important;
+        box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15) !important;
     }
 
     /* === REMEMBER ME === */
-    .remember-check { display: flex; align-items: center; gap: 0.5rem; }
-    .remember-label { color: rgba(255,255,255,0.45) !important; font-size: 0.85rem; cursor: pointer; }
-    .text-muted-light { color: rgba(255,255,255,0.3); }
+    .remember-check {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .remember-label {
+        color: rgba(255, 255, 255, 0.45) !important;
+        font-size: 0.85rem;
+        cursor: pointer;
+    }
+
+    .text-muted-light {
+        color: rgba(255, 255, 255, 0.3);
+    }
 
     /* === SUBMIT BUTTON === */
     .btn-login {
@@ -243,14 +295,18 @@ $this->title = 'Admin Central - YPKS';
         text-transform: uppercase;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 25px rgba(234,179,8,0.35);
+        box-shadow: 0 8px 25px rgba(234, 179, 8, 0.35);
     }
+
     .btn-login:hover {
         transform: translateY(-3px);
-        box-shadow: 0 15px 35px rgba(234,179,8,0.45);
+        box-shadow: 0 15px 35px rgba(234, 179, 8, 0.45);
         background: linear-gradient(135deg, #fde047, #facc15);
     }
-    .btn-login:active { transform: translateY(0); }
+
+    .btn-login:active {
+        transform: translateY(0);
+    }
 
     /* === FOOTER LINK === */
     .login-footer {
@@ -258,30 +314,58 @@ $this->title = 'Admin Central - YPKS';
         margin-top: 2rem;
         animation: fadeUp 0.7s ease 0.2s both;
     }
+
     .back-link {
-        color: rgba(255,255,255,0.3);
+        color: rgba(255, 255, 255, 0.3);
         font-size: 0.8rem;
         text-decoration: none;
         letter-spacing: 0.5px;
         transition: color 0.3s ease;
     }
-    .back-link:hover { color: #facc15; }
+
+    .back-link:hover {
+        color: #facc15;
+    }
 
     /* === ANIMATIONS === */
     @keyframes fadeDown {
-        from { opacity: 0; transform: translateY(-20px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
+
     @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     /* === VALIDATION ERRORS === */
-    .help-block { color: #f87171; font-size: 0.8rem; margin-top: 0.35rem; }
+    .help-block {
+        color: #f87171;
+        font-size: 0.8rem;
+        margin-top: 0.35rem;
+    }
 
     @media (max-width: 576px) {
-        .login-card { padding: 1.75rem; }
-        .brand-title { font-size: 1.2rem; }
+        .login-card {
+            padding: 1.75rem;
+        }
+
+        .brand-title {
+            font-size: 1.2rem;
+        }
     }
 </style>
