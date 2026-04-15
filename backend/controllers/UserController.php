@@ -24,7 +24,9 @@ class UserController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete'     => ['POST'],
+                    'verify'     => ['POST'],
+                    'deactivate' => ['POST'],
                 ],
             ],
         ];
@@ -88,10 +90,46 @@ class UserController extends Controller
     }
 
     /**
+     * Manually verify/activate a user account.
+     */
+    public function actionVerify($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->status !== User::STATUS_ACTIVE) {
+            $model->status = User::STATUS_ACTIVE;
+            $model->verification_token = null; // Clear token
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('success', "Akun \"$model->username\" berhasil diverifikasi dan diaktifkan!");
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal memverifikasi akun.');
+            }
+        } else {
+            Yii::$app->session->setFlash('info', 'Akun ini sudah aktif.');
+        }
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Deactivate/suspend an active user account.
+     */
+    public function actionDeactivate($id)
+    {
+        if ($id == Yii::$app->user->id) {
+            Yii::$app->session->setFlash('error', 'Anda tidak bisa menonaktifkan akun sendiri.');
+            return $this->redirect(['index']);
+        }
+        $model = $this->findModel($id);
+        if ($model->status === User::STATUS_ACTIVE) {
+            $model->status = User::STATUS_INACTIVE;
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('success', "Akun \"$model->username\" berhasil dinonaktifkan.");
+            }
+        }
+        return $this->redirect(['index']);
+    }
+
+    /**
      * Deletes an existing User model.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
     {

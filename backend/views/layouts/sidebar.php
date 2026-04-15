@@ -78,6 +78,18 @@
 
                     ['label' => 'SISTEM', 'header' => true, 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
                     ['label' => 'Manajemen Staff', 'url' => ['user/index'], 'icon' => 'users-cog', 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
+                    [
+                        'label' => 'Verifikasi Akun',
+                        'icon'  => 'user-check',
+                        'url'   => ['user/index'],
+                        'visible' => !Yii::$app->user->isGuest && $user->is_superadmin,
+                        'badge' => (function() {
+                            $count = \common\models\User::find()
+                                ->where(['status' => \common\models\User::STATUS_INACTIVE])
+                                ->count();
+                            return $count > 0 ? '<span class="badge badge-warning right">'.$count.'</span>' : '';
+                        })(),
+                    ],
                     ['label' => 'Gii', 'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
                     ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank', 'visible' => YII_ENV_DEV && !Yii::$app->user->isGuest && $user->is_superadmin],
                     
