@@ -6,26 +6,78 @@
 
 use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
+use yii\helpers\Url;
 
 $this->title = 'Resend verification email';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-resend-verification-email">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="site-resend-verification bg-light min-vh-100 d-flex align-items-center justify-content-center py-5" style="background: linear-gradient(rgba(66, 32, 6, 0.75), rgba(66, 32, 6, 0.85)), url('<?= Url::to('@web/image/ypks_home.jpg') ?>') no-repeat center center; background-size: cover;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card border-0 shadow-2xl rounded-4 overflow-hidden animate-up" data-aos="zoom-in">
+                    <div class="card-header bg-white pt-5 pb-4 text-center border-0">
+                        <div class="icon-circle bg-warning-soft mx-auto mb-4" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                            <i class="fas fa-paper-plane text-warning"></i>
+                        </div>
+                        <h2 class="fw-black text-dark mb-1">Verifikasi Ulang</h2>
+                        <p class="text-secondary opacity-75 small px-4">Masukkan email Anda untuk kami kirimkan ulang tautan verifikasi akun.</p>
+                    </div>
+                    <div class="card-body p-4 p-xl-5 pt-0">
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'resend-verification-email-form',
+                            'fieldConfig' => [
+                                'template' => "{label}\n{input}\n{error}",
+                                'labelOptions' => ['class' => 'form-label fw-bold small text-secondary px-1'],
+                                'inputOptions' => ['class' => 'form-control py-3 border-light-subtle rounded-3'],
+                            ],
+                        ]); ?>
 
-    <p>Please fill out your email. A verification email will be sent there.</p>
+                        <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'nama@email.com']) ?>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'resend-verification-email-form']); ?>
+                        <div class="form-group mb-4 mt-4">
+                            <?= Html::submitButton('KIRIM ULANG VERIFIKASI', ['class' => 'btn btn-primary btn-lg w-100 rounded-pill fw-black py-3 shadow-primary hover-lift']) ?>
+                        </div>
 
-            <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+                        <div class="text-center mt-4 border-top pt-4">
+                            <p class="small text-secondary mb-0">Sudah verifikasi? <?= Html::a('Masuk Sekarang', ['site/login'], ['class' => 'text-primary fw-bold text-decoration-none']) ?></p>
+                        </div>
 
-            <div class="form-group">
-                <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                        <?php ActiveForm::end(); ?>
+                    </div>
+                </div>
             </div>
-
-            <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>
+
+<style>
+    .site-resend-verification {
+        font-family: 'Outfit', sans-serif;
+    }
+
+    .bg-warning-soft {
+        background-color: rgba(234, 179, 8, 0.1);
+        border-radius: 50%;
+    }
+
+    .shadow-2xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+    }
+
+    .rounded-4 {
+        border-radius: 1.5rem;
+    }
+
+    .fw-black {
+        font-weight: 900;
+    }
+
+    .shadow-primary {
+        box-shadow: 0 10px 15px -3px rgba(234, 179, 8, 0.3);
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-3px);
+    }
+</style>

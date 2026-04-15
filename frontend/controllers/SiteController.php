@@ -53,6 +53,18 @@ class SiteController extends Controller
     }
 
     /**
+     * Use blank layout for authentication pages.
+     */
+    public function beforeAction($action)
+    {
+        $authActions = ['login', 'signup', 'request-password-reset', 'reset-password', 'resend-verification-email'];
+        if (in_array($action->id, $authActions)) {
+            $this->layout = 'blank';
+        }
+        return parent::beforeAction($action);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function actions()

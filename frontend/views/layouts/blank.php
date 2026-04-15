@@ -3,29 +3,32 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use frontend\assets\AppAsset;
 
-// Register Google Font and FontAwesome for the login page
-$this->registerCssFile('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Inter:wght@400;600&display=swap');
-$this->registerCssFile('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" href="<?= Yii::getAlias('@web/image/logo-ypks.png') ?>" type="image/x-icon">
-    <?php $this->registerCsrfMetaTags() ?>
     <?php $this->head() ?>
 </head>
-<body style="margin:0; padding:0; overflow-x:hidden;">
+<body class="h-100" style="margin:0; padding:0;">
 <?php $this->beginBody() ?>
 
 <?= $content ?>
 
 <?php $this->endBody() ?>
+<script>
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+    }
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
