@@ -45,10 +45,11 @@ use yii\bootstrap4\Tabs;
 
 <?php
 $js = <<<JS
-$('#institution-form-ajax').on('submit', function(e) {
+$('#institution-form-ajax').off('submit').on('submit', function(e) {
     e.preventDefault();
+}).off('beforeSubmit').on('beforeSubmit', function(e) {
     var form = $(this);
-    var formData = new FormData(this);
+    var formData = new FormData(form[0]);
 
     $.ajax({
         url: form.attr('action'),
@@ -62,9 +63,12 @@ $('#institution-form-ajax').on('submit', function(e) {
                 $.pjax.reload({container: '#pjax-container'});
                 if(typeof toastr !== "undefined") toastr.success(response.message);
                 else alert(response.message);
+            } else {
+                // handle errors if any
             }
         }
     });
+    return false;
 });
 
 $('#institution-logo').on('change', function() {

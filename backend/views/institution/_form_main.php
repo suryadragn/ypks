@@ -11,8 +11,8 @@ use yii\helpers\Html;
                 <div class="col-md-3">
                     <label class="d-block">&nbsp;</label>
                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success pt-1">
-                        <input type="checkbox" class="custom-control-input" id="is_active_toggle" name="Institution[is_active]" value="1" <?= $model->is_active ? 'checked' : '' ?>>
                         <input type="hidden" name="Institution[is_active]" value="0">
+                        <input type="checkbox" class="custom-control-input" id="is_active_toggle" name="Institution[is_active]" value="1" <?= $model->is_active ? 'checked' : '' ?>>
                         <label class="custom-control-label font-weight-bold" for="is_active_toggle">Aktif</label>
                     </div>
                 </div>
