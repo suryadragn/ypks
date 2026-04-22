@@ -278,6 +278,26 @@ $yearsOfExperience = date('Y') - $foundationYear;
                 </div>
 
             </div>
+
+            <!-- Badan Penyantun -->
+            <div class="row mt-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm rounded-4 bg-gradient-blue text-white overflow-hidden hover-lift-misi transition-all">
+                        <div class="card-body p-4 p-md-5 d-flex flex-column flex-md-row align-items-center">
+                            <div class="icon-circle bg-white text-primary mr-md-4 mb-4 mb-md-0 shadow-lg" style="width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0;">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="text-center text-md-left">
+                                <h4 class="fw-bold mb-2">Badan Penyantun</h4>
+                                <p class="mb-0 opacity-90 fs-5" style="line-height: 1.6;">
+                                    Penyelenggara Badan Penyantun adalah Yayasan Pendidikan Karanganyar Surakarta bekerjasama dengan para anggota dewan penyantun yayasan yang tergabung dalam lembaga <strong>Majelis Wali Amanah</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
