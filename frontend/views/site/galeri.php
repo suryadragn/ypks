@@ -21,9 +21,9 @@ $this->params['breadcrumbs'][] = 'Galeri';
 
     <div class="container">
         <?php if (!empty($galleries)): ?>
-            <div class="gallery-masonry" id="gallery-grid">
+            <div class="row" id="gallery-grid">
                 <?php foreach ($galleries as $index => $gallery): ?>
-                    <div class="gallery-masonry-item mb-4" data-aos="fade-up" data-aos-delay="<?= $index * 50 ?>">
+                    <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="<?= $index * 50 ?>">
                         <?php
                         $imgUrl = null;
                         if ($gallery->image && file_exists(Yii::getAlias('@public/uploads/gallery/') . $gallery->image)) {
@@ -32,12 +32,12 @@ $this->params['breadcrumbs'][] = 'Galeri';
                             $imgUrl = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop';
                         }
                         ?>
-                        <div class="gallery-card-premium rounded-4 shadow-sm overflow-hidden bg-white position-relative clickable-gallery"
+                        <div class="gallery-card-premium rounded-4 shadow-sm overflow-hidden bg-white position-relative clickable-gallery h-100 d-flex flex-column"
                             data-img="<?= $imgUrl ?>"
                             data-title="<?= Html::encode($gallery->title) ?>"
                             style="cursor: pointer;">
-                            <div class="img-wrapper overflow-hidden">
-                                <img src="<?= $imgUrl ?>" alt="<?= Html::encode($gallery->title) ?>" class="img-fluid gallery-image">
+                            <div class="img-wrapper overflow-hidden" style="height: 280px;">
+                                <img src="<?= $imgUrl ?>" alt="<?= Html::encode($gallery->title) ?>" class="gallery-image w-100 h-100" style="object-fit: cover;">
                                 <div class="gallery-info-overlay d-flex flex-column align-items-center justify-content-center text-center p-3">
                                     <div class="zoom-icon mb-2">
                                         <i class="fas fa-search-plus text-white display-4"></i>
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = 'Galeri';
                                     <span class="badge badge-light-soft rounded-pill px-3 py-1 font-weight-normal small">KLIK UNTUK MEMPERBESAR</span>
                                 </div>
                             </div>
-                            <div class="card-caption p-3 bg-white text-center border-top">
+                            <div class="card-caption p-3 bg-white text-center border-top mt-auto">
                                 <h6 class="mb-0 text-dark font-weight-bold"><?= Html::encode($gallery->title) ?></h6>
                             </div>
                         </div>
@@ -131,29 +131,6 @@ $this->params['breadcrumbs'][] = 'Galeri';
     .btn-circle:hover {
         transform: rotate(90deg) scale(1.1);
         background: #f1f5f9 !important;
-    }
-
-    /* Masonry Grid */
-    .gallery-masonry {
-        column-count: 3;
-        column-gap: 30px;
-    }
-
-    @media (max-width: 991.98px) {
-        .gallery-masonry {
-            column-count: 2;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .gallery-masonry {
-            column-count: 1;
-        }
-    }
-
-    .gallery-masonry-item {
-        display: inline-block;
-        width: 100%;
     }
 
     /* Card Styles */
