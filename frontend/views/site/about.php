@@ -19,7 +19,7 @@ $yearsOfExperience = date('Y') - $foundationYear;
             <h6 class="text-uppercase ls-2 mb-3 text-warning font-weight-bold">Yayasan Pendidikan Karanganyar Surakarta</h6>
             <h1 class="display-3 fw-black mb-3">Membangun Bangsa Lewat Pendidikan</h1>
             <div class="badge bg-white text-primary px-4 py-2 rounded-pill font-weight-bold">
-                <i class="fas fa-calendar-alt mr-2"></i> Berdiri Sejak <?= $foundationYear ?>
+                <i class="fas fa-calendar-alt mr-2"></i> Berdiri Sejak 10 Desember <?= $foundationYear ?>
             </div>
         </div>
     </div>
@@ -186,6 +186,96 @@ $yearsOfExperience = date('Y') - $foundationYear;
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Organ Yayasan Section -->
+        <div class="organ-yayasan-row py-5 mt-5 border-top">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h6 class="text-primary text-uppercase ls-2 fw-bold mb-2">Struktur Organisasi</h6>
+                <h2 class="display-5 fw-black text-dark">Organ Yayasan Saat Ini</h2>
+                <div class="mx-auto mt-3" style="width: 80px; height: 4px; background: #007bff; border-radius: 2px;"></div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Pembina -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 hover-lift-misi transition-all bg-white" style="border-top: 5px solid #007bff !important;">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-circle bg-primary-soft text-primary mx-auto mb-4" style="width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4 class="fw-bold mb-4">Pembina</h4>
+                            <ul class="list-unstyled text-left small mb-0 text-muted" style="text-align: left;">
+                                <li class="mb-3 border-bottom pb-2">
+                                    <span class="d-block text-primary fw-bold mb-1">Ketua Pembina:</span>
+                                    <span class="text-dark fs-6">Sri Murwani, S.Farm.Apt</span>
+                                </li>
+                                <li>
+                                    <span class="d-block text-primary fw-bold mb-1">Anggota Pembina:</span>
+                                    <span class="text-dark fs-6">Chrisnawan Sri Harjanto, S.Sos.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pengurus -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 hover-lift-misi transition-all bg-white" style="border-top: 5px solid #28a745 !important;">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-circle bg-success-soft text-success mx-auto mb-4" style="width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <h4 class="fw-bold mb-4">Pengurus</h4>
+                            <ul class="list-unstyled text-left small mb-0 text-muted" style="text-align: left;">
+                                <li class="mb-2 border-bottom pb-2">
+                                    <span class="d-block text-success fw-bold mb-1">Ketua Umum:</span>
+                                    <span class="text-dark">Doktor Insinyur Diwi Acita Irawati, Magister Pertanian</span>
+                                </li>
+                                <li class="mb-2 border-bottom pb-2">
+                                    <span class="d-block text-success fw-bold mb-1">Ketua:</span>
+                                    <span class="text-dark">Indri Muryandari, Sarjana Hukum, Magister Managemen</span>
+                                </li>
+                                <li class="mb-2 border-bottom pb-2">
+                                    <span class="d-block text-success fw-bold mb-1">Sekretaris Umum:</span>
+                                    <span class="text-dark">Suryo Cahyono, Sarjana Tehnik</span>
+                                </li>
+                                <li class="mb-2 border-bottom pb-2">
+                                    <span class="d-block text-success fw-bold mb-1">Sekretaris:</span>
+                                    <span class="text-dark">Rina Kusuma Pramudya Wardani, Sarjana Ekonomi</span>
+                                </li>
+                                <li>
+                                    <span class="d-block text-success fw-bold mb-1">Bendahara Umum:</span>
+                                    <span class="text-dark">Bernadeta Uddjajanti, Ahli Madya</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pengawas -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 hover-lift-misi transition-all bg-white" style="border-top: 5px solid #ffc107 !important;">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-circle text-warning mx-auto mb-4" style="width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background-color: rgba(255, 193, 7, 0.1);">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h4 class="fw-bold mb-4">Pengawas</h4>
+                            <ul class="list-unstyled text-left small mb-0 text-muted" style="text-align: left;">
+                                <li class="mb-3 border-bottom pb-2">
+                                    <span class="d-block text-warning fw-bold mb-1">Ketua Pengawas:</span>
+                                    <span class="text-dark fs-6">Insinyur Hartono, Magister Managemen</span>
+                                </li>
+                                <li>
+                                    <span class="d-block text-warning fw-bold mb-1">Anggota Pengawas:</span>
+                                    <span class="text-dark fs-6">Tirta Nugraha Mursitama</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
