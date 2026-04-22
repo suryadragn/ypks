@@ -123,25 +123,25 @@ $yearsOfExperience = date('Y') - $foundationYear;
                     </div>
 
                     <div class="founders-box mt-5 p-4 bg-light rounded-4 shadow-sm border">
-                        <h5 class="fw-bold mb-4 text-dark border-bottom pb-2">Tokoh & Penghadap Pendiri:</h5>
+                        <h5 class="fw-bold mb-4 text-dark border-bottom pb-2">Tokoh Pendiri:</h5>
                         <ul class="list-unstyled row g-3 small">
                             <?php
                             $pendiri = [
-                                "Drs. Hartono (Bupati KDH Tingkat II Karanganyar)",
-                                "Indardi, B.A. (Sekwilda Tingkat II Karanganyar)",
-                                "Toekoel Yoedoharsono (Kepala Kantor Depdikbud Karanganyar)",
-                                "Ir. Antonius Dwidoyo (Ketua BAPEDA Karanganyar)",
-                                "Drs. Gunawan (Kabag Kesra Setwilda Karanganyar)",
-                                "Marius Soedomo, B.A. (Guru SMA Negeri Karanganyar)",
-                                "Wariso, B.A. (Camat Karanganyar)",
-                                "Drs. Agus Suhardjo (Guru SMA Negeri Karanganyar)",
-                                "Soetarmo (Staf Bagian Kesra Karanganyar)",
-                                "Joanes Soewardo Sastrosumarto (Guru SMA Negeri Karanganyar)",
-                                "Sadari (Karyawan SMEA Negeri Karanganyar)",
-                                "Rachsananto, B.A. (Guru SMA Negeri Karanganyar)",
-                                "Pardiyanto, B.A. (Guru STM Pertanian Karanganyar)",
-                                "Tjahjono Padmohudojo (Pensiunan Pegawai Negeri Pemda Karanganyar)",
-                                "Soetarno (Kepala Desa Popongan)"
+                                "Doktorandus Hartono, Bupati Kepala Daerah Tingkat II Kabupaten Karanganyar, bertempat tinggal di Karanganyar, Tegalasri – Bejen;",
+                                "Indardi, Bachelor of Arts, Sekretaris Wilayah Daerah Tingkat II Kabupaten Karanganyar, bertempat tinggal di Karanganyar, Tegalasri-Bejen;",
+                                "Toekoel Yoedoharsono, Kepala kantor Departemen pendidikan dan Kebudayaan Kabupaten Karanganyar, Palur - Ngringo – Jaten;",
+                                "Insinyur Antonius Dwidoyo, Ketua Badan Perencana Pembangunan Daerah Kabupaten Karanganyar, bertempat tinggal di Karanganyar, Tegalasri – Bejen;",
+                                "Doktorandus Gunawan, Kepala Bagian Kesejahteraan Rakyat Sekretariat Wilayah Daerah Tingkat II Kabupaten Karanganyar, bertempat tinggal dari Karanganyar, Harjosari – Popongan;",
+                                "Marius Soedomo, bachelor of Art, guru Sekolah Menengah Atas Negeri Karanganyar, bertempat tinggal di Karanganyar, Badranasri RT 14 Rukun Kampung II",
+                                "Wariso, Bachelor of Art, Camat bertempat tinggal di Karanganyar",
+                                "Doktorandus Agus Suharjo, Guru Sekolah Menengah Atas Negeri Karanganyar, bertempat tinggal di Karanganyar, Tegalasri – Bejen;",
+                                "Soetarmo, Staf Bagian Kesejahteraan Rakyat, Kampung Tegalasri – Bejen",
+                                "Joanes Soewardo Sastrosumarto, Bachelor of Art, Guru SMA bertempat tinggal di Karanganyar, Ngijo – Tasikmadu;",
+                                "Sadari, karyawan SMEA Negeri Karanganyar bertempat tinggal di Karanganyar",
+                                "Rachsananto, Bachelor of Arts, Guru SMA bertempat tinggal di Karanganyar, Dompon Kecamatan Karanganyar;",
+                                "Pardiyanto, Bachelor Of Art, Guru Sekolah Tehnologi Pertanian Karanganyar, Bertempat tinggal di Karanaganyar, Popongan, Kecamatan Karanganyar;",
+                                "Tjahjono Padmohudojo, Pensiunan Pegawai Pemerintah Daerah Kabupaten Karanganyar, bertempat tinggal di Karanganyar, Tegalasri – Karanganayar;",
+                                "Soetarno, Kepala Desa Popongan, bertempat tinggal Karanganyar, Popongan, Kecamatan Karanganyar"
                             ];
                             foreach ($pendiri as $p):
                             ?>
