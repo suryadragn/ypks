@@ -190,6 +190,59 @@ $yearsOfExperience = date('Y') - $foundationYear;
             </div>
         </div>
 
+        <!-- Kegiatan Section -->
+        <div class="kegiatan-row py-5 mt-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h6 class="text-primary text-uppercase ls-2 fw-bold mb-2">Program Utama</h6>
+                <h2 class="display-5 fw-black text-dark">Kegiatan yang Dilakukan</h2>
+                <div class="mx-auto mt-3" style="width: 80px; height: 4px; background: #007bff; border-radius: 2px;"></div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Kegiatan A -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 hover-lift-misi transition-all bg-white p-4">
+                        <div class="d-flex flex-column flex-sm-row align-items-start">
+                            <div class="icon-box bg-primary-soft text-primary p-3 rounded-circle mr-sm-4 mb-3 mb-sm-0" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-graduation-cap fa-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold mb-3">Pendidikan</h4>
+                                <p class="text-muted fs-5 mb-0" style="line-height: 1.6;">
+                                    Penyelenggaraan pendidikan formal dan non formal dari tingkat dasar, menengah dan tinggi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kegiatan B -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 hover-lift-misi transition-all bg-white p-4">
+                        <div class="d-flex flex-column flex-sm-row align-items-start">
+                            <div class="icon-box bg-success-soft text-success p-3 rounded-circle mr-sm-4 mb-3 mb-sm-0" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-hands-helping fa-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold mb-3">Pemberdayaan Masyarakat</h4>
+                                <p class="text-muted mb-3">Melalui berbagai program pengabdian:</p>
+                                <ul class="list-unstyled text-muted small">
+                                    <li class="mb-3 d-flex align-items-start border-bottom pb-2">
+                                        <i class="fas fa-check-circle text-success mt-1 mr-2 opacity-75"></i>
+                                        <span style="line-height: 1.5;">Perluasan bidang pendidikan tinggi bagi keluarga kurang mampu berupa beasiswa kerja magang dan beasiswa kerja sosial.</span>
+                                    </li>
+                                    <li class="d-flex align-items-start">
+                                        <i class="fas fa-check-circle text-success mt-1 mr-2 opacity-75"></i>
+                                        <span style="line-height: 1.5;">Patungan sengkuyung gemar minum susu segar (payung gerimis) dengan pola kemitraan antara peternak sapi perah, sekolah-sekolah, dan yayasan.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Organ Yayasan Section -->
         <div class="organ-yayasan-row py-5 mt-5 border-top">
             <div class="text-center mb-5" data-aos="fade-up">
