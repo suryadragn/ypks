@@ -158,26 +158,27 @@ $yearsOfExperience = date('Y') - $foundationYear;
 
                 <div class="col-lg-5" data-aos="fade-left">
                     <div class="legal-evolution-card p-4 p-xl-5 bg-gradient-dark text-white rounded-4 shadow-lg sticky-top" style="top: 100px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
-                        <h4 class="fw-bold mb-4 ls-1">Transformasi & Badan Hukum</h4>
-                        <p class="small opacity-75 mb-5">Seiring perkembangan regulasi, YPKS telah melakukan beberapa kali penyesuaian Anggaran Dasar:</p>
+                        <h4 class="fw-bold mb-4 ls-1">Legalitas Akta Pendirian</h4>
+                        <p class="small opacity-75 mb-5">Yayasan Pendidikan Karanganyar Surakarta memiliki legalitas yang sah berdasarkan:</p>
 
                         <div class="timeline-legal">
-                            <?php
-                            $legal = [
-                                "1994" => "Akte Notaris No. 8: Perubahan Susunan Pengurus & Anggaran Dasar Yayasan.",
-                                "1999" => "Akte Notaris No. 1: Perubahan Susunan Pengurus & Anggaran Dasar Yayasan.",
-                                "2008" => "Akte Notaris No. 08: Penyesuaian UU No. 16/2001 & Perubahan nama menjadi Yayasan Pendidikan Karanganyar Surakarta.",
-                                "2013" => "Akte Notaris No. 283: Perubahan Susunan Organ Yayasan.",
-                                "2014" => "Akte Notaris No. 05: Perubahan Susunan Organ Yayasan sesuai regulasi terbaru."
-                            ];
-                            foreach ($legal as $year => $desc):
-                            ?>
-                                <div class="timeline-item mb-4 border-left pl-3 ml-2 position-relative">
-                                    <div class="dot position-absolute bg-warning rounded-circle" style="width:12px; height:12px; left:-7px; top:5px;"></div>
-                                    <h6 class="fw-black text-warning mb-1 ls-1">&nbsp;&nbsp;<?= $year ?></h6>
-                                    <p class="small mb-0 opacity-80"><?= $desc ?></p>
-                                </div>
-                            <?php endforeach; ?>
+                            <div class="timeline-item mb-4 border-left pl-3 ml-2 position-relative">
+                                <div class="dot position-absolute bg-warning rounded-circle" style="width:12px; height:12px; left:-7px; top:5px;"></div>
+                                <h6 class="fw-black text-warning mb-1 ls-1">&nbsp;&nbsp;10 Desember 1983</h6>
+                                <p class="small mb-0 opacity-80">Akta Pendirian No. 3</p>
+                            </div>
+                            
+                            <div class="timeline-item mb-4 border-left pl-3 ml-2 position-relative">
+                                <div class="dot position-absolute bg-success rounded-circle" style="width:12px; height:12px; left:-7px; top:5px;"></div>
+                                <h6 class="fw-black text-success mb-1 ls-1">&nbsp;&nbsp;15 Februari 2008</h6>
+                                <p class="small mb-0 opacity-80">jo Akta Notaris Nomor: 08</p>
+                            </div>
+
+                            <div class="timeline-item mb-4 border-left pl-3 ml-2 position-relative">
+                                <div class="dot position-absolute bg-primary rounded-circle" style="width:12px; height:12px; left:-7px; top:5px;"></div>
+                                <h6 class="fw-black text-primary mb-1 ls-1">&nbsp;&nbsp;21 Juni 2024</h6>
+                                <p class="small mb-0 opacity-80">jo Akta Notaris Nomor: 07</p>
+                            </div>
                         </div>
 
                         <div class="mt-5 pt-4 border-top border-secondary text-center">
