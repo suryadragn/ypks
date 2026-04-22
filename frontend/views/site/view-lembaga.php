@@ -1,7 +1,9 @@
 <?php
+
 /** @var yii\web\View $this */
 /** @var common\models\Institution $model */
 /** @var common\models\InstitutionProfile $profile */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -50,7 +52,7 @@ if ($model->logo) {
 
     <div class="container mb-5">
         <div class="row g-4">
-            <!-- Sidebar Sidebar -->
+            <!-- Sidebar -->
             <div class="col-lg-4" data-aos="fade-up">
                 <div class="sticky-top" style="top: 100px; z-index: 10;">
                     <!-- Visi Misi Card -->
@@ -62,13 +64,13 @@ if ($model->logo) {
                             <div class="vision-box mb-4">
                                 <h6 class="text-primary text-uppercase small font-weight-bold ls-1 mb-2">Visi</h6>
                                 <div class="vision-text border-left p-2 pl-3">
-                                    <?= $profile && $profile->vision ? $profile->vision : 'Visi sedang disiapkan.' ?>
+                                    <?= $profile && $profile->vision ? nl2br(Html::encode($profile->vision)) : 'Visi sedang disiapkan.' ?>
                                 </div>
                             </div>
                             <div class="mission-box">
                                 <h6 class="text-primary text-uppercase small font-weight-bold ls-1 mb-2">Misi</h6>
                                 <div class="mission-text border-left p-2 pl-3">
-                                    <?= $profile && $profile->mission ? $profile->mission : 'Misi sedang disiapkan.' ?>
+                                    <p><?= $profile && $profile->mission ? nl2br(Html::encode($profile->mission)) : 'Misi sedang disiapkan.' ?></p>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +93,7 @@ if ($model->logo) {
                 <div class="main-content-card card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white position-relative overflow-hidden">
                     <div class="accent-line mb-4"></div>
                     <h2 class="fw-bold text-dark mb-4 display-5">Tentang Lembaga</h2>
-                    
+
                     <div class="profile-content text-muted" style="line-height: 2; font-size: 1.15rem;">
                         <?php if ($profile && $profile->content): ?>
                             <?= nl2br(Html::encode($profile->content)) ?>
@@ -103,63 +105,133 @@ if ($model->logo) {
                             </div>
                         <?php endif; ?>
                     </div>
-                    
+
                     <div class="row mt-5 pt-4 border-top">
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-center text-primary">
+                        <div class="col-md-7 mb-3">
+                            <div class="d-flex align-items-center mb-3">
                                 <div class="icon-box bg-primary-soft p-3 rounded-circle mr-3">
                                     <i class="fas fa-share-alt"></i>
                                 </div>
                                 <div>
-                                    <strong class="d-block text-dark">Bagikan Profil</strong>
-                                    <span class="small opacity-75">Sebarkan informasi lembaga ini</span>
+                                    <strong class="d-block text-dark">Media Sosial</strong>
+                                    <span class="small opacity-75">Ikuti kanal informasi kami</span>
                                 </div>
+                            </div>
+                            <div class="social-links-container d-flex flex-wrap gap-2">
+                                <?php if ($profile && $profile->facebook): ?>
+                                    <a href="<?= Html::encode($profile->facebook) ?>" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill px-3 mr-2 mb-2">
+                                        <i class="fab fa-facebook-f mr-1"></i> Facebook
+                                    </a>
+                                <?php endif; ?>
+                                <?php if ($profile && $profile->instagram): ?>
+                                    <a href="<?= Html::encode($profile->instagram) ?>" target="_blank" class="btn btn-outline-danger btn-sm rounded-pill px-3 mr-2 mb-2">
+                                        <i class="fab fa-instagram mr-1"></i> Instagram
+                                    </a>
+                                <?php endif; ?>
+                                <?php if ($profile && $profile->tiktok): ?>
+                                    <a href="<?= Html::encode($profile->tiktok) ?>" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill px-3 mr-2 mb-2">
+                                        <i class="fab fa-tiktok mr-1"></i> TikTok
+                                    </a>
+                                <?php endif; ?>
+                                <?php if ($profile && $profile->youtube): ?>
+                                    <a href="<?= Html::encode($profile->youtube) ?>" target="_blank" class="btn btn-outline-danger btn-sm rounded-pill px-3 mr-2 mb-2">
+                                        <i class="fab fa-youtube mr-1"></i> YouTube
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <?php if ($model->external_link): ?>
-                        <div class="col-md-6 text-md-end">
-                            <a href="<?= Html::encode($model->external_link) ?>" target="_blank" class="btn btn-primary rounded-pill px-5 btn-lg shadow-primary">
-                                Website Resmi <i class="fas fa-external-link-alt ml-2"></i>
-                            </a>
-                        </div>
+                            <div class="col-md-5 text-md-end d-flex align-items-center justify-content-md-end">
+                                <a href="<?= Html::encode($model->external_link) ?>" target="_blank" class="btn btn-primary rounded-pill px-5 btn-lg shadow-primary">
+                                    Website Resmi <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<style>
-    /* Styling Dasar & Grid */
-    .view-lembaga-premium { background-color: #f0f4f8; min-height: 100vh; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-    
-    /* Hero Section */
-    .hero-section {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-        border-bottom: 5px solid #2563eb;
-    }
-    .logo-hero-container { width: 151px; height: 151px; border: 3px solid rgba(255,255,255,0.1); }
-    
-    /* Cards */
-    .rounded-4 { border-radius: 20px !important; }
-    .glass-card { background: rgba(255, 255, 255, 0.8) !important; backdrop-filter: blur(10px); }
-    .bg-gradient-blue { background: linear-gradient(to right, #1e3a8a, #2563eb); }
-    
-    /* Typography */
-    .ls-1 { letter-spacing: 1px; }
-    .display-3 { font-size: 2.8rem; line-height: 1.1; color: #fff; }
-    .border-left { border-left: 4px solid #2563eb !important; }
-    
-    /* Accent Line */
-    .accent-line { width: 70px; height: 6px; background: #2563eb; border-radius: 10px; }
-    
-    /* Details */
-    .icon-box { background-color: rgba(37, 99, 235, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
-    .shadow-primary { box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); }
-    
-    @media (max-width: 991.98px) {
-        .display-3 { font-size: 2rem; }
-        .logo-hero-container { width: 100px; height: 100px; }
-    }
-</style>
+                <style>
+                    /* Styling Dasar & Grid */
+                    .view-lembaga-premium {
+                        background-color: #f0f4f8;
+                        min-height: 100vh;
+                        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+                    }
+
+                    /* Hero Section */
+                    .hero-section {
+                        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+                        border-bottom: 5px solid #2563eb;
+                    }
+
+                    .logo-hero-container {
+                        width: 151px;
+                        height: 151px;
+                        border: 3px solid rgba(255, 255, 255, 0.1);
+                    }
+
+                    /* Cards */
+                    .rounded-4 {
+                        border-radius: 20px !important;
+                    }
+
+                    .glass-card {
+                        background: rgba(255, 255, 255, 0.8) !important;
+                        backdrop-filter: blur(10px);
+                    }
+
+                    .bg-gradient-blue {
+                        background: linear-gradient(to right, #1e3a8a, #2563eb);
+                    }
+
+                    /* Typography */
+                    .ls-1 {
+                        letter-spacing: 1px;
+                    }
+
+                    .display-3 {
+                        font-size: 2.8rem;
+                        line-height: 1.1;
+                        color: #fff;
+                    }
+
+                    .border-left {
+                        border-left: 4px solid #2563eb !important;
+                    }
+
+                    /* Accent Line */
+                    .accent-line {
+                        width: 70px;
+                        height: 6px;
+                        background: #2563eb;
+                        border-radius: 10px;
+                    }
+
+                    /* Details */
+                    .icon-box {
+                        background-color: rgba(37, 99, 235, 0.1);
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .shadow-primary {
+                        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+                    }
+
+                    @media (max-width: 991.98px) {
+                        .display-3 {
+                            font-size: 2rem;
+                        }
+
+                        .logo-hero-container {
+                            width: 100px;
+                            height: 100px;
+                        }
+                    }
+                </style>

@@ -65,11 +65,13 @@ class SiteController extends Controller
         $institutionCount = \common\models\Institution::find()->count();
         $galleryCount = \common\models\Gallery::find()->count();
         $newsCount = \common\models\News::find()->count();
+        $foundationConfig = \common\models\FoundationConfig::getActive();
 
         return $this->render('index', [
             'institutionCount' => $institutionCount,
             'galleryCount' => $galleryCount,
             'newsCount' => $newsCount,
+            'foundationConfig' => $foundationConfig,
         ]);
     }
 

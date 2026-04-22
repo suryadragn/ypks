@@ -29,30 +29,50 @@ AppAsset::register($this);
             --bs-primary: #eab308;
             --bs-primary-rgb: 234, 179, 8;
         }
-        .text-primary { color: #ca8a04 !important; }
-        .bg-primary { background-color: #facc15 !important; color: #1e293b !important; }
-        .bg-gradient-blue { background: linear-gradient(135deg, #422006 0%, #b45309 100%) !important; }
-        .btn-primary, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+
+        .text-primary {
+            color: #ca8a04 !important;
+        }
+
+        .bg-primary {
+            background-color: #facc15 !important;
+            color: #1e293b !important;
+        }
+
+        .bg-gradient-blue {
+            background: linear-gradient(135deg, #422006 0%, #b45309 100%) !important;
+        }
+
+        .btn-primary,
+        .btn-primary:not(:disabled):not(.disabled):active,
+        .show>.btn-primary.dropdown-toggle {
             background-color: #facc15 !important;
             border-color: #facc15 !important;
             color: #1e293b !important;
             font-weight: 600 !important;
         }
-        .btn-primary:hover, .btn-primary:focus {
+
+        .btn-primary:hover,
+        .btn-primary:focus {
             background-color: #eab308 !important;
             border-color: #eab308 !important;
             color: #111827 !important;
         }
+
         .btn-outline-primary {
             border-color: #eab308;
             color: #ca8a04;
         }
+
         .btn-outline-primary:hover {
             background-color: #eab308;
             color: #1e293b;
         }
-        .border-primary { border-color: #facc15 !important; }
-        
+
+        .border-primary {
+            border-color: #facc15 !important;
+        }
+
         /* Dark Gradient that complements Gold */
         .hero-section {
             background: linear-gradient(rgba(30, 20, 5, 0.75), rgba(30, 20, 5, 0.85)), url('<?= Yii::getAlias("@web/image/ypks_home.jpg") ?>') no-repeat center center !important;
@@ -130,7 +150,7 @@ AppAsset::register($this);
                     <h5 class="text-white fw-bold mb-3" style="letter-spacing: 0.5px;">Kantor YPKS</h5>
                     <p class="text-light opacity-75">
                         <span class="d-block mb-2">📍 Jl. Lawu No.115 Karanganyar</span>
-                        <span class="d-block mb-2">📞 Telp./Fax: (0271) 495212</span>
+                        <span class="d-block mb-2">📞 Telp./Fax: (0271) 4992051</span>
                         <span class="d-block">📮 Kode Pos 57716</span>
                     </p>
                 </div>

@@ -76,6 +76,12 @@
 
                     ['label' => 'SISTEM', 'header' => true, 'visible' => !Yii::$app->user->isGuest && $user->is_superadmin],
                     [
+                        'label'   => 'Profil Yayasan',
+                        'icon'    => 'landmark',
+                        'url'     => ['foundation-config/index'],
+                        'visible' => !Yii::$app->user->isGuest && $user->is_superadmin,
+                    ],
+                    [
                         'label'   => 'Verifikasi Akun',
                         'icon'    => 'user-check',
                         'url'     => ['user/index'],

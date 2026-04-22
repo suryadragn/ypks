@@ -4,9 +4,10 @@
 /** @var int $institutionCount */
 /** @var int $galleryCount */
 /** @var int $newsCount */
+/** @var common\models\FoundationConfig $foundationConfig */
 
 $this->title = 'Admin Dashboard - YPKS';
-$this->params['breadcrumbs'] = [['label' => 'Dashboard']];
+$this->params['breadcrumbs'][] = ['label' => 'Dashboard'];
 ?>
 <div class="site-index">
 
@@ -45,41 +46,43 @@ $this->params['breadcrumbs'] = [['label' => 'Dashboard']];
         <!-- Visi & Misi YPKS Card -->
         <div class="col-md-7">
             <div class="card card-primary card-outline shadow-sm h-100">
-                <div class="card-header">
-                    <h3 class="card-title font-weight-bold text-uppercase">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="card-title font-weight-bold text-uppercase mb-0">
                         <i class="fas fa-bullseye mr-2"></i> Visi & Misi Yayasan (YPKS)
                     </h3>
+                    <div class="ml-auto">
+                        <a href="<?= \yii\helpers\Url::to(['foundation-config/index']) ?>" class="btn btn-xs btn-outline-primary rounded-pill px-2">
+                             <i class="fas fa-edit"></i> Edit Profil
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body p-4">
                     <div class="vision-section mb-4">
                         <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-2">Visi Utama</h6>
                         <p class="text-dark-50 border-left pl-3 font-italic" style="font-size: 1.1rem; line-height: 1.7;">
-                            "Menjadi badan hukum penyelenggara pendidikan dan sosial yang terpercaya, unggul dan lestari."
+                            "<?= $foundationConfig ? \yii\helpers\Html::encode($foundationConfig->vision) : 'Visi belum diset di referensi.' ?>"
                         </p>
                     </div>
                     <div class="mission-section">
                         <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-3">Misi Utama</h6>
                         <ul class="list-unstyled text-muted pl-1">
-                            <li class="mb-3 d-flex align-items-start">
-                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
-                                <span>Mewujudkan pertumbuhan secara bertahap.</span>
-                            </li>
-                            <li class="mb-3 d-flex align-items-start">
-                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
-                                <span>Merekrut dan membina Sumber Daya Manusia profesional dalam lingkungan kerja yang sehat.</span>
-                            </li>
-                            <li class="mb-3 d-flex align-items-start">
-                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
-                                <span>Mengembangkan nilai-nilai luhur dalam setiap lembaga/unit pelaksana.</span>
-                            </li>
-                            <li class="mb-3 d-flex align-items-start">
-                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
-                                <span>Menyelenggarakan operasional Sekolah/Perguruan Tinggi sesuai standar Pendidikan Kebudayaan Nasional.</span>
-                            </li>
-                            <li class="mb-2 d-flex align-items-start">
-                                <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
-                                <span>Menjadi lembaga inovatif dan produktif.</span>
-                            </li>
+                            <?php 
+                            if ($foundationConfig && $foundationConfig->mission) {
+                                $missions = explode("\n", str_replace("\r", "", $foundationConfig->mission));
+                                foreach ($missions as $m) {
+                                    $m = trim($m);
+                                    if (!$m) continue;
+                                    ?>
+                                    <li class="mb-3 d-flex align-items-start">
+                                        <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
+                                        <span><?= \yii\helpers\Html::encode($m) ?></span>
+                                    </li>
+                                    <?php
+                                }
+                            } else {
+                                echo '<li class="text-muted italic">Misi belum diset di referensi.</li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -99,9 +102,10 @@ $this->params['breadcrumbs'] = [['label' => 'Dashboard']];
                         <li class="list-group-item p-4">
                             <h6 class="text-primary font-weight-bold text-uppercase small ls-1 mb-3">Kantor YPKS</h6>
                             <p class="mb-0 text-muted small">
-                                <i class="fas fa-map-marker-alt text-danger mr-2"></i> Jl. Lawu No.115 Karanganyar<br>
-                                <i class="fas fa-phone text-success mr-2 mt-2"></i> Telp./Fax: (0271) 495212<br>
-                                <i class="fas fa-envelope text-info mr-2 mt-2"></i> Kode Pos 57716
+                                <i class="fas fa-map-marker-alt text-danger mr-2"></i> <?= $foundationConfig ? \yii\helpers\Html::encode($foundationConfig->address) : '-' ?><br>
+                                <i class="fas fa-phone text-success mr-2 mt-2"></i> Telp./Fax: <?= $foundationConfig ? \yii\helpers\Html::encode($foundationConfig->phone) : '-' ?><br>
+                                <i class="fas fa-envelope text-info mr-2 mt-2"></i> <?= $foundationConfig ? \yii\helpers\Html::encode($foundationConfig->email) : '-' ?> <br>
+                                <i class="fas fa-mail-bulk text-secondary mr-2 mt-2"></i> Kode Pos <?= $foundationConfig ? \yii\helpers\Html::encode($foundationConfig->postal_code) : '-' ?>
                             </p>
                         </li>
                     </ul>
