@@ -73,7 +73,10 @@ use common\models\SocialProgramType;
                 <?php if ($model->image): ?>
                     <div class="mb-2 text-center" id="image-preview">
                         <label class="d-block text-left font-weight-bold"><i class="fas fa-image mr-1"></i> Gambar Saat Ini:</label>
-                        <?= Html::img(Yii::getAlias('@web/../../uploads/programs/') . $model->image, ['class' => 'img-fluid rounded shadow-sm border p-1 bg-white', 'style' => 'max-height: 120px;']) ?>
+                        <?php
+                            $imgSrc = strpos($model->image, 'http') === 0 ? $model->image : Yii::getAlias('@web/../../uploads/programs/') . $model->image;
+                            echo Html::img($imgSrc, ['class' => 'img-fluid rounded shadow-sm border p-1 bg-white', 'style' => 'max-height: 120px;']);
+                        ?>
                     </div>
                 <?php else: ?>
                     <div class="mb-2 text-center" id="image-preview"></div>

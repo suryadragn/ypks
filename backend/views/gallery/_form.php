@@ -23,7 +23,8 @@ use yii\bootstrap4\ActiveForm;
             <?= $form->field($model, 'image')->fileInput(['class' => 'form-control-file'])->label(false) ?>
             <div id="image-gallery-preview" class="mt-2 text-center">
                 <?php if ($model->image): ?>
-                    <img src="<?= Yii::getAlias('@web/../../public/uploads/gallery/') . $model->image ?>" class="img-fluid rounded border" style="max-height: 150px">
+                    <?php $imgSrc = strpos($model->image, 'http') === 0 ? $model->image : Yii::getAlias('@web/../../public/uploads/gallery/') . $model->image; ?>
+                    <img src="<?= $imgSrc ?>" class="img-fluid rounded border" style="max-height: 150px">
                 <?php endif; ?>
             </div>
         </div>

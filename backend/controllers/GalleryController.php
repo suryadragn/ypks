@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\web\UploadedFile;
+use common\components\StorageHelper;
 use Yii;
 
 /**
@@ -87,16 +88,10 @@ class GalleryController extends Controller
             if ($model->load($this->request->post())) {
                 $image = UploadedFile::getInstance($model, 'image');
                 if ($image) {
-                    $fileName = 'gallery_' . time() . '.' . $image->extension;
-                    $dir = Yii::getAlias('@public/uploads/gallery/');
-                    
-                    // Pastikan folder ada
-                    if (!is_dir($dir)) {
-                        mkdir($dir, 0777, true);
+                    $url = StorageHelper::upload($image, '@public/uploads/gallery/');
+                    if ($url) {
+                        $model->image = $url;
                     }
-
-                    $path = $dir . $fileName;
-                    if ($image->saveAs($path)) $model->image = $fileName;
                 }
                 if ($model->save()) {
                     if ($this->request->isAjax) {
@@ -121,12 +116,13 @@ class GalleryController extends Controller
         if ($this->request->isPost && $model->load($this->request->post())) {
             $image = UploadedFile::getInstance($model, 'image');
             if ($image) {
-                $fileName = 'gallery_' . time() . '.' . $image->extension;
-                $path = Yii::getAlias('@public/uploads/gallery/') . $fileName;
-                if ($image->saveAs($path)) {
-                    $model->image = $fileName;
-                    if ($oldImage && file_exists(Yii::getAlias('@public/uploads/gallery/') . $oldImage)) {
-                        unlink(Yii::getAlias('@public/uploads/gallery/') . $oldImage);
+                    $url = StorageHelper::upload($image, '@public/uploads/gallery/');
+                    if ($url) {
+                        $model->image = $url;
+                        // Delete old local image if it exists
+                        if ($oldImage && !StorageHelper::isUrl($oldImage)) {
+                        $path = Yii::getAlias('@public/uploads/gallery/') . $oldImage;
+                        if (file_exists($path)) unlink($path);
                     }
                 }
             } else {
@@ -148,7 +144,7 @@ class GalleryController extends Controller
     {
         $model = $this->findModel($id);
         $file = $model->image;
-        if ($model->delete() && $file) {
+        if ($model->delete() && $file && !StorageHelper::isUrl($file)) {
             $path = Yii::getAlias('@public/uploads/gallery/') . $file;
             if (file_exists($path)) unlink($path);
         }

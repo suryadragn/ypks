@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\web\UploadedFile;
+use common\components\StorageHelper;
 use Yii;
 
 /**
@@ -89,9 +90,10 @@ class InstitutionController extends Controller
             if ($model->load($this->request->post())) {
                 $image = UploadedFile::getInstance($model, 'logo');
                 if ($image) {
-                    $fileName = 'logo_' . time() . '.' . $image->extension;
-                    $path = Yii::getAlias('@public/uploads/institution/') . $fileName;
-                    if ($image->saveAs($path)) $model->logo = $fileName;
+                    $url = StorageHelper::upload($image, '@public/uploads/institution/');
+                    if ($url) {
+                        $model->logo = $url;
+                    }
                 }
                 if ($model->save()) {
                     $profile->load($this->request->post());
@@ -126,12 +128,13 @@ class InstitutionController extends Controller
         if ($this->request->isPost && $model->load($this->request->post())) {
             $image = UploadedFile::getInstance($model, 'logo');
             if ($image) {
-                $fileName = 'logo_' . time() . '.' . $image->extension;
-                $path = Yii::getAlias('@public/uploads/institution/') . $fileName;
-                if ($image->saveAs($path)) {
-                    $model->logo = $fileName;
-                    if ($oldLogo && file_exists(Yii::getAlias('@public/uploads/institution/') . $oldLogo)) {
-                        unlink(Yii::getAlias('@public/uploads/institution/') . $oldLogo);
+                $url = StorageHelper::upload($image, '@public/uploads/institution/');
+                if ($url) {
+                    $model->logo = $url;
+                    // Delete old local logo if it exists
+                    if ($oldLogo && !StorageHelper::isUrl($oldLogo)) {
+                        $path = Yii::getAlias('@public/uploads/institution/') . $oldLogo;
+                        if (file_exists($path)) unlink($path);
                     }
                 }
             } else {
@@ -156,7 +159,7 @@ class InstitutionController extends Controller
     {
         $model = $this->findModel($id);
         $logo = $model->logo;
-        if ($model->delete() && $logo) {
+        if ($model->delete() && $logo && !StorageHelper::isUrl($logo)) {
             $path = Yii::getAlias('@public/uploads/institution/') . $logo;
             if (file_exists($path)) unlink($path);
         }

@@ -42,7 +42,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'image',
                         'format' => 'raw',
                         'value' => function($model) {
-                            $url = $model->image ? Yii::getAlias('@web/../../public/uploads/news/') . $model->image : 'https://placehold.co/100x60?text=No+Image';
+                            $url = 'https://placehold.co/100x60?text=No+Image';
+                            if ($model->image) {
+                                if (strpos($model->image, 'http') === 0) {
+                                    $url = $model->image;
+                                } else {
+                                    $url = Yii::getAlias('@web/../../public/uploads/news/') . $model->image;
+                                }
+                            }
                             return Html::img($url, ['class' => 'img-thumbnail', 'style' => 'width:80px; height:50px; object-fit:cover;']);
                         },
                         'headerOptions' => ['style' => 'width:100px'],

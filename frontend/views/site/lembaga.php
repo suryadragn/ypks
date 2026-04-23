@@ -26,7 +26,9 @@ $this->params['breadcrumbs'][] = 'Lembaga Pendidikan';
                                 // Deteksi logo dari upload atau folder image
                                 $logoUrl = null;
                                 if ($inst->logo) {
-                                    if (file_exists(Yii::getAlias('@public/uploads/institution/') . $inst->logo)) {
+                                    if (strpos($inst->logo, 'http') === 0) {
+                                        $logoUrl = $inst->logo;
+                                    } elseif (file_exists(Yii::getAlias('@public/uploads/institution/') . $inst->logo)) {
                                         $logoUrl = Url::to('@web/uploads/institution/' . $inst->logo);
                                     } elseif (file_exists(Yii::getAlias('@public/image/') . $inst->logo)) {
                                         $logoUrl = Url::to('@web/image/' . $inst->logo);

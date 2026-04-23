@@ -36,7 +36,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'logo',
                         'format' => 'raw',
                         'value' => function ($model) {
-                            $url = $model->logo ? Yii::getAlias('@web/../../uploads/institution/') . $model->logo : 'https://placehold.co/100x60?text=No+Logo';
+                            $url = 'https://placehold.co/100x60?text=No+Logo';
+                            if ($model->logo) {
+                                if (strpos($model->logo, 'http') === 0) {
+                                    $url = $model->logo;
+                                } else {
+                                    $url = Yii::getAlias('@web/../../uploads/institution/') . $model->logo;
+                                }
+                            }
                             return Html::img($url, ['class' => 'img-thumbnail p-1 bg-white', 'style' => 'width:60px; height:60px; object-fit:contain;']);
                         },
                         'headerOptions' => ['style' => 'width:80px'],

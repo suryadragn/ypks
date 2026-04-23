@@ -26,9 +26,15 @@ $this->params['breadcrumbs'][] = 'Galeri';
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="<?= $index * 50 ?>">
                         <?php
                         $imgUrl = null;
-                        if ($gallery->image && file_exists(Yii::getAlias('@public/uploads/gallery/') . $gallery->image)) {
-                            $imgUrl = Url::to('@web/uploads/gallery/' . $gallery->image);
-                        } else {
+                        if ($gallery->image) {
+                            if (strpos($gallery->image, 'http') === 0) {
+                                $imgUrl = $gallery->image;
+                            } elseif (file_exists(Yii::getAlias('@public/uploads/gallery/') . $gallery->image)) {
+                                $imgUrl = Url::to('@web/uploads/gallery/' . $gallery->image);
+                            }
+                        }
+                        
+                        if (!$imgUrl) {
                             $imgUrl = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop';
                         }
                         ?>

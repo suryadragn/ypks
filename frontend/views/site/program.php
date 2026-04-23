@@ -91,10 +91,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             
                             <!-- Image section with hover zoom -->
                             <?php 
-                                $imgPath = Yii::getAlias('@public/uploads/programs/') . $model->image;
-                                $displayUrl = ($model->image && file_exists($imgPath)) 
-                                    ? Url::to('@web/uploads/programs/' . $model->image) 
-                                    : 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80';
+                                $displayUrl = null;
+                                if ($model->image) {
+                                    if (strpos($model->image, 'http') === 0) {
+                                        $displayUrl = $model->image;
+                                    } elseif (file_exists(Yii::getAlias('@public/uploads/programs/') . $model->image)) {
+                                        $displayUrl = Url::to('@web/uploads/programs/' . $model->image);
+                                    }
+                                }
+                                
+                                if (!$displayUrl) {
+                                    $displayUrl = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80';
+                                }
                             ?>
                             <div class="program-img-wrapper position-relative overflow-hidden" style="height: 260px;">
                                 <div class="img-overlay"></div>

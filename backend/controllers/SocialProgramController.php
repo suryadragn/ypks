@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 use yii\helpers\Inflector;
+use common\components\StorageHelper;
 
 /**
  * SocialProgramController implements the CRUD actions for SocialProgram model.
@@ -64,16 +65,9 @@ class SocialProgramController extends Controller
         if ($this->request->isPost && $model->load($this->request->post())) {
             $imageFile = UploadedFile::getInstance($model, 'image');
             if ($imageFile) {
-                $imageName = 'program_' . time() . '.' . $imageFile->extension;
-                $imagePath = Yii::getAlias('@public/uploads/programs/') . $imageName;
-                
-                // Ensure directory exists
-                if (!is_dir(dirname($imagePath))) {
-                    mkdir(dirname($imagePath), 0777, true);
-                }
-                
-                if ($imageFile->saveAs($imagePath)) {
-                    $model->image = $imageName;
+                $url = StorageHelper::upload($imageFile, '@public/uploads/programs/');
+                if ($url) {
+                    $model->image = $url;
                 }
             }
 
@@ -109,18 +103,13 @@ class SocialProgramController extends Controller
         if ($this->request->isPost && $model->load($this->request->post())) {
             $imageFile = UploadedFile::getInstance($model, 'image');
             if ($imageFile) {
-                $imageName = 'program_' . time() . '.' . $imageFile->extension;
-                $imagePath = Yii::getAlias('@public/uploads/programs/') . $imageName;
-                
-                if (!is_dir(dirname($imagePath))) {
-                    mkdir(dirname($imagePath), 0777, true);
-                }
-
-                if ($imageFile->saveAs($imagePath)) {
-                    $model->image = $imageName;
+                $url = StorageHelper::upload($imageFile, '@public/uploads/programs/');
+                if ($url) {
+                    $model->image = $url;
                     // Delete old image
-                    if ($oldImage && file_exists(Yii::getAlias('@public/uploads/programs/') . $oldImage)) {
-                        unlink(Yii::getAlias('@public/uploads/programs/') . $oldImage);
+                    if ($oldImage && !StorageHelper::isUrl($oldImage)) {
+                        $path = Yii::getAlias('@public/uploads/programs/') . $oldImage;
+                        if (file_exists($path)) unlink($path);
                     }
                 }
             } else {
@@ -154,8 +143,9 @@ class SocialProgramController extends Controller
         $model = $this->findModel($id);
         $image = $model->image;
         if ($model->delete()) {
-            if ($image && file_exists(Yii::getAlias('@frontend/web/uploads/programs/') . $image)) {
-                unlink(Yii::getAlias('@frontend/web/uploads/programs/') . $image);
+            if ($image && !StorageHelper::isUrl($image)) {
+                $path = Yii::getAlias('@public/uploads/programs/') . $image;
+                if (file_exists($path)) unlink($path);
             }
             if ($this->request->isAjax) {
                 Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;

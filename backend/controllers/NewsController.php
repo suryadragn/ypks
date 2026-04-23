@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\News;
 use common\models\NewsSearch;
+use common\components\StorageHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -85,17 +86,9 @@ class NewsController extends Controller
             if ($model->load($this->request->post())) {
                 $image = \yii\web\UploadedFile::getInstance($model, 'image');
                 if ($image) {
-                    $fileName = time() . '_' . $image->baseName . '.' . $image->extension;
-                    $dir = Yii::getAlias('@public/uploads/news/');
-                    
-                    // Pastikan folder ada
-                    if (!is_dir($dir)) {
-                        mkdir($dir, 0777, true);
-                    }
-
-                    $path = $dir . $fileName;
-                    if ($image->saveAs($path)) {
-                        $model->image = $fileName;
+                    $url = StorageHelper::upload($image, '@public/uploads/news/');
+                    if ($url) {
+                        $model->image = $url;
                     }
                 }
                 
@@ -131,13 +124,13 @@ class NewsController extends Controller
             if ($model->load($this->request->post())) {
                 $image = \yii\web\UploadedFile::getInstance($model, 'image');
                 if ($image) {
-                    $fileName = time() . '_' . $image->baseName . '.' . $image->extension;
-                    $path = \Yii::getAlias('@public/uploads/news/') . $fileName;
-                    if ($image->saveAs($path)) {
-                        $model->image = $fileName;
-                        // Hapus file lama bila ada
-                        if ($oldImage && file_exists(\Yii::getAlias('@public/uploads/news/') . $oldImage)) {
-                            unlink(\Yii::getAlias('@public/uploads/news/') . $oldImage);
+                    $url = StorageHelper::upload($image, '@public/uploads/news/');
+                    if ($url) {
+                        $model->image = $url;
+                        // Hapus file lama bila ada dan bukan URL
+                        if ($oldImage && !StorageHelper::isUrl($oldImage)) {
+                            $path = \Yii::getAlias('@public/uploads/news/') . $oldImage;
+                            if (file_exists($path)) unlink($path);
                         }
                     }
                 } else {
@@ -169,11 +162,9 @@ class NewsController extends Controller
     {
         $model = $this->findModel($id);
         $image = $model->image;
-        
-        if ($model->delete()) {
-            if ($image && file_exists(\Yii::getAlias('@frontend/web/uploads/news/') . $image)) {
-                unlink(\Yii::getAlias('@frontend/web/uploads/news/') . $image);
-            }
+        if ($model->delete() && $image && !StorageHelper::isUrl($image)) {
+            $path = \Yii::getAlias('@public/uploads/news/') . $image;
+            if (file_exists($path)) unlink($path);
         }
 
         if ($this->request->isAjax) {

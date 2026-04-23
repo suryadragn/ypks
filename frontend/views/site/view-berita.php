@@ -22,7 +22,17 @@ $otherNews = \common\models\News::find()
     <!-- Immersive Header Section -->
     <div class="news-hero-section position-relative overflow-hidden mb-5 d-flex align-items-end" style="height: 70vh; min-height: 500px;">
         <?php 
-            $imageUrl = $model->image ? Url::to(Yii::getAlias('@web/uploads/news/') . $model->image, true) : 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1600&q=80'; 
+            $imageUrl = null;
+            if ($model->image) {
+                if (strpos($model->image, 'http') === 0) {
+                    $imageUrl = $model->image;
+                } else {
+                    $imageUrl = Url::to(Yii::getAlias('@web/uploads/news/') . $model->image, true);
+                }
+            }
+            if (!$imageUrl) {
+                $imageUrl = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1600&q=80';
+            }
         ?>
         <div class="hero-bg-overlay" style="background: url('<?= Html::encode($imageUrl) ?>') no-repeat center center; background-size: cover;"></div>
         <div class="hero-gradient-overlay"></div>
@@ -98,7 +108,20 @@ $otherNews = \common\models\News::find()
                             <a href="<?= Url::to(['site/view-berita', 'id' => $news->id]) ?>" class="text-decoration-none group">
                                 <div class="d-flex align-items-center mb-4 transition-all hover-translate-x">
                                     <div class="flex-shrink-0" style="width: 80px; height: 80px;">
-                                        <img src="<?= $news->image ? Url::to(Yii::getAlias('@web/uploads/news/') . $news->image) : 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=150&q=80' ?>" 
+                                        <?php
+                                            $sideImg = null;
+                                            if ($news->image) {
+                                                if (strpos($news->image, 'http') === 0) {
+                                                    $sideImg = $news->image;
+                                                } else {
+                                                    $sideImg = Url::to(Yii::getAlias('@web/uploads/news/') . $news->image);
+                                                }
+                                            }
+                                            if (!$sideImg) {
+                                                $sideImg = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=150&q=80';
+                                            }
+                                        ?>
+                                        <img src="<?= $sideImg ?>" 
                                              class="img-fluid rounded-3 h-100 w-100 object-fit-cover shadow-sm border" alt="Alt">
                                     </div>
                                     <div class="ms-3 flex-grow-1">

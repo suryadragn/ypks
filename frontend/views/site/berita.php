@@ -28,9 +28,15 @@ $this->params['breadcrumbs'][] = 'Berita';
                             <?php 
                                 // Image handling with fallback
                                 $imageUrl = null;
-                                if ($news->image && file_exists(Yii::getAlias('@public/uploads/news/') . $news->image)) {
-                                    $imageUrl = Url::to('@web/uploads/news/' . $news->image);
-                                } else {
+                                if ($news->image) {
+                                    if (strpos($news->image, 'http') === 0) {
+                                        $imageUrl = $news->image;
+                                    } elseif (file_exists(Yii::getAlias('@public/uploads/news/') . $news->image)) {
+                                        $imageUrl = Url::to('@web/uploads/news/' . $news->image);
+                                    }
+                                }
+                                
+                                if (!$imageUrl) {
                                     $imageUrl = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
                                 }
                             ?>

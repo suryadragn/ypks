@@ -14,7 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 // Deteksi logo dengan fallback
 $logoUrl = null;
 if ($model->logo) {
-    if (file_exists(Yii::getAlias('@public/uploads/institution/') . $model->logo)) {
+    if (strpos($model->logo, 'http') === 0) {
+        $logoUrl = $model->logo;
+    } elseif (file_exists(Yii::getAlias('@public/uploads/institution/') . $model->logo)) {
         $logoUrl = Url::to('@web/uploads/institution/' . $model->logo);
     } elseif (file_exists(Yii::getAlias('@public/image/') . $model->logo)) {
         $logoUrl = Url::to('@web/image/' . $model->logo);

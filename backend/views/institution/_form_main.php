@@ -27,7 +27,8 @@ use yii\helpers\Html;
                     <?= $form->field($model, 'logo')->fileInput(['class' => 'form-control-file'])->label(false) ?>
                     <div id="logo-preview" class="mt-2 text-center">
                         <?php if ($model->logo): ?>
-                            <img src="<?= Yii::getAlias('@web/../../uploads/institution/') . $model->logo ?>" class="img-fluid rounded border p-1 bg-white" style="max-height: 120px">
+                            <?php $logoSrc = strpos($model->logo, 'http') === 0 ? $model->logo : Yii::getAlias('@web/../../uploads/institution/') . $model->logo; ?>
+                            <img src="<?= $logoSrc ?>" class="img-fluid rounded border p-1 bg-white" style="max-height: 120px">
                         <?php endif; ?>
                     </div>
                 </div>
