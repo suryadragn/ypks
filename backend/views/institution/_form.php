@@ -45,9 +45,7 @@ use yii\bootstrap4\Tabs;
 
 <?php
 $js = <<<JS
-$('#institution-form-ajax').off('submit').on('submit', function(e) {
-    e.preventDefault();
-}).off('beforeSubmit').on('beforeSubmit', function(e) {
+$(document).off('beforeSubmit', '#institution-form-ajax').on('beforeSubmit', '#institution-form-ajax', function(e) {
     var form = $(this);
     var formData = new FormData(form[0]);
 
@@ -64,11 +62,23 @@ $('#institution-form-ajax').off('submit').on('submit', function(e) {
                 if(typeof toastr !== "undefined") toastr.success(response.message);
                 else alert(response.message);
             } else {
-                // handle errors if any
+                // handle validation errors if returned in JSON
+                alert(response.message || 'Gagal menyimpan data.');
             }
+        },
+        error: function(xhr) {
+            var errorMsg = 'Terjadi kesalahan pada server.';
+            if (xhr.responseJSON && xhr.responseJSON.message) errorMsg = xhr.responseJSON.message;
+            alert(errorMsg);
+            console.error(xhr.responseText);
         }
     });
     return false;
+});
+
+// Prevent default submit just in case
+$(document).off('submit', '#institution-form-ajax').on('submit', '#institution-form-ajax', function(e) {
+    e.preventDefault();
 });
 
 $('#institution-logo').on('change', function() {
