@@ -81,9 +81,13 @@ $otherNews = \common\models\News::find()
                             <a href="#" class="badge bg-light text-muted text-decoration-none px-3 py-2 rounded-pill">#WartaYPKS</a>
                         </div>
                         <div class="social-share d-flex gap-2">
-                             <a href="#" class="share-btn fb"><i class="fab fa-facebook-f"></i></a>
-                             <a href="#" class="share-btn tw"><i class="fab fa-twitter"></i></a>
-                             <a href="#" class="share-btn wa text-success"><i class="fab fa-whatsapp"></i></a>
+                             <?php 
+                                $shareUrl = urlencode(Url::current([], true));
+                                $shareTitle = urlencode($model->title);
+                             ?>
+                             <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $shareUrl ?>" target="_blank" class="share-btn fb" title="Share ke Facebook"><i class="fab fa-facebook-f"></i></a>
+                             <a href="https://twitter.com/intent/tweet?text=<?= $shareTitle ?>&url=<?= $shareUrl ?>" target="_blank" class="share-btn tw" title="Share ke Twitter"><i class="fab fa-twitter"></i></a>
+                             <a href="https://api.whatsapp.com/send?text=<?= $shareTitle ?>%20<?= $shareUrl ?>" target="_blank" class="share-btn wa text-success" title="Share ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
 
