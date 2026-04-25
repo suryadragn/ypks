@@ -69,7 +69,7 @@ $otherNews = \common\models\News::find()
                     
                     <!-- Lead Paragraph or Summary could go here -->
                     <div class="article-content text-secondary fs-5 lh-30 mb-5">
-                        <?= nl2br($model->content) ?>
+                        <?= $model->content ?>
                     </div>
 
                     <!-- Article Share & Tags -->

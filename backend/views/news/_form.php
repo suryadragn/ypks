@@ -67,6 +67,11 @@ $('#news-form-ajax').on('beforeSubmit', function(e) {
     var formData = new FormData(this);
     var submitBtn = form.find('button[type="submit"]');
     
+    // Sync summernote content to textarea before sending
+    $('.summernote').each(function() {
+        $(this).summernote('code', $(this).summernote('code'));
+    });
+    
     // Matikan tombol agar tidak diklik 2x
     submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Menyimpan...');
 
@@ -109,12 +114,26 @@ $('#news-image').on('change', function() {
         reader.readAsDataURL(input.files[0]);
     }
 });
+
+// Initialize Summernote
+$('.summernote').summernote({
+    height: 300,
+    toolbar: [
+        ['style', ['style']],
+        ['font', ['italic','bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview', 'help']]
+    ]
+});
 JS;
 $this->registerJs($js);
 ?>
 
 <style>
-.modal-footer {
-    border-top: 1px solid #dee2e6;
-}
+    .modal-footer {
+        border-top: 1px solid #dee2e6;
+    }
 </style>

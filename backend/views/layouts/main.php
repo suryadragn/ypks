@@ -10,6 +10,10 @@ use yii\helpers\Html;
 $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+
+// Summernote Editor
+$this->registerCssFile('https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css');
+$this->registerJsFile('https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js', ['depends' => [\yii\web\JqueryAsset::class]]);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

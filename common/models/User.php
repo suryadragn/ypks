@@ -105,7 +105,43 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['permission_ids', 'is_superadmin'], 'safe'],
         ];
+    }
+
+    /**
+     * Populate permission_ids after model is loaded from database
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->permission_ids = \yii\helpers\ArrayHelper::getColumn($this->masterPermissions, 'id');
+    }
+
+    /**
+     * Save permissions to junction table after model is saved
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        
+        // Sync permissions (only if it's not a guest/registration scenario where permission_ids might not be set)
+        if ($this->permission_ids !== null) {
+            // Remove existing
+            Yii::$app->db->createCommand()->delete('user_permissions', ['user_id' => $this->id])->execute();
+            
+            // Insert new
+            if (is_array($this->permission_ids)) {
+                foreach ($this->permission_ids as $pId) {
+                    if ($pId) {
+                        Yii::$app->db->createCommand()->insert('user_permissions', [
+                            'user_id' => $this->id,
+                            'permission_id' => $pId
+                        ])->execute();
+                    }
+                }
+            }
+        }
     }
 
     /**
