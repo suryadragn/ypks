@@ -69,7 +69,7 @@ $otherNews = \common\models\News::find()
                     
                     <!-- Lead Paragraph or Summary could go here -->
                     <div class="article-content text-secondary fs-5 lh-30 mb-5">
-                        <?= $model->content ?>
+                        <?= $model->content ?: '<p class="text-muted italic">Tidak ada konten untuk berita ini.</p>' ?>
                     </div>
 
                     <!-- Article Share & Tags -->

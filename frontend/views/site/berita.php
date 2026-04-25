@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = 'Berita';
                                 </h4>
                                 
                                 <p class="card-text text-muted small mb-4" style="line-height: 1.7;">
-                                    <?= Html::encode(StringHelper::truncateWords(strip_tags($news->content), 20)) ?>
+                                    <?= Html::encode(StringHelper::truncateWords(strip_tags((string)$news->content), 20)) ?>
                                 </p>
                                 
                                 <div class="mt-auto">
