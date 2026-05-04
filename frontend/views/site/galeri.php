@@ -86,10 +86,22 @@ $this->params['breadcrumbs'][] = 'Galeri';
                 </div>
                 <div class="card-footer bg-white border-0 p-4 pt-1 text-center">
                     <h3 id="modal-title" class="fw-bold text-dark mb-1 ls-neg-1"></h3>
-                    <div class="d-flex align-items-center justify-content-center gap-2">
-                        <span class="badge bg-primary-soft text-primary px-3 py-1 rounded-pill small fw-bold mt-2">DOKUMENTASI RESMI YPKS</span>
+                    <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap mt-2">
+                        <span class="badge bg-primary-soft text-primary px-3 py-1 rounded-pill small fw-bold">DOKUMENTASI RESMI YPKS</span>
                     </div>
-                    <p class="text-muted small mt-3 mb-0 text-uppercase ls-2" style="font-size: 0.7rem;">Yayasan Pendidikan Karanganyar Surakarta</p>
+
+                    <!-- Gallery Social Share -->
+                    <div class="gallery-share-wrapper mt-4 pt-3 border-top">
+                        <p class="text-muted small fw-bold text-uppercase ls-1 mb-3">Bagikan Momen Ini:</p>
+                        <div class="d-flex justify-content-center gap-3">
+                             <a href="#" id="share-fb" target="_blank" class="share-btn fb" title="Share ke Facebook"><i class="fab fa-facebook-f"></i></a>
+                             <a href="#" id="share-tw" target="_blank" class="share-btn tw" title="Share ke Twitter"><i class="fab fa-twitter"></i></a>
+                             <a href="#" id="share-wa" target="_blank" class="share-btn wa" title="Share ke WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                             <a href="#" id="share-copy" class="share-btn copy" title="Salin Link Gambar"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+
+                    <p class="text-muted small mt-4 mb-0 text-uppercase ls-2" style="font-size: 0.7rem;">Yayasan Pendidikan Karanganyar Surakarta</p>
                 </div>
             </div>
         </div>
@@ -202,6 +214,37 @@ $this->params['breadcrumbs'][] = 'Galeri';
         animation: fadeInUp 0.8s ease-out;
     }
 
+    .gallery-card-premium:hover .badge-light-soft {
+        animation: pulse 1.5s infinite;
+    }
+
+    /* Share Buttons */
+    .share-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafc;
+        color: #64748b;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+        font-size: 1.1rem;
+    }
+    
+    .share-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        color: #fff;
+    }
+    
+    .share-btn.fb:hover { background: #1877f2; border-color: #1877f2; }
+    .share-btn.tw:hover { background: #1da1f2; border-color: #1da1f2; }
+    .share-btn.wa:hover { background: #25d366; border-color: #25d366; }
+    .share-btn.copy:hover { background: #64748b; border-color: #64748b; }
+
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -220,10 +263,38 @@ $js = <<<JS
 $('.clickable-gallery').on('click', function() {
     var imgSrc = $(this).data('img');
     var title = $(this).data('title');
+    var currentUrl = window.location.href; // Idealnya link spesifik ke item galeri, tapi sementara pakai URL galeri
+    var encodedUrl = encodeURIComponent(currentUrl);
+    var encodedTitle = encodeURIComponent(title + " - Dokumentasi YPKS");
     
     $('#modal-image').attr('src', imgSrc);
     $('#modal-title').text(title);
+    
+    // Update Share Links
+    $('#share-fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl);
+    $('#share-tw').attr('href', 'https://twitter.com/intent/tweet?text=' + encodedTitle + '&url=' + encodedUrl);
+    $('#share-wa').attr('href', 'https://api.whatsapp.com/send?text=' + encodedTitle + '%20' + encodedUrl);
+    
     $('#galleryModal').modal('show');
+});
+
+// Copy Link functionality
+$('#share-copy').on('click', function(e) {
+    e.preventDefault();
+    var dummy = document.createElement('input'),
+    text = window.location.href;
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+    
+    var btn = $(this);
+    var oldHtml = btn.html();
+    btn.html('<i class="fas fa-check"></i>').addClass('text-success');
+    setTimeout(function() {
+        btn.html(oldHtml).removeClass('text-success');
+    }, 2000);
 });
 
 // Pemicu Paksa Tutup Modal (Jika data-dismiss gagal)
