@@ -48,6 +48,9 @@ class StorageHelper
         ];
         
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        // Tambahkan timeout agar tidak menggantung jika API lambat
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         
         $result = curl_exec($ch);
         if (curl_errno($ch)) {
@@ -58,7 +61,8 @@ class StorageHelper
 
         $response = json_decode($result, true);
         if (isset($response['success']) && $response['success']) {
-            return $response['data']['url'];
+            // Gunakan display_url untuk direct link ke gambar, bukan URL viewer
+            return $response['data']['display_url'] ?? $response['data']['url'];
         }
 
         Yii::error("ImgBB Upload failed: " . ($response['error']['message'] ?? 'Unknown error'), __METHOD__);

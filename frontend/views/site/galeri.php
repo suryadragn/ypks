@@ -18,7 +18,6 @@ $this->params['breadcrumbs'][] = 'Galeri';
             <p class="lead opacity-75">Dokumentasi momen berharga, fasilitas, dan kegiatan seluruh unit pendidikan YPKS.</p>
         </div>
     </div>
-
     <div class="container">
         <?php if (!empty($galleries)): ?>
             <div class="row" id="gallery-grid">
@@ -26,12 +25,15 @@ $this->params['breadcrumbs'][] = 'Galeri';
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="<?= $index * 50 ?>">
                         <?php
                         $imgUrl = null;
+                        $alt = "";
                         if ($gallery->image) {
                             if (strpos($gallery->image, 'http') === 0) {
-                                $imgUrl = $gallery->image;
+                                $imgUrl = str_replace('.co', '.co.com', $gallery->image);
                             } elseif (file_exists(Yii::getAlias('@public/uploads/gallery/') . $gallery->image)) {
                                 $imgUrl = Url::to('@web/uploads/gallery/' . $gallery->image);
                             }
+                            $path = parse_url($imgUrl, PHP_URL_PATH); // Ambil /xKLLGN9X/f3ef944f8ecc.jpg
+                            $alt = pathinfo($path, PATHINFO_FILENAME);
                         }
                         
                         if (!$imgUrl) {
@@ -43,7 +45,7 @@ $this->params['breadcrumbs'][] = 'Galeri';
                             data-title="<?= Html::encode($gallery->title) ?>"
                             style="cursor: pointer;">
                             <div class="img-wrapper overflow-hidden" style="height: 280px;">
-                                <img src="<?= $imgUrl ?>" alt="<?= Html::encode($gallery->title) ?>" class="gallery-image w-100 h-100" style="object-fit: cover;">
+                                <img src="<?= $imgUrl ?>" alt="<?= $alt ?>" class="gallery-image w-100 h-100" style="object-fit: cover;">
                                 <div class="gallery-info-overlay d-flex flex-column align-items-center justify-content-center text-center p-3">
                                     <div class="zoom-icon mb-2">
                                         <i class="fas fa-search-plus text-white display-4"></i>

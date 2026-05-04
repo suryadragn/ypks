@@ -23,12 +23,6 @@ use yii\bootstrap4\ActiveForm;
             <div class="alert alert-info py-2 small">
                 <i class="fas fa-info-circle mr-1"></i> Slug digunakan untuk URL cantik halaman.
             </div>
-
-            <div class="card bg-light border-0 shadow-none mt-4">
-                <div class="card-body">
-                    <p class="text-muted small mb-0">Klik tombol di bawah untuk menyimpan perubahan.</p>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -63,6 +57,44 @@ $('#page-title').on('keyup', function() {
         .replace(/[\s_-]+/g, '-')
         .replace(/^-+|-+$/g, '');
     $('#page-slug').val(slug);
+});
+
+// Initialize Summernote
+$('.summernote').summernote({
+    height: 400,
+    toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview']]
+    ],
+    callbacks: {
+        onImageUpload: function(files) {
+            var data = new FormData();
+            data.append("image", files[0]);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "/backend/web/page/upload-image",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if(response.success) {
+                        $('.summernote').summernote('insertImage', response.url);
+                    } else {
+                        alert(response.message || 'Gagal upload gambar');
+                    }
+                },
+                error: function() {
+                    alert('Terjadi kesalahan saat upload gambar');
+                }
+            });
+        }
+    }
 });
 JS;
 $this->registerJs($js);

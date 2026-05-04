@@ -176,6 +176,24 @@ class NewsController extends Controller
     }
 
     /**
+     * Upload image from Summernote
+     */
+    public function actionUploadImage()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $file = \yii\web\UploadedFile::getInstanceByName('image');
+        if ($file) {
+            $url = StorageHelper::upload($file, '@public/uploads/editor/');
+            if ($url) {
+                // Jika return bukan URL (berarti local), tambahkan base URL
+                $finalUrl = (strpos($url, 'http') === 0) ? $url : Yii::getAlias('@web/../../public/uploads/editor/') . $url;
+                return ['success' => true, 'url' => $finalUrl];
+            }
+        }
+        return ['success' => false, 'message' => 'Gagal upload gambar'];
+    }
+
+    /**
      * Finds the News model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID

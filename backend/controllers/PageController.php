@@ -125,6 +125,23 @@ class PageController extends Controller
     }
 
     /**
+     * Upload image from Summernote
+     */
+    public function actionUploadImage()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $file = \yii\web\UploadedFile::getInstanceByName('image');
+        if ($file) {
+            $url = \common\components\StorageHelper::upload($file, '@public/uploads/editor/');
+            if ($url) {
+                $finalUrl = (strpos($url, 'http') === 0) ? $url : Yii::getAlias('@web/../../public/uploads/editor/') . $url;
+                return ['success' => true, 'url' => $finalUrl];
+            }
+        }
+        return ['success' => false, 'message' => 'Gagal upload gambar'];
+    }
+
+    /**
      * Finds the Page model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID

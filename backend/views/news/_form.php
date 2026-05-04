@@ -126,7 +126,31 @@ $('.summernote').summernote({
         ['table', ['table']],
         ['insert', ['link', 'picture', 'video']],
         ['view', ['fullscreen', 'codeview', 'help']]
-    ]
+    ],
+    callbacks: {
+        onImageUpload: function(files) {
+            var data = new FormData();
+            data.append("image", files[0]);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "/backend/web/news/upload-image", // Pastikan route ini ada
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if(response.success) {
+                        $('.summernote').summernote('insertImage', response.url);
+                    } else {
+                        alert(response.message || 'Gagal upload gambar');
+                    }
+                },
+                error: function() {
+                    alert('Terjadi kesalahan saat upload gambar');
+                }
+            });
+        }
+    }
 });
 JS;
 $this->registerJs($js);

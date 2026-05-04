@@ -218,7 +218,7 @@ class SiteController extends Controller
     public function actionGaleri()
     {
         $galleries = \common\models\Gallery::find()
-            ->orderBy(['created_at' => SORT_DESC])
+            ->orderBy(['id' => SORT_DESC])
             ->all();
 
         return $this->render('galeri', [
